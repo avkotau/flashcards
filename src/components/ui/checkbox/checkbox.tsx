@@ -24,22 +24,21 @@ export const CustomCheckbox: FC<CheckboxProps> = ({
 }) => {
   return (
     <form>
-      <div style={{ alignItems: 'center', display: 'flex' }}>
+      <div className={s.checkboxWrapper}>
         <Checkbox.Root
           checked={checked}
-          className={s.CheckboxRoot}
-          // defaultChecked
+          className={s.root}
           disabled={disabled}
           id={id}
           onCheckedChange={onChange}
           required={required}
         >
-          <Checkbox.Indicator className={s.CheckboxIndicator}>
+          <Checkbox.Indicator className={s.indicator}>
             <CheckIcon />
           </Checkbox.Indicator>
         </Checkbox.Root>
-        {label}
       </div>
+      {label}
     </form>
   )
 }

@@ -1,0 +1,109 @@
+@import '@radix-ui/colors/black-alpha.css';
+@import '@radix-ui/colors/violet.css';
+
+.checkboxWrapper {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  .root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 24px;
+    height: 24px;
+
+    background-color: transparent;
+    border: 2px solid var(--color-dark-100);
+    border-radius: 4px;
+
+    // logic for active
+    // Color for active and not selected state
+    &:active:not([data-state='checked']) {
+      background-color: var(--color-dark-100);
+      border: 2px solid var(--color-light-900);
+    }
+
+    // Color for selected state
+    &[data-state='checked'] {
+      color: var(--color-dark-900);
+      background-color: var(--color-light-100);
+      border: 2px solid var(--color-dark-100);
+    }
+
+    // Color for active and selected state
+    &:active[data-state='checked'] {
+      border: 2px solid var(--color-dark-100);
+    }
+
+    // logic for hover
+    // Color for active and not selected state
+    &:hover:not([data-state='checked']) {
+      background-color: var(--color-dark-300);
+      border-color: var(--color-light-900);
+    }
+
+    // Color for active and selected state
+    &:hover[data-state='checked'] {
+      background-color: var(--color-light-100);
+      border-color: var(--color-dark-300);
+    }
+
+    // logic for focus
+    // Color for active and not selected state
+    &:focus:not([data-state='checked']) {
+      background-color: var(--color-dark-100);
+      border-color: var(--color-light-900);
+    }
+
+    // Color for active and selected state
+    &:focus[data-state='checked'] {
+      background-color: var(--color-light-100);
+      border-color: var(--color-dark-100);
+    }
+
+    // logic for disabled
+    // Color for active and not selected state
+    &:disabled:not([data-state='checked']) {
+      border-color: var(--color-light-900);
+    }
+
+    // Color for active and selected state
+    &:disabled[data-state='checked'] {
+      color: var(--color-light-700);
+      background-color: var(--color-dark-100);
+    }
+
+    // Increase check mark size
+    span {
+      transform: scale(1.7);
+      padding-top: 0.9px;
+    }
+
+    .indicator {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &:hover {
+    background: var(--color-dark-300);
+    border-radius: 50%;
+  }
+
+  &:focus {
+    background: var(--color-dark-100);
+    border-radius: 50%;
+  }
+
+  &:active:not([data-state='checked']) {
+    background-color: var(--color-dark-100);
+    border-radius: 50%;
+  }
+}
