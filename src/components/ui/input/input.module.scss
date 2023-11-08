@@ -1,58 +1,68 @@
-.input {
-  all: unset;
+@import '@/styles/mixins';
 
-  padding: 6px 12px;
+.inputContainer {
+  position: relative;
+  display: flex;
 
-  font-size: var(--font-size-m);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-m);
-  color: var(--color-dark-100);
+  .eyeIcon {
+    @include input-icon(10.68rem, 0);
+  }
 
-  border: 1px solid var(--color-dark-300, #4c4c4c);
-  border-radius: 2px;
+  .input {
+    all: unset;
 
-  &.active {
-    color: var(--color-light-100);
-    border-color: var(--color-light-100, #fff);
+    padding: 0.38rem 0.75rem;
 
-    &::placeholder {
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-m);
+    color: var(--color-dark-100);
+
+    border: 1px solid var(--color-dark-300, #4c4c4c);
+    border-radius: 0.125rem;
+
+    &.active {
       color: var(--color-light-100);
+      border-color: var(--color-light-100, #fff);
+
+      &::placeholder {
+        color: var(--color-light-100);
+      }
     }
-  }
 
-  &.error {
-    color: var(--color-danger-300);
-    border-color: var(--color-danger-300, #f23d61);
-
-    &::placeholder {
+    &.error {
       color: var(--color-danger-300);
+      border-color: var(--color-danger-300, #f23d61);
+
+      &::placeholder {
+        color: var(--color-danger-300);
+      }
     }
-  }
 
-  &.hover {
-    color: var(--color-dark-100);
-    border-color: var(--color-dark-100, #808080);
-
-    &::placeholder {
+    &.hover {
       color: var(--color-dark-100);
+      border-color: var(--color-dark-100, #808080);
+
+      &::placeholder {
+        color: var(--color-dark-100);
+      }
     }
-  }
 
-  &.focus {
-    color: var(--color-dark-100);
-    border: 2px solid var(--color-info-700, #2f68cc);
-
-    &::placeholder {
+    &.focus {
       color: var(--color-dark-100);
+      border: 2px solid var(--color-info-700, #2f68cc);
+
+      &::placeholder {
+        color: var(--color-dark-100);
+      }
     }
-  }
 
-  &.disabled {
-    color: var(--color-dark-300);
-    background-color: var(--color-dark-300, #4c4c4c);
-
-    &::placeholder {
+    &.disabled {
       color: var(--color-dark-300);
+
+      &::placeholder {
+        color: var(--color-dark-300);
+      }
     }
   }
 }

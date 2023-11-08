@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef, FC, ReactNode } from 'react'
 import { Typography } from '@/components/ui/typography'
 import cn from 'classnames'
 
-import style from './input.module.scss'
+import styles from './input.module.scss'
 
 export type InputProps = {
   closedEyeIcon?: ReactNode
@@ -25,22 +25,50 @@ export const InputFactory: FC<InputProps> = ({
   searchIcon,
   type,
   variant,
-  ...rest
+  ...restProps
 }) => {
   //input by default has style variant = default
-  const inputStyles = cn(style.input, {
-    [style.active]: variant === 'active',
-    [style.error]: variant === 'error',
-    [style.focus]: variant === 'focus',
-    [style.hover]: variant === 'hover',
+  const inputStyles = cn(styles.input, {
+    [styles.active]: variant === 'active',
+    [styles.disabled]: variant === 'disabled',
+    [styles.error]: variant === 'error',
+    [styles.focus]: variant === 'focus',
+    [styles.hover]: variant === 'hover',
   })
+
+  const inputElementStyles = {
+    closedEyeIcon: '',
+    eyeIcon: cn(styles.eyeIcon),
+    inputContainer: cn(styles.inputContainer),
+    searchIcon: '',
+  }
+
+  const isDisabled = variant === 'disabled'
 
   return (
     <div>
       <div>
         <Typography.Body1>{label}</Typography.Body1>
       </div>
-      <input className={inputStyles} placeholder={placeholder} type={type} {...rest} />
+      <div className={styles.inputContainer}>
+        <input
+          className={inputStyles}
+          disabled={isDisabled}
+          placeholder={placeholder}
+          type={type}
+          {...restProps}
+        />
+        <IconButton className={inputElementStyles.eyeIcon} icon={eyeIcon} />
+      </div>
     </div>
   )
+}
+
+type IconProps = {
+  className?: string
+  icon?: ReactNode
+}
+
+const IconButton: FC<IconProps> = ({ className, icon }) => {
+  return <button className={className}>{icon}</button>
 }
