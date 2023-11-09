@@ -5,7 +5,7 @@ type Props = {
   size?: number
 }
 
-export const EyeIcon: FC<Props> = ({ color, size = 20 }) => {
+export const ClosedEyeIcon: FC<Props> = ({ color, size = 20 }) => {
   return (
     <>
       <svg
@@ -30,6 +30,16 @@ export const EyeIcon: FC<Props> = ({ color, size = 20 }) => {
               }
               fill={color}
               id={'Vector_2'}
+            />
+            {/* Line added to represent the eye being crossed out */}
+            <line
+              stroke={color}
+              strokeLinecap={'round'}
+              strokeWidth={'2'}
+              x1={'2'}
+              x2={'18'}
+              y1={'2'}
+              y2={'18'}
             />
           </g>
         </g>

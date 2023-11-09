@@ -6,8 +6,7 @@ import cn from 'classnames'
 import styles from './input.module.scss'
 
 export type InputProps = {
-  closedEyeIcon?: ReactNode
-  error: boolean
+  error?: boolean
   eyeIcon?: ReactNode
   label: string
   placeholder: string
@@ -17,7 +16,6 @@ export type InputProps = {
 } & ComponentPropsWithoutRef<'input'>
 
 export const InputFactory: FC<InputProps> = ({
-  closedEyeIcon,
   error,
   eyeIcon,
   label,
@@ -40,7 +38,7 @@ export const InputFactory: FC<InputProps> = ({
     closedEyeIcon: '',
     eyeIcon: cn(styles.eyeIcon),
     inputContainer: cn(styles.inputContainer),
-    searchIcon: '',
+    searchIcon: cn(styles.searchIcon),
   }
 
   const isDisabled = variant === 'disabled'
@@ -58,7 +56,8 @@ export const InputFactory: FC<InputProps> = ({
           type={type}
           {...restProps}
         />
-        <IconButton className={inputElementStyles.eyeIcon} icon={eyeIcon} />
+        <IconButton className={inputElementStyles.searchIcon} icon={searchIcon} />
+        <IconButton className={inputElementStyles.eyeIcon} icon={eyeIcon || 'X'} />
       </div>
     </div>
   )

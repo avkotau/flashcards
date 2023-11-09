@@ -8,6 +8,10 @@
     @include input-icon(10.68rem, 0);
   }
 
+  .searchIcon {
+    @include input-icon(0.75rem, 0);
+  }
+
   .input {
     all: unset;
 
