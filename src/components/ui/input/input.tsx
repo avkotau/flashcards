@@ -9,7 +9,9 @@ export type InputProps = {
   error?: boolean
   eyeIcon?: ReactNode
   label: string
+  leftIcon?: ReactNode
   placeholder: string
+  rightIcon?: ReactNode
   searchIcon?: ReactNode
   type: string
   variant?: 'active' | 'default' | 'disabled' | 'error' | 'focus' | 'hover'
@@ -19,12 +21,18 @@ export const InputFactory: FC<InputProps> = ({
   error,
   eyeIcon,
   label,
+  leftIcon,
   placeholder,
+  rightIcon,
   searchIcon,
   type,
   variant,
   ...restProps
 }) => {
+  {
+    // searchIcon && <IconButton className={styles.searchIcon} icon={searchIcon} />
+  }
+
   //input by default has style variant = default
   const inputStyles = cn(styles.input, {
     [styles.active]: variant === 'active',
@@ -32,6 +40,7 @@ export const InputFactory: FC<InputProps> = ({
     [styles.error]: variant === 'error',
     [styles.focus]: variant === 'focus',
     [styles.hover]: variant === 'hover',
+    [styles['with-search-icon']]: searchIcon != undefined,
   })
 
   const inputElementStyles = {
@@ -56,8 +65,9 @@ export const InputFactory: FC<InputProps> = ({
           type={type}
           {...restProps}
         />
-        <IconButton className={inputElementStyles.searchIcon} icon={searchIcon} />
-        <IconButton className={inputElementStyles.eyeIcon} icon={eyeIcon || 'X'} />
+        <IconButton className={inputElementStyles.searchIcon} icon={leftIcon} />
+        <IconButton className={inputElementStyles.searchIcon} icon={rightIcon} />
+        <IconButton className={inputElementStyles.eyeIcon} icon={eyeIcon} />
       </div>
     </div>
   )

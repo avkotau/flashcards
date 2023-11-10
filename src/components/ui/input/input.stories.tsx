@@ -1,5 +1,6 @@
 import { ClosedEyeIcon, EyeIcon, SearchIcon } from '@/assets/icons'
 import { IconWrapper } from '@/assets/icons/IconWrapper'
+import { CrossIcon } from '@/assets/icons/components/CrossIcon'
 import { InputFactory } from '@/components/ui/input/input'
 import { Meta, StoryObj } from '@storybook/react'
 
@@ -76,10 +77,12 @@ export const Search: Story = {
     const eyeIconColor =
       args.variant === 'disabled' ? 'var(--color-dark-300)' : 'var(--color-light-100)'
 
-    const definedIcon = (
-      // args.type === 'active' ? (
-      <SearchIcon color={eyeIconColor} />
-    )
+    const definedIcon = {
+      leftIcon: <SearchIcon color={eyeIconColor} />,
+      rightIcon: <CrossIcon color={eyeIconColor} />,
+    }
+    // args.type === 'active' ? (
+    //  &&
 
     return <InputFactory {...args} searchIcon={<IconWrapper icon={definedIcon} />} />
   },
