@@ -6,33 +6,27 @@ import cn from 'classnames'
 import styles from './input.module.scss'
 
 export type InputProps = {
-  error?: boolean
+  errorMessage?: string
   eyeIcon?: ReactNode
-  label: string
+  label?: string
   leftIcon?: ReactNode
   placeholder: string
   rightIcon?: ReactNode
-  searchIcon?: ReactNode
   type: string
   variant?: 'active' | 'default' | 'disabled' | 'error' | 'focus' | 'hover'
 } & ComponentPropsWithoutRef<'input'>
 
 export const InputFactory: FC<InputProps> = ({
-  error,
+  errorMessage,
   eyeIcon,
   label,
   leftIcon,
   placeholder,
   rightIcon,
-  searchIcon,
   type,
   variant,
   ...restProps
 }) => {
-  {
-    // searchIcon && <IconButton className={styles.searchIcon} icon={searchIcon} />
-  }
-
   //input by default has style variant = default
   const inputStyles = cn(styles.input, {
     [styles.active]: variant === 'active',
@@ -40,20 +34,20 @@ export const InputFactory: FC<InputProps> = ({
     [styles.error]: variant === 'error',
     [styles.focus]: variant === 'focus',
     [styles.hover]: variant === 'hover',
-    [styles['with-search-icon']]: searchIcon != undefined,
+    [styles['with-search-icon']]: leftIcon != undefined,
   })
 
   const inputElementStyles = {
-    closedEyeIcon: '',
+    crossIcon: cn(styles.crossIcon),
     eyeIcon: cn(styles.eyeIcon),
     inputContainer: cn(styles.inputContainer),
-    searchIcon: cn(styles.searchIcon),
+    leftIcon: cn(styles.searchIcon),
   }
 
   const isDisabled = variant === 'disabled'
 
   return (
-    <div>
+    <div className={styles.layout}>
       <div>
         <Typography.Body1>{label}</Typography.Body1>
       </div>
@@ -65,10 +59,15 @@ export const InputFactory: FC<InputProps> = ({
           type={type}
           {...restProps}
         />
-        <IconButton className={inputElementStyles.searchIcon} icon={leftIcon} />
-        <IconButton className={inputElementStyles.searchIcon} icon={rightIcon} />
+        <IconButton className={inputElementStyles.leftIcon} icon={leftIcon} />
+        {variant === 'active' && (
+          <IconButton className={inputElementStyles.crossIcon} icon={rightIcon} />
+        )}
         <IconButton className={inputElementStyles.eyeIcon} icon={eyeIcon} />
       </div>
+      {variant === 'error' && (
+        <Typography.Caption className={styles.error}>{errorMessage}</Typography.Caption>
+      )}
     </div>
   )
 }
@@ -79,5 +78,9 @@ type IconProps = {
 }
 
 const IconButton: FC<IconProps> = ({ className, icon }) => {
+  if (!icon) {
+    return null
+  }
+
   return <button className={className}>{icon}</button>
 }

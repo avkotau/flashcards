@@ -10,6 +10,7 @@ export type ReactTag = keyof IntrinsicElements
 
 type TypographyProps<Ttag extends ReactTag> = {
   children: ReactNode
+  className?: string
   component?: Ttag
 }
 
@@ -33,10 +34,10 @@ type Component = keyof typeof COMPONENTS
 export const CreateTypographyComponent = <T extends ReactTag>(
   KeyTagArg: Component
 ): FC<TypographyProps<T>> => {
-  return ({ children, component, ...rest }) => {
+  return ({ children, className, component, ...rest }) => {
     const Component = COMPONENTS[KeyTagArg] || 'div'
 
-    const classNames = s[KeyTagArg]
+    const classNames = `${s[KeyTagArg]} ${className || ''}`
 
     return (
       <Component className={classNames} {...rest}>

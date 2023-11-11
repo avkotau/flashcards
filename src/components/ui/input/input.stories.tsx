@@ -14,7 +14,7 @@ const meta = {
     },
     type: {
       control: { type: 'radio' },
-      options: ['text', 'password', 'active'],
+      options: ['text', 'password'],
     },
     variant: {
       control: { type: 'radio' },
@@ -31,6 +31,7 @@ type Story = StoryObj<typeof meta>
 
 export const Input: Story = {
   args: {
+    errorMessage: 'Error!',
     label: 'Input',
     placeholder: 'Input',
     title: 'Value',
@@ -42,6 +43,7 @@ export const Input: Story = {
 
 export const Password: Story = {
   args: {
+    errorMessage: 'Error!',
     eyeIcon: <EyeIcon />,
     label: 'Input',
     placeholder: 'Input',
@@ -66,24 +68,31 @@ export const Password: Story = {
 
 export const Search: Story = {
   args: {
-    label: 'Input',
+    errorMessage: 'Error!',
+    leftIcon: <IconWrapper icon={<SearchIcon />} />,
     placeholder: 'Input',
-    searchIcon: <SearchIcon />,
+    rightIcon: <IconWrapper icon={<CrossIcon />} />,
     title: 'Value',
     type: 'text',
     variant: 'default',
   },
   render: args => {
-    const eyeIconColor =
-      args.variant === 'disabled' ? 'var(--color-dark-300)' : 'var(--color-light-100)'
+    let eyeIconColor
 
-    const definedIcon = {
-      leftIcon: <SearchIcon color={eyeIconColor} />,
-      rightIcon: <CrossIcon color={eyeIconColor} />,
+    switch (args.variant) {
+      case 'disabled':
+        eyeIconColor = 'var(--color-dark-300)'
+        break
+      case 'active':
+        eyeIconColor = 'var(--color-light-100)'
+        break
+      default:
+        eyeIconColor = 'var(--color-dark-100)'
     }
-    // args.type === 'active' ? (
-    //  &&
 
-    return <InputFactory {...args} searchIcon={<IconWrapper icon={definedIcon} />} />
+    const leftIcon = <IconWrapper icon={<SearchIcon color={eyeIconColor} />} />
+    const rightIcon = <IconWrapper icon={<CrossIcon color={eyeIconColor} />} />
+
+    return <InputFactory {...args} leftIcon={leftIcon} rightIcon={rightIcon} type={'text'} />
   },
 }
