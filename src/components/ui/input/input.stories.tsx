@@ -44,7 +44,7 @@ export const Input: Story = {
     type: 'text',
     variant: 'default',
   },
-  render: args => <InputFactory {...args} />,
+  render: args => <InputFactory {...args} type={'text'} />,
 }
 
 export const Password: Story = {

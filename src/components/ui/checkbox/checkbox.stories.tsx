@@ -9,7 +9,7 @@ import { VerticalContainer } from './verticalConteiner'
 const meta = {
   component: CustomCheckbox,
   tags: ['autodocs'],
-  title: 'Components/Checkboxes',
+  title: 'Components/Checkbox',
 } satisfies Meta<typeof CustomCheckbox>
 
 export default meta
@@ -19,15 +19,14 @@ export const Checkbox: Story = {
   args: {
     checked: true,
     disabled: false,
-    label: 'Click here',
   },
   render: args => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [checked, setChecked] = useState(true)
+    const [checked, setChecked] = useState<boolean>(true)
 
     return (
       <VerticalContainer>
-        <CustomCheckbox {...args} checked={checked} onChange={setChecked} />
+        <CustomCheckbox {...args} checked={checked} onChange={() => setChecked(!checked)} />
         <ValuePreview>checked: {String(checked)}</ValuePreview>
       </VerticalContainer>
     )

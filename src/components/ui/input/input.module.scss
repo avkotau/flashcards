@@ -25,6 +25,14 @@
       @include input-icon(12.95rem, 0);
     }
 
+    &:has(> input:disabled) {
+      .eyeIcon,
+      .searchIcon,
+      .crossIcon {
+        cursor: default;
+      }
+    }
+
     .input {
       all: unset;
 
