@@ -9,6 +9,12 @@ const meta = {
     eyeIcon: {
       control: false,
     },
+    leftIcon: {
+      control: false,
+    },
+    rightIcon: {
+      control: false,
+    },
     title: {
       control: { type: 'text' },
     },

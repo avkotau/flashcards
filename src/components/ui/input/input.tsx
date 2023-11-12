@@ -49,7 +49,7 @@ export const InputFactory: FC<InputProps> = ({
   return (
     <div className={styles.layout}>
       <div>
-        <Typography.Body1>{label}</Typography.Body1>
+        <Typography.Body1 className={styles.label}>{label}</Typography.Body1>
       </div>
       <div className={styles.inputContainer}>
         <input
