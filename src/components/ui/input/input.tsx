@@ -11,7 +11,7 @@ export type InputProps = {
   label?: string
   leftIcon?: ReactNode
   rightIcon?: ReactNode
-  variant?: 'active' | 'default' | 'disabled' | 'error' | 'focus' | 'hover' // вместо этого использовать type а это удалить
+  variant?: 'active' | 'default' | 'disabled' | 'error' | 'focus' | 'hover'
 } & ComponentPropsWithoutRef<'input'>
 
 export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
