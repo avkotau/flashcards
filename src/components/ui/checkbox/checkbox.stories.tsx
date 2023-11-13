@@ -19,6 +19,7 @@ export const Checkbox: Story = {
   args: {
     checked: true,
     disabled: false,
+    label: 'Click here',
   },
   render: args => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -26,7 +27,7 @@ export const Checkbox: Story = {
 
     return (
       <VerticalContainer>
-        <CustomCheckbox {...args} checked={checked} onChange={() => setChecked(!checked)} />
+        <CustomCheckbox {...args} checked={checked} onCheckedChange={() => setChecked(!checked)} />
         <ValuePreview>checked: {String(checked)}</ValuePreview>
       </VerticalContainer>
     )
