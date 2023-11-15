@@ -1,24 +1,16 @@
-import { useController, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
+import { loginSchema } from '@/components/auth/loginForm/loginSchema'
+import { ControlledCheckbox } from '@/components/ui/controlled/controlledCheckbox/controlledCheckbox'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import { Button } from '../../ui/button'
-import { CustomCheckbox } from '../../ui/checkbox'
 import { InputFactory } from '../../ui/input/input'
 
-export type FormValues = {
-  email: string
-  password: string
-  rememberMe: boolean
-}
+type FormValues = z.infer<typeof loginSchema>
 
 export const LoginForm = () => {
-  const loginSchema = z.object({
-    email: z.string().email(),
-    password: z.string().min(3),
-  })
-
   const {
     control,
     formState: { errors },
@@ -30,14 +22,6 @@ export const LoginForm = () => {
 
   const onSubmit = (data: FormValues) => {}
 
-  const {
-    field: { onChange, value },
-  } = useController({
-    control,
-    defaultValue: false,
-    name: 'rememberMe',
-  })
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <InputFactory {...register('email')} errorMessage={errors.email?.message} label={'email'} />
@@ -46,7 +30,7 @@ export const LoginForm = () => {
         errorMessage={errors.password?.message}
         label={'password'}
       />
-      <CustomCheckbox checked={value} label={'remember me'} onCheckedChange={onChange} />
+      <ControlledCheckbox control={control} label={'remember me'} name={'rememberMe'} />
       <Button type={'submit'}>Submit</Button>
     </form>
   )
