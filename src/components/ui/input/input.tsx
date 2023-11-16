@@ -1,5 +1,6 @@
-import { ComponentPropsWithoutRef, FC, ReactNode, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, FC, ReactNode, forwardRef, useState } from 'react'
 
+import { ClosedEyeIcon, EyeIcon } from '@/assets/icons'
 import { Typography } from '@/components/ui/typography'
 import cn from 'classnames'
 
@@ -10,21 +11,33 @@ export type InputProps = {
   eyeIcon?: ReactNode
   label?: string
   leftIcon?: ReactNode
+  onChangeValue?: (value: string) => void
+  onRightIconClickHandler?: () => void
   rightIcon?: ReactNode
+  type: string
   variant?: 'active' | 'default' | 'disabled' | 'error' | 'focus' | 'hover'
 } & ComponentPropsWithoutRef<'input'>
 
 export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
-  ({ errorMessage, eyeIcon, label, leftIcon, rightIcon, variant, ...restProps }, ref) => {
-    //input by default has style variant = default
-    const inputStyles = cn(styles.input, {
-      [styles.active]: variant === 'active',
-      [styles.disabled]: variant === 'disabled',
-      [styles.error]: variant === 'error',
-      [styles.focus]: variant === 'focus',
-      [styles.hover]: variant === 'hover',
-      [styles['with-search-icon']]: leftIcon != undefined,
-    })
+  (
+    {
+      errorMessage,
+      eyeIcon,
+      label,
+      leftIcon,
+      onChange,
+      onChangeValue,
+      onRightIconClickHandler,
+      rightIcon,
+      type,
+      variant,
+      ...restProps
+    },
+    ref
+  ) => {
+    const togglePasswordVisibility = () => {
+      setIsPasswordVisible(prevState => !prevState)
+    }
 
     const inputElementStyles = {
       crossIcon: cn(styles.crossIcon),
@@ -32,6 +45,13 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
       inputContainer: cn(styles.inputContainer),
       leftIcon: cn(styles.searchIcon),
     }
+
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+    const dynamicIconForRight = selectAppropriateRightIcon(
+      type || 'text',
+      isPasswordVisible,
+      rightIcon
+    )
 
     const isDisabled = variant === 'disabled'
 
@@ -41,12 +61,15 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
           <Typography.Body1 className={styles.label}>{label}</Typography.Body1>
         </div>
         <div className={styles.inputContainer}>
-          <input className={inputStyles} disabled={isDisabled} ref={ref} {...restProps} />
+          <input disabled={isDisabled} ref={ref} type={type} {...restProps} />
+
           <IconButton className={inputElementStyles.leftIcon} icon={leftIcon} />
-          {variant === 'active' && (
-            <IconButton className={inputElementStyles.crossIcon} icon={rightIcon} />
-          )}
-          <IconButton className={inputElementStyles.eyeIcon} icon={eyeIcon} />
+
+          <IconButton
+            className={inputElementStyles.eyeIcon}
+            icon={dynamicIconForRight}
+            onClick={type === 'password' ? togglePasswordVisibility : onRightIconClickHandler}
+          />
         </div>
         {variant === 'error' && (
           <Typography.Caption className={styles.error}>{errorMessage}</Typography.Caption>
@@ -59,12 +82,31 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
 type IconProps = {
   className?: string
   icon?: ReactNode
+  onClick?: () => void
 }
 
-const IconButton: FC<IconProps> = ({ className, icon }) => {
+const IconButton: FC<IconProps> = ({ className, icon, onClick }) => {
   if (!icon) {
     return null
   }
 
-  return <button className={className}>{icon}</button>
+  return (
+    <button className={className} onClick={onClick}>
+      {icon}
+    </button>
+  )
+}
+
+const selectAppropriateRightIcon = (
+  inputType: string,
+  isPasswordShown: boolean,
+  defaultRightIcon: ReactNode
+) => {
+  if (inputType === 'password' && isPasswordShown) {
+    return <EyeIcon color={'var(--color-light-100)'} />
+  } else if (inputType === 'password' && !isPasswordShown) {
+    return <ClosedEyeIcon color={'var(--color-light-100)'} />
+  } else {
+    return defaultRightIcon
+  }
 }
