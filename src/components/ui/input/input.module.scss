@@ -13,6 +13,7 @@
     position: relative;
     display: flex;
 
+    // styles for icons
     .eyeIcon {
       @include input-icon(10.68rem, 0);
     }
@@ -50,8 +51,31 @@
         padding-left: 2.56rem;
       }
 
+      .default {
+        color: var(--color-light-100);
+      }
+
+      // for story
+      &:hover:not(:disabled) {
+        color: var(--color-dark-100);
+        border-color: var(--color-dark-100, #808080);
+
+        &::placeholder {
+          color: var(--color-dark-100);
+        }
+      }
+
+      &.hover:not(:disabled) {
+        color: var(--color-dark-100);
+        border-color: var(--color-dark-100, #808080);
+
+        &::placeholder {
+          color: var(--color-dark-100);
+        }
+      }
+
       // for for story
-      &.active {
+      &.active:not(:disabled) {
         color: var(--color-light-100);
         border-color: var(--color-light-100, #fff);
 
@@ -60,7 +84,7 @@
         }
       }
 
-      &:active {
+      &:active:not(:disabled) {
         color: var(--color-light-100);
         border-color: var(--color-light-100, #fff);
 
@@ -75,25 +99,6 @@
 
         &::placeholder {
           color: var(--color-danger-300);
-        }
-      }
-
-      // for story
-      &:hover {
-        color: var(--color-dark-100);
-        border-color: var(--color-dark-100, #808080);
-
-        &::placeholder {
-          color: var(--color-dark-100);
-        }
-      }
-
-      &.hover {
-        color: var(--color-dark-100);
-        border-color: var(--color-dark-100, #808080);
-
-        &::placeholder {
-          color: var(--color-dark-100);
         }
       }
 

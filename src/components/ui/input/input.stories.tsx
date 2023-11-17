@@ -1,20 +1,14 @@
-import { ClosedEyeIcon, EyeIcon, SearchIcon } from '@/assets/icons'
+import { SearchIcon } from '@/assets/icons'
 import { IconWrapper } from '@/assets/icons/IconWrapper'
 import { CrossIcon } from '@/assets/icons/components/CrossIcon'
 import { InputFactory } from '@/components/ui/input/input'
 import { Meta, StoryObj } from '@storybook/react'
+import cn from 'classnames'
+
+import styles from '@/components/ui/input/input.module.scss'
 
 const meta = {
   argTypes: {
-    eyeIcon: {
-      control: false,
-    },
-    leftIcon: {
-      control: false,
-    },
-    rightIcon: {
-      control: false,
-    },
     title: {
       control: { type: 'text' },
     },
@@ -50,7 +44,6 @@ export const Input: Story = {
 export const Password: Story = {
   args: {
     errorMessage: 'Error!',
-    eyeIcon: <EyeIcon />,
     label: 'Input',
     placeholder: 'Input',
     title: 'Value',
@@ -58,28 +51,36 @@ export const Password: Story = {
     variant: 'default',
   },
   render: args => {
-    const eyeIconColor =
-      args.variant === 'disabled' ? 'var(--color-dark-300)' : 'var(--color-light-100)'
+    const disabled = args.variant === 'disabled'
+    const error = args.variant === 'error'
 
-    const definedIcon =
-      args.type === 'password' ? (
-        <ClosedEyeIcon color={eyeIconColor} />
-      ) : (
-        <EyeIcon color={eyeIconColor} />
-      )
+    //input by default has style variant = default
+    const inputStyles = cn(styles.input, {
+      [styles.active]: args.variant === 'active',
+      [styles.disabled]: args.variant === 'disabled',
+      [styles.error]: args.variant === 'error',
+      [styles.focus]: args.variant === 'focus',
+      [styles.hover]: args.variant === 'hover',
+    })
 
-    return <InputFactory {...args} eyeIcon={<IconWrapper icon={definedIcon} />} />
+    return (
+      <InputFactory
+        {...args}
+        className={inputStyles}
+        disabled={disabled}
+        error={error}
+        rightIcon
+        type={args.type}
+      />
+    )
   },
 }
 
 export const Search: Story = {
   args: {
     errorMessage: 'Error!',
-    leftIcon: <IconWrapper icon={<SearchIcon />} />,
     placeholder: 'Input',
-    rightIcon: <IconWrapper icon={<CrossIcon />} />,
     title: 'Value',
-    type: 'text',
     variant: 'default',
   },
   render: args => {
@@ -99,6 +100,70 @@ export const Search: Story = {
     const leftIcon = <IconWrapper icon={<SearchIcon color={eyeIconColor} />} />
     const rightIcon = <IconWrapper icon={<CrossIcon color={eyeIconColor} />} />
 
-    return <InputFactory {...args} leftIcon={leftIcon} rightIcon={rightIcon} type={'text'} />
+    //input by default has style variant = default
+    const inputStyles = cn(styles.input, {
+      [styles.active]: args.variant === 'active',
+      [styles.disabled]: args.variant === 'disabled',
+      [styles.error]: args.variant === 'error',
+      [styles.focus]: args.variant === 'focus',
+      [styles.hover]: args.variant === 'hover',
+      [styles['with-search-icon']]: leftIcon != undefined,
+    })
+
+    return (
+      <InputFactory
+        className={inputStyles}
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+        {...args}
+        type={'text'} // use after args because it must be overwritten
+      />
+    )
+  },
+}
+
+export const ControlledSearch: Story = {
+  args: {
+    errorMessage: 'Error!',
+    placeholder: 'Input',
+    title: 'Value',
+    variant: 'default',
+  },
+  render: args => {
+    let eyeIconColor
+
+    switch (args.variant) {
+      case 'disabled':
+        eyeIconColor = 'var(--color-dark-300)'
+        break
+      case 'active':
+        eyeIconColor = 'var(--color-light-100)'
+        break
+      default:
+        eyeIconColor = 'var(--color-dark-100)'
+    }
+
+    const leftIcon = <IconWrapper icon={<SearchIcon color={eyeIconColor} />} />
+    const rightIcon = <IconWrapper icon={<CrossIcon color={eyeIconColor} />} />
+
+    //input by default has style variant = default
+    const inputStyles = cn(styles.input, {
+      [styles.active]: args.variant === 'active',
+      [styles.disabled]: args.variant === 'disabled',
+      [styles.error]: args.variant === 'error',
+      [styles.focus]: args.variant === 'focus',
+      [styles.hover]: args.variant === 'hover',
+      [styles['with-search-icon']]: leftIcon != undefined,
+    })
+
+    return (
+      <InputFactory
+        className={inputStyles}
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+        {...args}
+        type={'text'} // use after args because it must be overwritten
+      />
+    )
   },
 }

@@ -5,12 +5,7 @@ type Props = {
   size?: number
 }
 
-export const IconWrapper: FC<{ icon: ReactNode } & Props> = ({
-  color,
-  icon,
-  size,
-  ...restProps
-}) => {
+export const IconWrapper: FC<{ icon: ReactNode } & Props> = ({ color, icon, size, ...rest }) => {
   return (
     <span
       aria-hidden={'true'}
@@ -23,7 +18,7 @@ export const IconWrapper: FC<{ icon: ReactNode } & Props> = ({
         height: size,
         width: size,
       }}
-      {...restProps}
+      {...rest}
     >
       {icon}
     </span>

@@ -7,6 +7,8 @@ import cn from 'classnames'
 import styles from './input.module.scss'
 
 export type InputProps = {
+  disabled?: boolean
+  error?: boolean
   errorMessage?: string
   eyeIcon?: ReactNode
   label?: string
@@ -21,6 +23,8 @@ export type InputProps = {
 export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
   (
     {
+      disabled,
+      error,
       errorMessage,
       eyeIcon,
       label,
@@ -30,7 +34,6 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
       onRightIconClickHandler,
       rightIcon,
       type,
-      variant,
       ...restProps
     },
     ref
@@ -39,21 +42,23 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
       setIsPasswordVisible(prevState => !prevState)
     }
 
-    const inputElementStyles = {
+    const classNames = {
       crossIcon: cn(styles.crossIcon),
       eyeIcon: cn(styles.eyeIcon),
       inputContainer: cn(styles.inputContainer),
       leftIcon: cn(styles.searchIcon),
+      visibilityIcon: cn(disabled ? styles.disabled : styles.default),
     }
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+
     const dynamicIconForRight = selectAppropriateRightIcon(
       type || 'text',
       isPasswordVisible,
-      rightIcon
+      rightIcon,
+      classNames.visibilityIcon
     )
-
-    const isDisabled = variant === 'disabled'
+    const typeInput = isPasswordVisible && type === 'password' ? 'text' : type
 
     return (
       <div className={styles.layout}>
@@ -61,19 +66,18 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
           <Typography.Body1 className={styles.label}>{label}</Typography.Body1>
         </div>
         <div className={styles.inputContainer}>
-          <input disabled={isDisabled} ref={ref} type={type} {...restProps} />
+          <input disabled={disabled} ref={ref} type={typeInput} {...restProps} />
 
-          <IconButton className={inputElementStyles.leftIcon} icon={leftIcon} />
+          <IconButton className={classNames.leftIcon} icon={leftIcon} />
 
           <IconButton
-            className={inputElementStyles.eyeIcon}
+            className={classNames.eyeIcon}
+            disabled={disabled}
             icon={dynamicIconForRight}
             onClick={type === 'password' ? togglePasswordVisibility : onRightIconClickHandler}
           />
         </div>
-        {variant === 'error' && (
-          <Typography.Caption className={styles.error}>{errorMessage}</Typography.Caption>
-        )}
+        {error && <Typography.Caption className={styles.error}>{errorMessage}</Typography.Caption>}
       </div>
     )
   }
@@ -81,17 +85,18 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
 
 type IconProps = {
   className?: string
+  disabled?: boolean
   icon?: ReactNode
   onClick?: () => void
 }
 
-const IconButton: FC<IconProps> = ({ className, icon, onClick }) => {
+const IconButton: FC<IconProps> = ({ className, disabled, icon, onClick }) => {
   if (!icon) {
     return null
   }
 
   return (
-    <button className={className} onClick={onClick}>
+    <button className={className} disabled={disabled} onClick={onClick}>
       {icon}
     </button>
   )
@@ -100,12 +105,13 @@ const IconButton: FC<IconProps> = ({ className, icon, onClick }) => {
 const selectAppropriateRightIcon = (
   inputType: string,
   isPasswordShown: boolean,
-  defaultRightIcon: ReactNode
+  defaultRightIcon: ReactNode,
+  styleIcon?: string
 ) => {
   if (inputType === 'password' && isPasswordShown) {
-    return <EyeIcon color={'var(--color-light-100)'} />
+    return <EyeIcon color={styleIcon} />
   } else if (inputType === 'password' && !isPasswordShown) {
-    return <ClosedEyeIcon color={'var(--color-light-100)'} />
+    return <ClosedEyeIcon color={styleIcon} />
   } else {
     return defaultRightIcon
   }
