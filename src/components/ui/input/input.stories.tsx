@@ -42,7 +42,7 @@ export const Input: Story = {
     const error = args.variant === 'error'
 
     //input by default has style variant = default
-    const inputStyles = cn(styles.input, {
+    const inputStyles = cn({
       [styles.active]: args.variant === 'active',
       [styles.disabled]: args.variant === 'disabled',
       [styles.error]: args.variant === 'error',
@@ -76,7 +76,7 @@ export const Password: Story = {
     const error = args.variant === 'error'
 
     //input by default has style variant = default
-    const inputStyles = cn(styles.input, {
+    const inputStyles = cn({
       [styles.active]: args.variant === 'active',
       [styles.disabled]: args.variant === 'disabled',
       [styles.error]: args.variant === 'error',
@@ -113,7 +113,7 @@ export const Search: Story = {
     const rightIcon = <CrossIcon />
 
     //input by default has style variant = default
-    const inputStyles = cn(styles.input, {
+    const inputStyles = cn({
       [styles.active]: args.variant === 'active',
       [styles.disabled]: args.variant === 'disabled',
       [styles.error]: args.variant === 'error',

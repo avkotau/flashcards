@@ -7,6 +7,7 @@ import cn from 'classnames'
 import styles from './input.module.scss'
 
 export type InputProps = {
+  className?: string
   disabled?: boolean
   error?: boolean
   errorMessage?: string
@@ -15,13 +16,14 @@ export type InputProps = {
   leftIcon?: ReactNode
   onRightIconClickHandler?: () => void
   rightIcon?: ReactNode
-  type: string
+  type?: string
   variant?: string
 } & ComponentPropsWithoutRef<'input'>
 
 export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
   (
     {
+      className,
       disabled,
       error,
       errorMessage,
@@ -55,6 +57,7 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
       crossIcon: cn(styles.crossIcon),
       eyeIcon: cn(rightIcon && leftIcon ? styles.crossIcon : styles.eyeIcon),
       inputContainer: cn(styles.inputContainer),
+      inputStyle: cn(styles.input, className),
       leftIcon: cn(styles.searchIcon),
     }
 
@@ -74,6 +77,7 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
         </div>
         <div className={styles.inputContainer}>
           <input
+            className={classNames.inputStyle}
             disabled={disabled}
             onChange={onChangeValueHandler}
             ref={ref}
