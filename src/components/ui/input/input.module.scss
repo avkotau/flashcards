@@ -20,10 +20,29 @@
 
     .searchIcon {
       @include input-icon(0.75rem, 0);
+
+      color: var(--color-dark-100);
     }
 
     .crossIcon {
       @include input-icon(12.95rem, 0);
+
+      color: var(--color-dark-100);
+    }
+
+    &:has(> input:active) {
+      .crossIcon,
+      .searchIcon {
+        color: var(--color-light-100);
+      }
+    }
+
+    // for story
+    &:has(> input.active) {
+      .crossIcon,
+      .searchIcon {
+        color: var(--color-light-100);
+      }
     }
 
     &:has(> input:disabled) {
@@ -31,6 +50,7 @@
       .searchIcon,
       .crossIcon {
         cursor: default;
+        color: var(--color-dark-300);
       }
     }
 
@@ -49,10 +69,6 @@
 
       &.with-search-icon {
         padding-left: 2.56rem;
-      }
-
-      .default {
-        color: var(--color-light-100);
       }
 
       // for story
@@ -74,7 +90,7 @@
         }
       }
 
-      // for for story
+      // for story
       &.active:not(:disabled) {
         color: var(--color-light-100);
         border-color: var(--color-light-100, #fff);

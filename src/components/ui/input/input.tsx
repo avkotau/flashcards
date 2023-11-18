@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, FC, ReactNode, forwardRef, useState } from 'react'
+import { ChangeEvent, ComponentPropsWithoutRef, FC, ReactNode, forwardRef, useState } from 'react'
 
 import { ClosedEyeIcon, EyeIcon } from '@/assets/icons'
 import { Typography } from '@/components/ui/typography'
@@ -13,11 +13,10 @@ export type InputProps = {
   eyeIcon?: ReactNode
   label?: string
   leftIcon?: ReactNode
-  onChangeValue?: (value: string) => void
   onRightIconClickHandler?: () => void
   rightIcon?: ReactNode
   type: string
-  variant?: 'active' | 'default' | 'disabled' | 'error' | 'focus' | 'hover'
+  variant?: string
 } & ComponentPropsWithoutRef<'input'>
 
 export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
@@ -30,35 +29,43 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
       label,
       leftIcon,
       onChange,
-      onChangeValue,
-      onRightIconClickHandler,
       rightIcon,
       type,
       ...restProps
     },
     ref
   ) => {
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+
+    const [inputValue, setInputValue] = useState('')
+
     const togglePasswordVisibility = () => {
       setIsPasswordVisible(prevState => !prevState)
+    }
+    const onChangeValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+      onChange?.(e)
+      setInputValue(e.currentTarget.value)
+    }
+
+    const clearInputHandler = () => {
+      setInputValue('')
     }
 
     const classNames = {
       crossIcon: cn(styles.crossIcon),
-      eyeIcon: cn(styles.eyeIcon),
+      eyeIcon: cn(rightIcon && leftIcon ? styles.crossIcon : styles.eyeIcon),
       inputContainer: cn(styles.inputContainer),
       leftIcon: cn(styles.searchIcon),
-      visibilityIcon: cn(disabled ? styles.disabled : styles.default),
     }
-
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
     const dynamicIconForRight = selectAppropriateRightIcon(
       type || 'text',
       isPasswordVisible,
-      rightIcon,
-      classNames.visibilityIcon
+      rightIcon
     )
     const typeInput = isPasswordVisible && type === 'password' ? 'text' : type
+    // Condition to determine which function to use as a click handler
+    const rightIconClickHandler = type === 'password' ? togglePasswordVisibility : clearInputHandler
 
     return (
       <div className={styles.layout}>
@@ -66,16 +73,25 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
           <Typography.Body1 className={styles.label}>{label}</Typography.Body1>
         </div>
         <div className={styles.inputContainer}>
-          <input disabled={disabled} ref={ref} type={typeInput} {...restProps} />
-
-          <IconButton className={classNames.leftIcon} icon={leftIcon} />
-
-          <IconButton
-            className={classNames.eyeIcon}
+          <input
             disabled={disabled}
-            icon={dynamicIconForRight}
-            onClick={type === 'password' ? togglePasswordVisibility : onRightIconClickHandler}
+            onChange={onChangeValueHandler}
+            ref={ref}
+            type={typeInput}
+            value={inputValue}
+            {...restProps}
           />
+
+          <IconButton className={classNames.leftIcon} disabled={disabled} icon={leftIcon} />
+
+          {inputValue && (
+            <IconButton
+              className={classNames.eyeIcon}
+              disabled={disabled}
+              icon={dynamicIconForRight}
+              onClick={rightIconClickHandler}
+            />
+          )}
         </div>
         {error && <Typography.Caption className={styles.error}>{errorMessage}</Typography.Caption>}
       </div>
@@ -105,14 +121,13 @@ const IconButton: FC<IconProps> = ({ className, disabled, icon, onClick }) => {
 const selectAppropriateRightIcon = (
   inputType: string,
   isPasswordShown: boolean,
-  defaultRightIcon: ReactNode,
-  styleIcon?: string
+  rightIcon: ReactNode
 ) => {
   if (inputType === 'password' && isPasswordShown) {
-    return <EyeIcon color={styleIcon} />
+    return <EyeIcon />
   } else if (inputType === 'password' && !isPasswordShown) {
-    return <ClosedEyeIcon color={styleIcon} />
+    return <ClosedEyeIcon />
   } else {
-    return defaultRightIcon
+    return rightIcon
   }
 }
