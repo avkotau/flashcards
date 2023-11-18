@@ -57,7 +57,7 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
       crossIcon: cn(styles.crossIcon),
       eyeIcon: cn(rightIcon && leftIcon ? styles.crossIcon : styles.eyeIcon),
       inputContainer: cn(styles.inputContainer),
-      inputStyle: cn(styles.input, className),
+      inputStyle: cn(styles.input, className, !!errorMessage && styles.error),
       leftIcon: cn(styles.searchIcon),
     }
 
@@ -97,7 +97,9 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
             />
           )}
         </div>
-        {error && <Typography.Caption className={styles.error}>{errorMessage}</Typography.Caption>}
+        {!!errorMessage && (
+          <Typography.Caption className={styles.error}>{errorMessage}</Typography.Caption>
+        )}
       </div>
     )
   }

@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form'
 
 import { loginSchema } from '@/components/auth/loginForm/loginSchema'
 import { ControlledCheckbox } from '@/components/ui/controlled/controlledCheckbox/controlledCheckbox'
+import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
@@ -24,6 +25,7 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <DevTool control={control} />
       <InputFactory {...register('email')} errorMessage={errors.email?.message} label={'email'} />
       <InputFactory
         {...register('password')}
