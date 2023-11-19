@@ -5,16 +5,12 @@ import { CheckboxProps, CustomCheckbox } from '@/components/ui/checkbox/checkbox
 export type ControlledCheckboxProps<TFieldValues extends FieldValues> =
   UseControllerProps<TFieldValues> & Omit<CheckboxProps, 'id' | 'onChange' | 'value'>
 
-export const ControlledCheckbox = <TFieldValues extends FieldValues>({
-  control,
-  defaultValue,
-  name,
-  rules,
-  shouldUnregister,
-  ...checkboxProps
-}: ControlledCheckboxProps<TFieldValues>) => {
+export const ControlledCheckbox = <TFieldValues extends FieldValues>(
+  props: ControlledCheckboxProps<TFieldValues>
+) => {
+  const { control, defaultValue, name, rules, shouldUnregister, ...checkboxProps } = props
   const {
-    field: { onChange, value },
+    field: { onChange },
   } = useController({
     control,
     defaultValue,
@@ -26,8 +22,9 @@ export const ControlledCheckbox = <TFieldValues extends FieldValues>({
   return (
     <CustomCheckbox
       {...{
-        checked: value,
+        defaultValue,
         id: name,
+        name,
         onChange,
         ...checkboxProps,
       }}
