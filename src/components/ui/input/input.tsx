@@ -80,10 +80,10 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
             className={classNames.inputStyle}
             disabled={disabled}
             onChange={onChangeValueHandler}
-            ref={ref}
             type={typeInput}
             value={inputValue}
             {...restProps}
+            ref={ref}
           />
 
           <IconButton className={classNames.leftIcon} disabled={disabled} icon={leftIcon} />
