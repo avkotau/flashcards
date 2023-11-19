@@ -21,7 +21,10 @@ export const LoginForm = () => {
     resolver: zodResolver(loginSchema),
   })
 
-  const onSubmit = (data: FormValues) => {}
+  const onSubmit = (data: FormValues) => {
+    //temporary solution to deploy in vercel
+    return data
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
