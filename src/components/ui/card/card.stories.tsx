@@ -12,7 +12,22 @@ type Story = StoryObj<typeof meta>
 
 export const Cards: Story = {
   args: {
-    sHeight: 552,
-    sWidth: 420,
+    children: (
+      <div
+        style={{
+          backgroundColor: '#171717',
+          fontSize: '32px',
+          height: '34.5rem',
+          textAlign: 'center',
+          width: '26.25rem',
+        }}
+      >
+        Dark Theme
+      </div>
+    ),
+    style: {
+      height: '34.5rem',
+      width: '26.25rem',
+    },
   },
 }
