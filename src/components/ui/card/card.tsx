@@ -1,17 +1,13 @@
-import { FC } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, JSX, forwardRef } from 'react'
+
+import cn from 'classnames'
 
 import s from '@/components/ui/card/card.module.scss'
 
-type Props = {
-  sHeight: number
-  sWidth: number
-}
-export const Card: FC<Props> = ({ sHeight, sWidth, ...restProps }) => {
-  return (
-    <div
-      className={s.card}
-      style={{ height: sHeight + 'px', width: sWidth + 'px' }}
-      {...restProps}
-    ></div>
-  )
-}
+export const Card = forwardRef<ElementRef<'div'>, ComponentPropsWithoutRef<'div'>>(
+  ({ className, ...restProps }, ref): JSX.Element => {
+    const classes = cn(s.card, className)
+
+    return <div className={classes} ref={ref} {...restProps}></div>
+  }
+)

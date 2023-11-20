@@ -11,7 +11,7 @@ import { InputFactory } from '../../ui/input/input'
 
 type FormValues = z.infer<typeof loginSchema>
 
-export const LoginForm = () => {
+export const LoginForm = ({ onSubmit }: { onSubmit: (data: FormValues) => void }) => {
   const {
     control,
     formState: { errors },
@@ -20,11 +20,6 @@ export const LoginForm = () => {
   } = useForm<FormValues>({
     resolver: zodResolver(loginSchema),
   })
-
-  const onSubmit = (data: FormValues) => {
-    //temporary solution to deploy in vercel
-    return data
-  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -37,7 +32,7 @@ export const LoginForm = () => {
       />
       <ControlledCheckbox
         control={control}
-        defaultValue
+        defaultValue={false}
         label={'remember me'}
         name={'rememberMe'}
       />
