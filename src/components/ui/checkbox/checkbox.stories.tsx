@@ -19,6 +19,7 @@ export const Checkbox: Story = {
   args: {
     checked: true,
     disabled: false,
+    id: '1',
     label: 'Click here',
   },
   render: args => {

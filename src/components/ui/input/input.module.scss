@@ -15,7 +15,7 @@
 
     // styles for icons
     .eyeIcon {
-      @include input-icon(10.68rem, 0);
+      @include input-icon(_, 0.75rem);
     }
 
     .searchIcon {
@@ -57,6 +57,7 @@
     .input {
       all: unset;
 
+      width: 100%;
       padding: 0.38rem 0.75rem;
 
       font-size: var(--font-size-m);
@@ -69,6 +70,42 @@
 
       &.with-search-icon {
         padding-left: 2.56rem;
+      }
+
+      // for story
+      &.focus {
+        color: var(--color-dark-100);
+        border: 2px solid var(--color-info-700, #2f68cc);
+
+        &::placeholder {
+          color: var(--color-dark-100);
+        }
+      }
+
+      &:focus {
+        color: var(--color-dark-100);
+        border: 2px solid var(--color-info-700, #2f68cc);
+
+        &::placeholder {
+          color: var(--color-dark-100);
+        }
+      }
+
+      // for story
+      &.disabled {
+        color: var(--color-dark-300);
+
+        &::placeholder {
+          color: var(--color-dark-300);
+        }
+      }
+
+      &:disabled {
+        color: var(--color-dark-300);
+
+        &::placeholder {
+          color: var(--color-dark-300);
+        }
       }
 
       // for story
@@ -115,42 +152,6 @@
 
         &::placeholder {
           color: var(--color-danger-300);
-        }
-      }
-
-      // for story
-      &.focus {
-        color: var(--color-dark-100);
-        border: 2px solid var(--color-info-700, #2f68cc);
-
-        &::placeholder {
-          color: var(--color-dark-100);
-        }
-      }
-
-      &:focus {
-        color: var(--color-dark-100);
-        border: 2px solid var(--color-info-700, #2f68cc);
-
-        &::placeholder {
-          color: var(--color-dark-100);
-        }
-      }
-
-      // for story
-      &.disabled {
-        color: var(--color-dark-300);
-
-        &::placeholder {
-          color: var(--color-dark-300);
-        }
-      }
-
-      &:disabled {
-        color: var(--color-dark-300);
-
-        &::placeholder {
-          color: var(--color-dark-300);
         }
       }
     }

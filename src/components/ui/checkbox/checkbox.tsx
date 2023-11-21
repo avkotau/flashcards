@@ -9,6 +9,7 @@ import styles from '@/components/ui/input/input.module.scss'
 
 export type CheckboxProps = {
   disabled?: boolean
+  id: string
   label?: string
   name?: string
   onBlur?: () => void
@@ -20,7 +21,7 @@ export const CustomCheckbox = forwardRef<
   HTMLButtonElement,
   CheckboxProps & Omit<ComponentPropsWithoutRef<typeof Checkbox.Root>, 'ref'>
 >((props, ref) => {
-  const { defaultValue, disabled, label, name, onBlur, onChange, required } = props
+  const { defaultValue, disabled, id, label, name, onBlur, onChange, required } = props
 
   return (
     <div className={s.form}>
@@ -29,6 +30,7 @@ export const CustomCheckbox = forwardRef<
           className={s.root}
           defaultChecked={!!defaultValue}
           disabled={disabled}
+          id={id}
           name={name}
           onBlur={onBlur}
           onCheckedChange={onChange}
@@ -40,9 +42,9 @@ export const CustomCheckbox = forwardRef<
           </Checkbox.Indicator>
         </Checkbox.Root>
       </div>
-      <div>
+      <label htmlFor={id}>
         <Typography.Caption className={styles.label}>{label}</Typography.Caption>
-      </div>
+      </label>
     </div>
   )
 })
