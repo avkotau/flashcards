@@ -1,0 +1,50 @@
+.wrapper {
+  width: 26.25rem;
+  margin: 0 auto;
+  padding: 2.06rem 2.25rem 1.81rem;
+
+  .title {
+    padding-bottom: 1.69rem;
+  }
+
+  // dont have acc
+  & > *:nth-child(1) {
+    margin-bottom: 0.69rem;
+  }
+
+  & > *:last-child {
+    text-decoration: underline;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    // email
+    & > *:nth-child(1) {
+      margin-bottom: 1.5rem;
+    }
+
+    // password
+    & > *:nth-child(2) {
+      margin-bottom: 0.75rem;
+    }
+
+    // remember me
+    & > *:nth-child(3) {
+      margin-bottom: 0.38rem;
+    }
+
+    // forgot password
+    & > *:nth-child(4) {
+      margin-bottom: 4.12rem;
+      text-align: right;
+    }
+
+    // sign in button
+    & > *:nth-child(5) {
+      margin-bottom: 1.25rem;
+    }
+  }
+}
