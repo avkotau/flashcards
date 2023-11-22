@@ -49,8 +49,7 @@
   @include typography(var(--font-size-s), var(--font-weight-regular), var(--line-height-m));
 
   cursor: pointer;
-  color: var(--color-text-link);
-  text-decoration: underline;
+  color: var(--color-light-100);
 
   &:hover,
   &:focus {
@@ -62,8 +61,7 @@
   @include typography(var(--font-size-xs), var(--font-weight-regular), var(--line-height-s));
 
   cursor: pointer;
-  color: var(--color-text-link);
-  text-decoration: underline;
+  color: var(--color-light-100);
 
   &:hover,
   &:focus {
