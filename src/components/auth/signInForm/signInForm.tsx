@@ -4,9 +4,10 @@ import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledCheckbox } from '@/components/ui/controlled/controlledCheckbox/controlledCheckbox'
-import { InputFactory } from '@/components/ui/input'
+import { ControlledInput } from '@/components/ui/controlled/controlledInput/controlledInput'
 import { Typography } from '@/components/ui/typography'
 import { DevTool } from '@hookform/devtools'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import s from './signInForm.module.scss'
@@ -19,30 +20,39 @@ type Props = { onSubmit: (data: FormValues) => void }
 
 export const SignInForm = forwardRef<HTMLFormElement, Props>(
   ({ onSubmit }: Props, ref): JSX.Element => {
-    const { control, handleSubmit, register } = useForm<FormValues>()
+    const { control, handleSubmit } = useForm<FormValues>({
+      defaultValues: {
+        email: '',
+        password: '',
+        rememberMe: false,
+      },
+      resolver: zodResolver(signSchema),
+    })
 
     return (
       <Card className={s.wrapper}>
         <Typography.Large className={s.title}>Sign In</Typography.Large>
         <DevTool control={control} />
         <form className={s.form} onSubmit={handleSubmit(onSubmit)} ref={ref}>
-          <InputFactory
+          <ControlledInput
+            control={control}
             label={'Email'}
+            name={'email'}
             placeholder={'Enter email'}
             type={'text'}
-            {...register('email')}
           />
-          <InputFactory
+          <ControlledInput
+            control={control}
             label={'Password'}
-            placeholder={'Enter password'}
+            name={'password'}
+            placeholder={'Confirm password'}
             rightIcon
             type={'password'}
-            {...register('password')}
           />
           <ControlledCheckbox
             control={control}
             defaultValue={false}
-            label={'remember me'}
+            label={'Remember me'}
             name={'rememberMe'}
           />
           <Typography.Body2>Forgot Password?</Typography.Body2>
