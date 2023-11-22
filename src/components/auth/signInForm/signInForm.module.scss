@@ -7,15 +7,6 @@
     padding-bottom: 1.69rem;
   }
 
-  // dont have acc
-  & > *:nth-child(1) {
-    margin-bottom: 0.69rem;
-  }
-
-  & > *:last-child {
-    text-decoration: underline;
-  }
-
   .form {
     display: flex;
     flex-direction: column;
@@ -46,5 +37,14 @@
     & > *:nth-child(5) {
       margin-bottom: 1.25rem;
     }
+  }
+
+  .registerAcc {
+    margin-bottom: 0.69rem;
+    color: var(--color-light-900);
+  }
+
+  .signInBtn {
+    text-decoration: underline;
   }
 }
