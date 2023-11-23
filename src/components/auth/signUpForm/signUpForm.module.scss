@@ -1,0 +1,44 @@
+.wrapper {
+  width: 26.25rem;
+  margin: 0 auto;
+  padding: 2.06rem 2.25rem 1.81rem;
+
+  .title {
+    padding-bottom: 1.69rem;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    // email
+    & > *:nth-child(1) {
+      margin-bottom: 1.5rem;
+    }
+
+    // password
+    & > *:nth-child(2) {
+      margin-bottom: 1.5rem;
+    }
+
+    // confirm password
+    & > *:nth-child(3) {
+      margin-bottom: 3.75rem;
+    }
+
+    // sign in button
+    & > *:nth-child(4) {
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  .registerAcc {
+    margin-bottom: 0.69rem;
+    color: var(--color-light-900);
+  }
+
+  .signInBtn {
+    text-decoration: underline;
+  }
+}
