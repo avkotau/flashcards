@@ -31,8 +31,8 @@ export const SignInForm = forwardRef<HTMLFormElement, Props>(
 
     return (
       <Card className={s.wrapper}>
-        <Typography.Large className={s.title}>Sign In</Typography.Large>
         <DevTool control={control} />
+        <Typography.Large className={s.title}>Sign In</Typography.Large>
         <form className={s.form} onSubmit={handleSubmit(onSubmit)} ref={ref}>
           <ControlledInput
             control={control}
@@ -59,7 +59,7 @@ export const SignInForm = forwardRef<HTMLFormElement, Props>(
           <Button fullWidth>Sign In</Button>
         </form>
         <Typography.Link1 className={s.registerAcc}>Don&apos;t have an account?</Typography.Link1>
-        <Button as={'a'} className={s.signInBtn} type={'submit'} variant={'link'}>
+        <Button as={'a'} className={s.signUpBtn} type={'submit'} variant={'link'}>
           Sign Up
         </Button>
       </Card>
