@@ -1,0 +1,21 @@
+.wrapper {
+  width: 26.25rem;
+  margin: 0 auto;
+  padding: 2.31rem 2.25rem 2.75rem;
+
+  .title {
+    padding-bottom: 1.25rem;
+  }
+
+  .emailImg {
+    margin-bottom: 1.19rem;
+    color: var(--color-light-900);
+  }
+
+  .instructionsText {
+    margin-bottom: 4.06rem;
+    color: var(--color-light-900);
+    text-align: center;
+    opacity: 0.5;
+  }
+}
