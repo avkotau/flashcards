@@ -112,7 +112,7 @@ type IconProps = {
   onClick?: () => void
 }
 
-const IconButton: FC<IconProps> = ({ className, disabled, icon, onClick }) => {
+export const IconButton: FC<IconProps> = ({ className, disabled, icon, onClick }) => {
   if (!icon) {
     return null
   }

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { IconWrapper } from '@/assets/icons/IconWrapper'
-import { IconComeIn } from '@/assets/icons/components/IconComeIn'
+import { ComeInIcon } from '@/assets/icons/components/comeInIcon'
 
 import { Button } from './'
 
@@ -36,7 +35,7 @@ export const PrimaryIcon: Story = {
     children: 'Button primary',
     className: 'active',
     disabled: false,
-    icon: <IconWrapper icon={<IconComeIn />} />,
+    icon: <ComeInIcon />,
     variant: 'primary',
   },
 }
@@ -54,7 +53,7 @@ export const PrimaryIconDarkColor: Story = {
     children: 'Button primary',
     className: 'active',
     disabled: false,
-    icon: <IconWrapper icon={<IconComeIn />} size={16} />,
+    icon: <ComeInIcon />,
     variant: 'secondary',
   },
 }
