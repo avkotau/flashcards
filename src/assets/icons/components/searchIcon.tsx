@@ -6,6 +6,7 @@ type Props = {
   color?: string
   size?: number
 }
+
 export const SearchIcon: FC<Props> = ({ color, size = 20, ...rest }) => {
   return (
     <IconWrapper

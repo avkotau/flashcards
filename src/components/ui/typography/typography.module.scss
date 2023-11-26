@@ -34,7 +34,7 @@
 }
 
 .subtitle2 {
-  @include typography(var(--font-size-s), var(--font-weight-regular), var(--line-height-m));
+  @include typography(var(--font-size-s), var(--font-weight-bold), var(--line-height-m));
 }
 
 .caption {

@@ -1,5 +1,5 @@
 import { SearchIcon } from '@/assets/icons'
-import { CrossIcon } from '@/assets/icons/components/CrossIcon'
+import { CrossIcon } from '@/assets/icons/components/crossIcon'
 import { InputFactory } from '@/components/ui/input/input'
 import { Meta, StoryObj } from '@storybook/react'
 import cn from 'classnames'
