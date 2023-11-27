@@ -1,0 +1,18 @@
+@import '@/styles/mixins';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  .icon {
+    @include input-icon(_, _);
+
+    position: static;
+  }
+
+  .email {
+    padding-bottom: 0.81rem;
+    color: var(--color-dark-100);
+  }
+}
