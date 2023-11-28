@@ -1,0 +1,8 @@
+.form {
+  width: 100%;
+  padding-bottom: 2.69rem;
+
+  & > *:nth-child(1) {
+    padding-bottom: 2.25rem;
+  }
+}
