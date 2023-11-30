@@ -4,13 +4,10 @@ import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { ControlledInput } from '@/components/ui/controlled/controlledInput/controlledInput'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
 
 import s from './editName.module.scss'
 
-import { editNameSchema } from './editNameSchema'
-
-export type EditProfileValues = z.infer<typeof editNameSchema>
+import { EditProfileValues, editNameSchema } from './editNameSchema'
 
 type Props = {
   initialName?: EditProfileValues
