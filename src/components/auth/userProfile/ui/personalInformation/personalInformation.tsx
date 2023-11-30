@@ -1,7 +1,8 @@
 import { JSX, useState } from 'react'
 
 import { EditIcon } from '@/assets/icons/components/editIcon'
-import { EditName, EditProfileValues } from '@/components/auth/userProfile/ui/editName/editName'
+import { EditName } from '@/components/auth/userProfile/ui/editName/editName'
+import { EditProfileValues } from '@/components/auth/userProfile/ui/editName/editNameSchema'
 import { PersonalInfo } from '@/components/auth/userProfile/ui/personalInfo/personalInfo'
 import { Avatar } from '@/components/ui/avatar/avatar'
 import { Card } from '@/components/ui/card'
