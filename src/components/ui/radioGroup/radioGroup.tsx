@@ -8,9 +8,9 @@ import cn from 'classnames'
 import s from './radioGroup.module.scss'
 
 export type RadioSelectorProps = {
-  active: string
   onValueChange: (activeState: string) => void
   options: RadioOption[]
+  value: string
 }
 
 export type RadioGroupProps = RadioSelectorProps & ComponentPropsWithoutRef<typeof Radio.Root>
