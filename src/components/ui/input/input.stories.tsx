@@ -1,6 +1,6 @@
 import { SearchIcon } from '@/assets/icons'
 import { CrossIcon } from '@/assets/icons/components/crossIcon'
-import { InputFactory } from '@/components/ui/input/input'
+import { InputFactory, InputProps } from '@/components/ui/input/input'
 import { Meta, StoryObj } from '@storybook/react'
 import cn from 'classnames'
 
@@ -28,6 +28,27 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+const createInputProps = (args: InputProps) => {
+  const disabled = args.variant === 'disabled'
+  const error = args.variant === 'error'
+
+  const inputStyles = cn({
+    [styles.active]: args.variant === 'active',
+    [styles.disabled]: args.variant === 'disabled',
+    [styles.error]: args.variant === 'error',
+    [styles.focus]: args.variant === 'focus',
+    [styles.hover]: args.variant === 'hover',
+    [styles['with-search-icon']]: args.leftIcon != undefined,
+  })
+
+  return {
+    className: inputStyles,
+    disabled,
+    error,
+    ...args,
+  }
+}
+
 export const Input: Story = {
   args: {
     errorMessage: 'Error!',
@@ -37,29 +58,8 @@ export const Input: Story = {
     type: 'text',
     variant: 'default',
   },
-  render: args => {
-    const disabled = args.variant === 'disabled'
-    const error = args.variant === 'error'
 
-    //input by default has style variant = default
-    const inputStyles = cn({
-      [styles.active]: args.variant === 'active',
-      [styles.disabled]: args.variant === 'disabled',
-      [styles.error]: args.variant === 'error',
-      [styles.focus]: args.variant === 'focus',
-      [styles.hover]: args.variant === 'hover',
-    })
-
-    return (
-      <InputFactory
-        {...args}
-        className={inputStyles}
-        disabled={disabled}
-        error={error}
-        type={'text'}
-      />
-    )
-  },
+  render: args => <InputFactory {...createInputProps(args)} type={'text'} />,
 }
 
 export const Password: Story = {
@@ -71,30 +71,8 @@ export const Password: Story = {
     type: 'password',
     variant: 'default',
   },
-  render: args => {
-    const disabled = args.variant === 'disabled'
-    const error = args.variant === 'error'
 
-    //input by default has style variant = default
-    const inputStyles = cn({
-      [styles.active]: args.variant === 'active',
-      [styles.disabled]: args.variant === 'disabled',
-      [styles.error]: args.variant === 'error',
-      [styles.focus]: args.variant === 'focus',
-      [styles.hover]: args.variant === 'hover',
-    })
-
-    return (
-      <InputFactory
-        {...args}
-        className={inputStyles}
-        disabled={disabled}
-        error={error}
-        rightIcon
-        type={args.type}
-      />
-    )
-  },
+  render: args => <InputFactory {...createInputProps(args)} rightIcon type={args.type} />,
 }
 
 export const Search: Story = {
@@ -106,30 +84,14 @@ export const Search: Story = {
     variant: 'default',
   },
   render: args => {
-    const disabled = args.variant === 'disabled'
-    const error = args.variant === 'error'
-
     const leftIcon = <SearchIcon />
     const rightIcon = <CrossIcon />
 
-    //input by default has style variant = default
-    const inputStyles = cn({
-      [styles.active]: args.variant === 'active',
-      [styles.disabled]: args.variant === 'disabled',
-      [styles.error]: args.variant === 'error',
-      [styles.focus]: args.variant === 'focus',
-      [styles.hover]: args.variant === 'hover',
-      [styles['with-search-icon']]: leftIcon != undefined,
-    })
-
     return (
       <InputFactory
-        className={inputStyles}
-        disabled={disabled}
-        error={error}
+        {...createInputProps({ ...args, leftIcon })}
         leftIcon={leftIcon}
         rightIcon={rightIcon}
-        {...args}
         type={'text'} // it must be overwritten
       />
     )

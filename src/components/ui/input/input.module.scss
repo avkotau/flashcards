@@ -25,7 +25,7 @@
     }
 
     .crossIcon {
-      @include input-icon(12.95rem, 0);
+      @include input-icon(_, 0.62rem);
 
       color: var(--color-dark-100);
     }
