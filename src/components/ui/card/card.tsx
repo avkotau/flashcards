@@ -6,8 +6,8 @@ import s from '@/components/ui/card/card.module.scss'
 
 export const Card = forwardRef<ElementRef<'div'>, ComponentPropsWithoutRef<'div'>>(
   ({ className, ...restProps }, ref): JSX.Element => {
-    const classes = cn(s.card, className)
+    const classNames = cn(s.card, className)
 
-    return <div className={classes} ref={ref} {...restProps}></div>
+    return <div className={classNames} ref={ref} {...restProps}></div>
   }
 )
