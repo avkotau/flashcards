@@ -10,7 +10,7 @@ type Props = { label: string } & ComponentPropsWithoutRef<typeof Radio.Item>
 
 export const RadioItem = forwardRef<ElementRef<typeof Radio.Item>, Props>(
   ({ disabled, id, label, value, ...rest }, ref) => {
-    const classes = {
+    const classNames = {
       label: cn(s.label, disabled && s.disabledLabel),
     }
 
@@ -26,7 +26,7 @@ export const RadioItem = forwardRef<ElementRef<typeof Radio.Item>, Props>(
         >
           <Radio.Indicator className={s.indicator} />
         </Radio.Item>
-        <label className={classes.label} htmlFor={id}>
+        <label className={classNames.label} htmlFor={id}>
           <Typography.Body2>{label}</Typography.Body2>
         </label>
       </div>
