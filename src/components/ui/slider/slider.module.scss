@@ -1,0 +1,83 @@
+@import '@radix-ui/colors/black-alpha.css';
+@import '@radix-ui/colors/violet.css';
+
+.wrapper {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+
+  .root {
+    touch-action: none;
+    user-select: none;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 200px;
+    height: 20px;
+
+    .track {
+      position: relative;
+
+      flex-grow: 1;
+
+      height: 3px;
+
+      background-color: var(--color-primary-900);
+      border-radius: 9999px;
+    }
+
+    .range {
+      position: absolute;
+      height: 100%;
+      background-color: var(--color-primary-500);
+      border-radius: 9999px;
+    }
+
+    .thumb {
+      display: block;
+
+      width: 20px;
+      height: 20px;
+
+      background-color: var(--color-primary-500);
+      border-radius: 10px;
+
+      &::after {
+        content: '';
+
+        position: absolute;
+        top: 0.28rem;
+        left: 0.28rem;
+
+        width: 0.7rem;
+        height: 0.7rem;
+
+        background-color: var(--color-light-100);
+        border-radius: 100%;
+      }
+
+      &:hover {
+        background-color: var(--violet-3);
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.25rem;
+    height: 2.25rem;
+
+    border: 1px solid var(--color-dark-300);
+    border-radius: 0.125rem;
+  }
+}
