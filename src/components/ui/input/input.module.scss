@@ -157,3 +157,15 @@
     }
   }
 }
+
+.iconInsideBtn {
+  all: unset;
+
+  cursor: pointer;
+
+  // size hidden button
+  width: 1.5rem;
+  height: 1.5rem;
+
+  background-color: transparent;
+}

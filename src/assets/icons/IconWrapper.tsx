@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react'
 
-type Props = {
+export type Props = {
+  className?: string
   color?: string
   size?: number
 }

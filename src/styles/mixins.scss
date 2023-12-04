@@ -1,16 +1,16 @@
 @mixin input-icon($left, $right) {
-  all: unset;
-
-  cursor: pointer;
-
   position: absolute;
   top: 25%;
   right: $right;
   left: $left;
+}
 
-  // size hidden button
-  width: 1.5rem;
-  height: 1.5rem;
+@mixin typography($fs, $fw, $lh) {
+  all: unset;
 
-  background-color: transparent;
+  margin: 0;
+
+  font-size: $fs;
+  font-weight: $fw;
+  line-height: $lh;
 }

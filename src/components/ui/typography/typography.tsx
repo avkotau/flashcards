@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react'
 
+import cn from 'classnames'
 import { JSX } from 'react/jsx-runtime'
 
 import s from './typography.module.scss'
@@ -37,7 +38,7 @@ export const CreateTypographyComponent = <T extends ReactTag>(
   return ({ children, className, component, ...rest }) => {
     const Component = COMPONENTS[KeyTagArg] || 'div'
 
-    const classNames = `${s[KeyTagArg]} ${className || ''}`
+    const classNames = cn(s[KeyTagArg], className)
 
     return (
       <Component className={classNames} {...rest}>
