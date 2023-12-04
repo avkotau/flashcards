@@ -1,7 +1,12 @@
 @import '@radix-ui/colors/black-alpha.css';
 @import '@radix-ui/colors/violet.css';
 
-.wrapper {
+.title {
+  display: flex;
+  padding-bottom: 2.31rem;
+}
+
+.wrapperSlider {
   display: flex;
   gap: 0.75rem;
   align-items: center;

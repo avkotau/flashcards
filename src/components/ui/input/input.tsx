@@ -1,4 +1,11 @@
-import { ChangeEvent, ComponentPropsWithoutRef, FC, ReactNode, forwardRef, useState } from 'react'
+import {
+  ChangeEvent,
+  ComponentPropsWithoutRef,
+  ElementRef,
+  ReactNode,
+  forwardRef,
+  useState,
+} from 'react'
 
 import { ClosedEyeIcon, EyeIcon } from '@/assets/icons'
 import { Typography } from '@/components/ui/typography'
@@ -110,17 +117,21 @@ type IconProps = {
   onClick?: () => void
 }
 
-export const IconButton: FC<IconProps> = ({ className, disabled, icon, onClick }) => {
-  if (!icon) {
-    return null
-  }
+export const IconButton = forwardRef<ElementRef<'button'>, IconProps>(
+  ({ className, disabled, icon, onClick, ...rest }, ref) => {
+    if (!icon) {
+      return null
+    }
 
-  return (
-    <button className={className} disabled={disabled} onClick={onClick}>
-      {icon}
-    </button>
-  )
-}
+    const classNames = cn(styles.iconInsideBtn, className)
+
+    return (
+      <button className={classNames} disabled={disabled} onClick={onClick} ref={ref} {...rest}>
+        {icon}
+      </button>
+    )
+  }
+)
 
 const selectAppropriateRightIcon = (
   inputType: string,

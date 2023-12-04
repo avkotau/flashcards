@@ -1,9 +1,4 @@
-@mixin typography($fs, $fw, $lh) {
-  all: unset;
-  font-size: $fs;
-  font-weight: $fw;
-  line-height: $lh;
-}
+@import '@/styles/mixins';
 
 .large {
   @include typography(var(--font-size-xxl), var(--font-weight-bold), var(--line-height-l));

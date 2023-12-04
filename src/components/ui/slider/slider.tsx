@@ -6,16 +6,16 @@ import cn from 'classnames'
 
 import s from './slider.module.scss'
 
-export type SliderProps = { label?: string } & ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
+export type SliderProps = { title?: string } & ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
 
 export const Slider = forwardRef<ElementRef<typeof SliderPrimitive.Root>, SliderProps>(
-  ({ className, label, value, ...rest }, ref): JSX.Element => {
+  ({ className, title, value, ...rest }, ref): JSX.Element => {
     const classNames = cn(s.root, className)
 
     return (
       <div>
-        <Typography.Body2>{label}</Typography.Body2>
-        <div className={s.wrapper}>
+        <Typography.Body2 className={s.title}>{title}</Typography.Body2>
+        <div className={s.wrapperSlider}>
           <Typography.Body1 className={s.value}>{value?.[0]}</Typography.Body1>
           <SliderPrimitive.Root className={classNames} ref={ref} value={value} {...rest}>
             <SliderPrimitive.Track className={s.track}>
