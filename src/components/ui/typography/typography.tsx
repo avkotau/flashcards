@@ -33,12 +33,12 @@ const COMPONENTS = {
 type Component = keyof typeof COMPONENTS
 
 export const CreateTypographyComponent = <T extends ReactTag>(
-  KeyTagArg: Component
+  Tag: Component
 ): FC<TypographyProps<T>> => {
   return ({ children, className, component, ...rest }) => {
-    const Component = COMPONENTS[KeyTagArg] || 'div'
+    const Component = COMPONENTS[Tag] || 'div'
 
-    const classNames = cn(s[KeyTagArg], className)
+    const classNames = cn(s[Tag], className)
 
     return (
       <Component className={classNames} {...rest}>
