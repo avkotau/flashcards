@@ -6,9 +6,9 @@ import cn from 'classnames'
 
 import s from './radioItem.module.scss'
 
-type Props = { label: string } & ComponentPropsWithoutRef<typeof Radio.Item>
+export type RadioItemProps = { label: string } & ComponentPropsWithoutRef<typeof Radio.Item>
 
-export const RadioItem = forwardRef<ElementRef<typeof Radio.Item>, Props>(
+export const RadioItem = forwardRef<ElementRef<typeof Radio.Item>, RadioItemProps>(
   ({ disabled, id, label, value, ...rest }, ref) => {
     const classNames = {
       label: cn(s.label, disabled && s.disabledLabel),

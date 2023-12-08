@@ -1,0 +1,9 @@
+@import '@/styles/mixins';
+
+.wrapperBtns {
+  @include wrapper-btns($justifyContent: space-between, $padding: 0.75rem 1.5rem 2.5rem);
+}
+
+.wrapperBody {
+  @include wrapper-body-deck-form;
+}
