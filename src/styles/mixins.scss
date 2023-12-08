@@ -11,3 +11,21 @@
   font-weight: $fw;
   line-height: $lh;
 }
+
+@mixin wrapper-btns($display: flex, $justifyContent, $padding) {
+  display: $display;
+  justify-content: $justifyContent;
+  padding: $padding;
+}
+
+@mixin wrapper-body-deck-form(
+  $display: flex,
+  $flexDirection: column,
+  $gap: 1.5rem,
+  $padding: 1.2rem 1.5rem
+) {
+  display: $display;
+  flex-direction: $flexDirection;
+  gap: $gap;
+  padding: $padding;
+}
