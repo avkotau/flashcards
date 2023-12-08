@@ -10,20 +10,20 @@ import cn from 'classnames'
 import s from './modal.module.scss'
 
 export type ModalProps = {
-  btn: ReactNode
   className?: ReactNode
+  isOpenModalBtn: ReactNode
   open: boolean
   setOpen: (open: boolean) => void
   title: string
 } & ComponentPropsWithoutRef<'div'>
 
 export const Modal = forwardRef<ElementRef<'div'>, ModalProps>(
-  ({ btn, children, className, open, setOpen, title }, ref) => {
+  ({ children, className, isOpenModalBtn, open, setOpen, title }, ref) => {
     const classNames = cn(className)
 
     return (
       <Dialog.Root onOpenChange={setOpen} open={open}>
-        <Dialog.Trigger asChild>{btn}</Dialog.Trigger>
+        <Dialog.Trigger asChild>{isOpenModalBtn}</Dialog.Trigger>
         {open && (
           <Dialog.Portal>
             <Dialog.Overlay className={s.DialogOverlay} />
