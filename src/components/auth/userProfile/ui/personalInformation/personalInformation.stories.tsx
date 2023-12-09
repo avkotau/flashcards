@@ -1,6 +1,5 @@
+import { PersonalInformation } from '@/components'
 import { Meta, StoryObj } from '@storybook/react'
-
-import { PersonalInformation } from './personalInformation'
 
 const meta: Meta<typeof PersonalInformation> = {
   component: PersonalInformation,

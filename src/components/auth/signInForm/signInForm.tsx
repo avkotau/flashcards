@@ -1,11 +1,7 @@
 import { JSX, forwardRef } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { ControlledCheckbox } from '@/components/ui/controlled/controlledCheckbox/controlledCheckbox'
-import { ControlledInput } from '@/components/ui/controlled/controlledInput/controlledInput'
-import { Typography } from '@/components/ui/typography'
+import { Button, Card, ControlledCheckbox, ControlledInput, Typography } from '@/components'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'

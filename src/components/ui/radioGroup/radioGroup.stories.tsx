@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
-import { RadioGroup, RadioSelectorProps } from '@/components/ui/radioGroup/radioGroup'
 import { Meta, StoryObj } from '@storybook/react'
+
+import { RadioGroup, RadioSelectorProps } from './radioGroup'
 
 const meta = {
   component: RadioGroup,

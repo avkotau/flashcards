@@ -1,4 +1,4 @@
-import { CreateNewPasswordForm } from '@/components/auth/createNewPasswordForm/createNewPasswordForm'
+import { CreateNewPasswordForm } from '@/components'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta: Meta<typeof CreateNewPasswordForm> = {

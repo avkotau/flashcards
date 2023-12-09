@@ -7,8 +7,8 @@ import {
   useState,
 } from 'react'
 
-import { ClosedEyeIcon, EyeIcon } from '@/assets/icons'
-import { Typography } from '@/components/ui/typography'
+import { ClosedEyeIcon, EyeIcon } from '@/assets'
+import { Typography } from '@/components'
 import cn from 'classnames'
 
 import styles from './input.module.scss'

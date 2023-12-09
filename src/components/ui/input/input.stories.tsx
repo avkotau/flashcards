@@ -1,10 +1,9 @@
-import { SearchIcon } from '@/assets/icons'
-import { CrossIcon } from '@/assets/icons/components/crossIcon'
-import { InputFactory, InputProps } from '@/components/ui/input/input'
+import { CrossIcon, SearchIcon } from '@/assets'
+import { InputFactory, InputProps } from '@/components'
 import { Meta, StoryObj } from '@storybook/react'
 import cn from 'classnames'
 
-import styles from '@/components/ui/input/input.module.scss'
+import styles from './input.module.scss'
 
 const meta = {
   argTypes: {

@@ -1,8 +1,7 @@
 import { FC, JSX } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Button } from '@/components/ui/button'
-import { ControlledInput } from '@/components/ui/controlled/controlledInput/controlledInput'
+import { Button, ControlledInput } from '@/components'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './editName.module.scss'

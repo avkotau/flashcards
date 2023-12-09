@@ -1,7 +1,5 @@
-import { Email } from '@/assets/images'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { Typography } from '@/components/ui/typography'
+import { Email } from '@/assets'
+import { Button, Card, Typography } from '@/components'
 
 import s from './checkEmail.module.scss'
 

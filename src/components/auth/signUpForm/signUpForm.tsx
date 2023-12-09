@@ -1,16 +1,14 @@
 import { JSX, forwardRef } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { signUpSchema } from '@/components/auth/signUpForm/signUpSchema'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { ControlledInput } from '@/components/ui/controlled/controlledInput/controlledInput'
-import { Typography } from '@/components/ui/typography'
+import { Button, Card, ControlledInput, Typography } from '@/components'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import s from './signUpForm.module.scss'
+
+import { signUpSchema } from './signUpSchema'
 
 type FormValues = z.infer<typeof signUpSchema>
 

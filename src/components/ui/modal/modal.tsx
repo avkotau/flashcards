@@ -1,9 +1,7 @@
 import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
-import { CloseIcon } from '@/assets/icons/components/closeIcon'
-import { Card } from '@/components/ui/card'
-import { IconButton } from '@/components/ui/input'
-import { Typography } from '@/components/ui/typography'
+import { CloseIcon } from '@/assets'
+import { Card, IconButton, Typography } from '@/components'
 import * as Dialog from '@radix-ui/react-dialog'
 import cn from 'classnames'
 

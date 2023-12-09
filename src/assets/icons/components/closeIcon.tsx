@@ -1,13 +1,8 @@
 import { FC } from 'react'
 
-import { IconWrapper } from '@/assets/icons/IconWrapper'
+import { IconWrapper, PropsIconWrapper } from '@/assets'
 
-type Props = {
-  color?: string
-  size?: number
-}
-
-export const CloseIcon: FC<Props> = ({ color, size = 24, ...rest }) => {
+export const CloseIcon: FC<PropsIconWrapper> = ({ color, size = 24, ...rest }) => {
   return (
     <IconWrapper
       icon={
