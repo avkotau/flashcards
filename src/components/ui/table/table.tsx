@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ElementRef, JSX, ReactNode, forwardRef } from 'react'
 
-import { Typography } from '@/components/ui/typography'
+import { Typography } from '@/components'
 import cn from 'classnames'
 
 import s from './table.module.scss'

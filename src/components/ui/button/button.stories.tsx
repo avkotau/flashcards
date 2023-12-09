@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { ComeInIcon } from '@/assets/icons/components/comeInIcon'
+import { ComeInIcon } from '@/assets'
 
 import { Button } from './'
 

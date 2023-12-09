@@ -1,13 +1,8 @@
 import { CSSProperties, useState } from 'react'
 
-import { DeleteIcon } from '@/assets/icons/components/deleteIcon'
-import { EditIcon } from '@/assets/icons/components/editIcon'
-import { PlayIcon } from '@/assets/icons/components/playIcon'
-import { Button } from '@/components/ui/button'
-import { IconButton } from '@/components/ui/input'
-import { Sort, TableHeader, TableHeaderProps } from '@/components/ui/table/TableHeader'
-import { Table } from '@/components/ui/table/table'
-import { Typography } from '@/components/ui/typography'
+import { DeleteIcon, EditIcon, PlayIcon } from '@/assets'
+import { Button, IconButton, Table, Typography } from '@/components'
+import { Sort, TableHeader, titleColumns } from '@/components/ui/table/tableHeader'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
@@ -20,28 +15,6 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-const titleColumns: TableHeaderProps[] = [
-  {
-    key: 'name',
-    title: 'Name',
-  },
-  {
-    key: 'cardsCount',
-    title: 'Cards',
-  },
-  {
-    key: 'updatedDate',
-    title: 'Last Updated',
-  },
-  {
-    key: 'createdByName',
-    title: 'Created by',
-  },
-  {
-    key: 'icons',
-    title: '',
-  },
-]
 const data = [
   {
     cardsCount: 3,
@@ -80,7 +53,6 @@ const getSortedData = (data: DataItem[], sort: Sort) => {
   if (!sort || !sort.key) {
     return data
   }
-  debugger
 
   return [...data].sort((a, b) => {
     const key = sort.key as keyof DataItem
@@ -88,13 +60,9 @@ const getSortedData = (data: DataItem[], sort: Sort) => {
     const valB = b[key]
 
     if (valA < valB) {
-      debugger
-
       return sort.direction === 'asc' ? -1 : 1
     }
     if (valA > valB) {
-      debugger
-
       return sort.direction === 'asc' ? 1 : -1
     }
 

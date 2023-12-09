@@ -1,12 +1,12 @@
 import { ComponentPropsWithoutRef, ElementRef, JSX, forwardRef } from 'react'
 
-import { Typography } from '@/components/ui/typography'
+import { Typography } from '@/components'
 import * as AvatarPrimitive from '@radix-ui/react-avatar'
 import cn from 'classnames'
 
 import s from './avatar.module.scss'
 
-export type Props = {
+type Props = {
   image?: string
   size?: 'large' | 'small'
   userName: string

@@ -1,10 +1,7 @@
 import { JSX } from 'react'
 
-import { ComeInIcon } from '@/assets/icons'
-import { EditIcon } from '@/assets/icons/components/editIcon'
-import { Button } from '@/components/ui/button'
-import { IconButton } from '@/components/ui/input'
-import { Typography } from '@/components/ui/typography'
+import { ComeInIcon, EditIcon } from '@/assets'
+import { Button, IconButton, Typography } from '@/components'
 
 import s from './personalInfo.module.scss'
 

@@ -1,6 +1,6 @@
-import { IconWrapper, Props } from '@/assets/icons/IconWrapper'
+import { IconWrapper, PropsIconWrapper } from '@/assets'
 
-export const PlayIcon = ({ ...rest }: Props) => {
+export const PlayIcon = ({ ...rest }: PropsIconWrapper) => {
   return (
     <IconWrapper
       icon={

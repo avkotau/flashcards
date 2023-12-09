@@ -1,6 +1,6 @@
-import { IconWrapper, Props } from '@/assets/icons/IconWrapper'
+import { IconWrapper, PropsIconWrapper } from '@/assets'
 
-export const ArrowDownIcon = ({ ...rest }: Props) => {
+export const ArrowDownIcon = ({ ...rest }: PropsIconWrapper) => {
   return (
     <IconWrapper
       icon={

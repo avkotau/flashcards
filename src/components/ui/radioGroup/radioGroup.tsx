@@ -1,11 +1,12 @@
 import { ComponentPropsWithoutRef, ElementRef, JSX, forwardRef } from 'react'
 
-import { RadioOption } from '@/components/ui/radioGroup/radioGroup.stories'
-import { RadioItem } from '@/components/ui/radioGroup/radioItem'
 import * as Radio from '@radix-ui/react-radio-group'
 import cn from 'classnames'
 
 import s from './radioGroup.module.scss'
+
+import { RadioOption } from './radioGroup.stories'
+import { RadioItem } from './radioItem'
 
 export type RadioSelectorProps = {
   onValueChange: (activeState: string) => void

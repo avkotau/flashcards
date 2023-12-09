@@ -1,15 +1,13 @@
 import { JSX, forwardRef } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { createNewPasswordFormSchema } from '@/components/auth/createNewPasswordForm/createNewPasswordFormSchema'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { ControlledInput } from '@/components/ui/controlled/controlledInput/controlledInput'
-import { Typography } from '@/components/ui/typography'
+import { Button, Card, ControlledInput, Typography } from '@/components'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import s from './createNewPasswordForm.module.scss'
+
+import { createNewPasswordFormSchema } from './createNewPasswordFormSchema'
 
 type CreatePasswordFormValue = z.infer<typeof createNewPasswordFormSchema>
 

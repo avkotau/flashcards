@@ -1,10 +1,7 @@
 import { forwardRef } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Button } from '@/components/ui/button'
-import { ControlledCheckbox } from '@/components/ui/controlled/controlledCheckbox/controlledCheckbox'
-import { ControlledInput } from '@/components/ui/controlled/controlledInput/controlledInput'
-import { Typography } from '@/components/ui/typography'
+import { Button, ControlledCheckbox, ControlledInput, Typography } from '@/components'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './deckForm.module.scss'

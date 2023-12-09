@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ElementRef, JSX, forwardRef } from 'react'
 
-import { Typography } from '@/components/ui/typography'
+import { Typography } from '@/components'
 import * as SliderPrimitive from '@radix-ui/react-slider'
 import cn from 'classnames'
 

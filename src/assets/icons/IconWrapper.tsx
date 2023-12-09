@@ -1,12 +1,17 @@
 import { FC, ReactNode } from 'react'
 
-export type Props = {
+export type PropsIconWrapper = {
   className?: string
   color?: string
   size?: number
 }
 
-export const IconWrapper: FC<{ icon: ReactNode } & Props> = ({ color, icon, size, ...rest }) => {
+export const IconWrapper: FC<{ icon: ReactNode } & PropsIconWrapper> = ({
+  color,
+  icon,
+  size,
+  ...rest
+}) => {
   return (
     <span
       aria-hidden={'true'}

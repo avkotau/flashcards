@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, ElementRef, JSX, forwardRef } from 'react'
 
 import cn from 'classnames'
 
-import s from '@/components/ui/card/card.module.scss'
+import s from './card.module.scss'
 
 export const Card = forwardRef<ElementRef<'div'>, ComponentPropsWithoutRef<'div'>>(
   ({ className, ...restProps }, ref): JSX.Element => {

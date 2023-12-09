@@ -1,13 +1,11 @@
 import { useForm } from 'react-hook-form'
 
-import { loginSchema } from '@/components/auth/loginForm/loginSchema'
-import { ControlledCheckbox } from '@/components/ui/controlled/controlledCheckbox/controlledCheckbox'
+import { Button, ControlledCheckbox, InputFactory } from '@/components'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import { Button } from '../../ui/button'
-import { InputFactory } from '../../ui/input/input'
+import { loginSchema } from './loginSchema'
 
 type FormValues = z.infer<typeof loginSchema>
 

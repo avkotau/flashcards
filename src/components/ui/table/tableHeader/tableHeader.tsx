@@ -1,9 +1,7 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
-import { ArrowDownIcon } from '@/assets/icons/components/arrowDownIcon'
-import { ArrowUpIcon } from '@/assets/icons/components/arrowUpIcon'
-import { Table } from '@/components/ui/table'
-import { Typography } from '@/components/ui/typography'
+import { ArrowDownIcon, ArrowUpIcon } from '@/assets'
+import { Table, Typography } from '@/components'
 
 import s from './tableHeader.module.scss'
 
@@ -38,6 +36,29 @@ const useSortHandler =
 
     onSort(newSort)
   }
+
+export const titleColumns: TableHeaderProps[] = [
+  {
+    key: 'name',
+    title: 'Name',
+  },
+  {
+    key: 'cardsCount',
+    title: 'Cards',
+  },
+  {
+    key: 'updatedDate',
+    title: 'Last Updated',
+  },
+  {
+    key: 'createdByName',
+    title: 'Created by',
+  },
+  {
+    key: 'icons',
+    title: '',
+  },
+]
 
 export const TableHeader = forwardRef<ElementRef<typeof Table.Head>, Props>(
   ({ key, onSort, sort, style, title, titleColumns, ...rest }, ref) => {

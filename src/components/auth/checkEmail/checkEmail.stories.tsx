@@ -1,4 +1,4 @@
-import { CheckEmail } from '@/components/auth/checkEmail/checkEmail'
+import { CheckEmail } from '@/components'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta: Meta<typeof CheckEmail> = {

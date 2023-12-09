@@ -1,6 +1,6 @@
-import { IconWrapper, Props } from '@/assets/icons/IconWrapper'
+import { IconWrapper, PropsIconWrapper } from '@/assets'
 
-export const DeleteIcon = ({ ...rest }: Props) => {
+export const DeleteIcon = ({ ...rest }: PropsIconWrapper) => {
   return (
     <IconWrapper
       icon={

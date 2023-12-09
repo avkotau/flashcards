@@ -1,16 +1,14 @@
 import { JSX, forwardRef } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { forgotPasswordFormSchema } from '@/components/auth/forgotPasswordForm/forgotPasswordFormSchema'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { ControlledInput } from '@/components/ui/controlled/controlledInput/controlledInput'
-import { Typography } from '@/components/ui/typography'
+import { Button, Card, ControlledInput, Typography } from '@/components'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import s from './forgotPasswordForm.module.scss'
+
+import { forgotPasswordFormSchema } from './forgotPasswordFormSchema'
 type FormValues = z.infer<typeof forgotPasswordFormSchema>
 
 type Props = {
