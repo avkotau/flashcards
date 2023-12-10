@@ -10,11 +10,12 @@ import { DeckFormValues, addDeckSchema } from './deckFormSchema'
 
 type Props = {
   isOpenModal: () => void
+  placeholder?: string
   valueBtn: string
 }
 
 export const DeckForm = forwardRef<HTMLFormElement, Props>(
-  ({ isOpenModal, valueBtn }: Props, ref) => {
+  ({ isOpenModal, placeholder, valueBtn }: Props, ref) => {
     const { control } = useForm<DeckFormValues>({
       resolver: zodResolver(addDeckSchema),
     })
@@ -26,7 +27,7 @@ export const DeckForm = forwardRef<HTMLFormElement, Props>(
             control={control}
             label={'Name Deck'}
             name={'name'}
-            placeholder={'Enter New Card name'}
+            placeholder={placeholder}
           />
 
           <ControlledCheckbox

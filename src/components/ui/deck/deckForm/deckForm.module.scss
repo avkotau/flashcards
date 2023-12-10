@@ -1,0 +1,9 @@
+@import '@/styles/mixins';
+
+.wrapperBtns {
+  @include wrapper-btns;
+}
+
+.wrapperBody {
+  @include wrapper-body-deck-form;
+}
