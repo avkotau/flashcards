@@ -9,6 +9,7 @@ import { z } from 'zod'
 import s from './forgotPasswordForm.module.scss'
 
 import { forgotPasswordFormSchema } from './forgotPasswordFormSchema'
+
 type FormValues = z.infer<typeof forgotPasswordFormSchema>
 
 type Props = {

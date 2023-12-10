@@ -1,4 +1,4 @@
-export * from './addDeck'
+export * from './deck'
 export * from './addNewCard'
 export * from './avatar'
 export * from './button'
