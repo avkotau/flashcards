@@ -24,7 +24,7 @@ const initialState: SelectItemType[] = [
 export const Select: Story = {
   args: {
     disabled: false,
-    fullWidth: true,
+    fullWidth: false,
     label: 'Select-box',
     options: initialState,
   },

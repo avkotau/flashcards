@@ -11,9 +11,9 @@ import s from './select.module.scss'
 import { SelectItem, SelectItemType } from '../select/SelectItem'
 
 type Props = {
-  disabled: boolean
-  fullWidth: boolean
-  label: string
+  disabled?: boolean
+  fullWidth?: boolean
+  label?: string
   options: SelectItemType[]
 }
 
