@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 import * as Select from '@radix-ui/react-select'
 import cn from 'classnames'
 
-import s from '@/components/ui/select/select.module.scss'
+import s from './selectItem.module.scss'
 
 export type SelectItemType = {
   title: string
@@ -12,8 +12,10 @@ export type SelectItemType = {
 
 export const SelectItem = forwardRef<ElementRef<typeof Select.Item>, SelectItemType>(
   ({ children, className, ...props }, ref) => {
+    const classNames = cn(s.selectItem, className)
+
     return (
-      <Select.Item className={cn(s.selectItem, className)} {...props} ref={ref}>
+      <Select.Item className={classNames} ref={ref} {...props}>
         <Select.ItemText>{children}</Select.ItemText>
       </Select.Item>
     )

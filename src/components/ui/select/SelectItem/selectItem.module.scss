@@ -1,0 +1,22 @@
+.selectItem {
+  user-select: none;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: var(--radix-select-trigger-width);
+  height: 2.25rem;
+  padding: 0 15px;
+
+  font-size: 13px;
+  line-height: 1;
+  color: var(--color-light-100);
+
+  &[data-highlighted] {
+    color: var(--color-primary-300);
+    background: var(--color-primary-900);
+    outline: none;
+  }
+}
