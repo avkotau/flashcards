@@ -1,4 +1,4 @@
-import { ElementRef, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
 import { ArrowDownIcon } from '@/assets'
 import { Typography } from '@/components'
@@ -8,24 +8,24 @@ import cn from 'classnames'
 
 import s from './select.module.scss'
 
-import { SelectItem, SelectItemType } from '../select/SelectItem'
+import { SelectItem, SelectItemType } from './selectItem'
 
-type Props = {
+export type CustomSelectProps = {
   disabled?: boolean
   fullWidth?: boolean
   label?: string
   options: SelectItemType[]
-}
+} & ComponentPropsWithoutRef<typeof Root>
 
-export const CustomSelect = forwardRef<ElementRef<typeof Root>, Props>(
-  ({ disabled, fullWidth, label = 'Select', options }, ref) => {
+export const CustomSelect = forwardRef<ElementRef<typeof Root>, CustomSelectProps>(
+  ({ disabled, fullWidth, label = 'Select', onValueChange, options }, ref) => {
     const classNames = {
       label: cn(s.label, disabled && s.disabled),
       trigger: cn(s.selectTrigger, fullWidth && s.fullWidth),
     }
 
     return (
-      <Select.Root disabled={disabled}>
+      <Select.Root disabled={disabled} onValueChange={onValueChange}>
         {label && <Typography.Body1 className={classNames.label}>{label}</Typography.Body1>}
         <Select.Trigger aria-label={'Food'} className={classNames.trigger} ref={ref}>
           <Typography.Body1>
