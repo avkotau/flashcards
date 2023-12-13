@@ -28,8 +28,13 @@ export const CardFormControl = ({ initialState, isOpenModal, onSubmit }: Props) 
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmitHandler)}>
-      <ControlledSelector control={control} name={'questionFormat'} options={initialState} />
+    <form className={s.form} onSubmit={handleSubmit(onSubmitHandler)}>
+      <ControlledSelector
+        control={control}
+        fullWidth
+        name={'questionFormat'}
+        options={initialState}
+      />
       <ControlledInput control={control} label={'Question'} name={'question'} type={'text'} />
       <ControlledInput control={control} label={'Answer'} name={'answer'} type={'text'} />
       <div className={s.wrapperBtns}>
