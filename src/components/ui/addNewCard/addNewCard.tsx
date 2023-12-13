@@ -9,5 +9,11 @@ type Props = {
   isOpenModalBtn: ReactNode
 }
 export const AddNewCard = ({ initialState, isOpenModalBtn }: Props): JSX.Element => {
-  return <AddCardModal initialState={initialState} isOpenModalBtn={isOpenModalBtn} />
+  return (
+    <AddCardModal
+      btnTitle={'Add New Card'}
+      initialState={initialState}
+      isOpenModalBtn={isOpenModalBtn}
+    />
+  )
 }

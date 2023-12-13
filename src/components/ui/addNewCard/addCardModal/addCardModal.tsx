@@ -6,11 +6,12 @@ import { CardFormControl } from '../../cardFormControl'
 import { SelectItemType } from '../../select/selectItem'
 
 type Props = {
+  btnTitle: string
   initialState: SelectItemType[]
   isOpenModalBtn: ReactNode
 }
 
-export const AddCardModal = ({ initialState, isOpenModalBtn }: Props): JSX.Element => {
+export const AddCardModal = ({ btnTitle, initialState, isOpenModalBtn }: Props): JSX.Element => {
   const [open, setOpen] = useState(false)
 
   const isOpenModal = () => {
@@ -23,7 +24,12 @@ export const AddCardModal = ({ initialState, isOpenModalBtn }: Props): JSX.Eleme
 
   return (
     <Modal isOpenModalBtn={isOpenModalBtn} open={open} setOpen={setOpen} title={'Add New Card'}>
-      <CardFormControl initialState={initialState} isOpenModal={isOpenModal} onSubmit={onSubmit} />
+      <CardFormControl
+        btnTitle={btnTitle}
+        initialState={initialState}
+        isOpenModal={isOpenModal}
+        onSubmit={onSubmit}
+      />
     </Modal>
   )
 }
