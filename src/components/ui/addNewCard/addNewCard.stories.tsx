@@ -1,16 +1,14 @@
+import { AddNewCard, Button } from '@/components'
+import { SelectItemType } from '@/components/ui/select/selectItem'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { CustomSelect } from './select'
-import { SelectItemType } from './selectItem'
-
 const meta = {
-  component: CustomSelect,
+  component: AddNewCard,
   tags: ['autodocs'],
-  title: 'Components/Select',
-} satisfies Meta<typeof CustomSelect>
+  title: 'Cards/AddNewCard',
+} satisfies Meta<typeof AddNewCard>
 
 export default meta
-
 type Story = StoryObj<typeof meta>
 
 const initialState: SelectItemType[] = [
@@ -21,11 +19,9 @@ const initialState: SelectItemType[] = [
   { title: 'Select 5', value: '5' },
 ]
 
-export const Select: Story = {
+export const Default: Story = {
   args: {
-    disabled: false,
-    fullWidth: true,
-    label: 'Select-box',
-    options: initialState,
+    initialState,
+    isOpenModalBtn: <Button>Add New Card</Button>,
   },
 }
