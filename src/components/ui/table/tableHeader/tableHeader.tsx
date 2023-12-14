@@ -47,7 +47,7 @@ export const titleColumns: TableHeaderProps[] = [
     title: 'Cards',
   },
   {
-    key: 'updatedDate',
+    key: 'updated',
     title: 'Last Updated',
   },
   {
