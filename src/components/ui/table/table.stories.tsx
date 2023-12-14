@@ -3,6 +3,7 @@ import { CSSProperties, useState } from 'react'
 import { DeleteIcon, EditIcon, PlayIcon } from '@/assets'
 import { Button, IconButton, Table, Typography } from '@/components'
 import { Sort, TableHeader, titleColumns } from '@/components/ui/table/tableHeader'
+import { DataItem } from '@/services/decks'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
@@ -20,34 +21,27 @@ const data = [
     cardsCount: 3,
     createdByName: 'William Shakespeare',
     name: 'Book 1',
-    updatedDate: '10.12.2023',
+    updated: '10.12.2023',
   },
   {
     cardsCount: 1,
     createdByName: 'Charles Dickens',
     name: 'Book 2',
-    updatedDate: '04.12.2023',
+    updated: '04.12.2023',
   },
   {
     cardsCount: 5,
     createdByName: 'Jane Austen',
     name: 'Book 3',
-    updatedDate: '03.12.2023',
+    updated: '03.12.2023',
   },
   {
     cardsCount: 4,
     createdByName: 'George Orwell',
     name: 'Book 4',
-    updatedDate: '01.12.2023',
+    updated: '01.12.2023',
   },
 ]
-
-type DataItem = {
-  cardsCount: number
-  createdByName: string
-  name: string
-  updatedDate: string
-}
 
 const getSortedData = (data: DataItem[], sort: Sort) => {
   if (!sort || !sort.key) {
@@ -96,7 +90,7 @@ const TableStory = () => {
               <Typography.Body2>{item.cardsCount}</Typography.Body2>
             </Table.Cell>
             <Table.Cell>
-              <Typography.Body2>{item.updatedDate}</Typography.Body2>
+              <Typography.Body2>{item.updated}</Typography.Body2>
             </Table.Cell>
             <Table.Cell>
               <Typography.Body2>{item.createdByName}</Typography.Body2>
