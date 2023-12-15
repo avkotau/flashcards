@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { Table } from '@/components'
-import { Button } from '@/components/ui/button'
+import { Pagination, Table } from '@/components'
 import { Sort, TableHeader, titleColumns } from '@/components/ui/table/tableHeader'
 import { Typography } from '@/components/ui/typography'
 import { useGetDecksQuery } from '@/services/deckServices'
@@ -13,6 +12,8 @@ export type DataItem = {
   name: string
   updated: string
 }
+
+const PageSize = 20
 
 const getSortedData = (data: any, sort: Sort) => {
   if (!sort || !sort.key) {
@@ -51,7 +52,6 @@ export const Decks = () => {
   })
 
   const handleSortChange = (newSort: Sort) => {
-    debugger
     setSort(newSort)
   }
 
@@ -91,40 +91,33 @@ export const Decks = () => {
             titleColumns={titleColumnsWithSort}
           ></TableHeader>
           <Table.Body>
-            {sortedData?.map((deck: GetDecksResponseItems) => {
-              return (
-                <Table.Row key={deck?.id}>
-                  <Table.Cell>
-                    <Typography.Body2>{deck?.name}</Typography.Body2>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Typography.Body2>{deck?.cardsCount}</Typography.Body2>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Typography.Body2>
-                      {new Date(deck?.updated).toLocaleDateString()}
-                    </Typography.Body2>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Typography.Body2>{deck?.author?.name}</Typography.Body2>
-                  </Table.Cell>
-                </Table.Row>
-              )
-            })}
+            {sortedData?.map((deck: GetDecksResponseItems) => (
+              <Table.Row key={deck?.id}>
+                <Table.Cell>
+                  <Typography.Body2>{deck?.name}</Typography.Body2>
+                </Table.Cell>
+                <Table.Cell>
+                  <Typography.Body2>{deck?.cardsCount}</Typography.Body2>
+                </Table.Cell>
+                <Table.Cell>
+                  <Typography.Body2>
+                    {new Date(deck?.updated).toLocaleDateString()}
+                  </Typography.Body2>
+                </Table.Cell>
+                <Table.Cell>
+                  <Typography.Body2>{deck?.author?.name}</Typography.Body2>
+                </Table.Cell>
+              </Table.Row>
+            ))}
           </Table.Body>
         </Table.Root>
       )}
-      {createArray(1, data?.pagination?.totalPages ?? 0).map(num => {
-        return (
-          <Button key={num} onClick={() => setCurrentPage(num)}>
-            {num}
-          </Button>
-        )
-      })}
+      <Pagination
+        currentPage={currentPage}
+        onPageChange={page => setCurrentPage(page)}
+        pageSize={PageSize}
+        totalCount={data?.pagination.totalItems}
+      />
     </div>
   )
-}
-
-function createArray(startNumber: number, length: number) {
-  return Array.from({ length }, (_, index) => startNumber + index)
 }
