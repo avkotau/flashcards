@@ -16,10 +16,10 @@ export const ControlledSelector = <T extends FieldValues>({
 
   return (
     <CustomSelect
-      {...rest}
       label={rest.label || 'Choose a question format'}
       onValueChange={onChange}
       value={value}
-    ></CustomSelect>
+      {...rest}
+    />
   )
 }

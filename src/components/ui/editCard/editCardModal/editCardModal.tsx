@@ -28,6 +28,7 @@ export const EditCardModal = ({ btnTitle, initialState, isOpenModalBtn }: Props)
         initialState={initialState}
         isOpenModal={isOpenModal}
         onSubmit={onSubmit}
+        placeholder={'Edit a ...'}
       />
     </Modal>
   )

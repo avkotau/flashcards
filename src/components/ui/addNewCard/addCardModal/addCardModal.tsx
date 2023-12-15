@@ -29,6 +29,7 @@ export const AddCardModal = ({ btnTitle, initialState, isOpenModalBtn }: Props):
         initialState={initialState}
         isOpenModal={isOpenModal}
         onSubmit={onSubmit}
+        placeholder={'Select a ...'}
       />
     </Modal>
   )

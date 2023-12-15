@@ -27,5 +27,6 @@ export const Select: Story = {
     fullWidth: true,
     label: 'Select-box',
     options: initialState,
+    placeholder: 'Select a ...',
   },
 }

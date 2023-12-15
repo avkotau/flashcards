@@ -11,9 +11,16 @@ type Props = {
   initialState: SelectItemType[]
   isOpenModal: () => void
   onSubmit: (data: FormData) => void
+  placeholder: string
 }
 
-export const CardFormControl = ({ btnTitle, initialState, isOpenModal, onSubmit }: Props) => {
+export const CardFormControl = ({
+  btnTitle,
+  initialState,
+  isOpenModal,
+  onSubmit,
+  placeholder,
+}: Props) => {
   const { control, handleSubmit } = useForm({
     defaultValues: {
       answer: 'answer1',
@@ -35,6 +42,7 @@ export const CardFormControl = ({ btnTitle, initialState, isOpenModal, onSubmit 
         fullWidth
         name={'questionFormat'}
         options={initialState}
+        placeholder={placeholder}
       />
       <ControlledInput control={control} label={'Question'} name={'question'} type={'text'} />
       <ControlledInput control={control} label={'Answer'} name={'answer'} type={'text'} />
