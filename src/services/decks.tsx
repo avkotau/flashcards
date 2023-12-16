@@ -50,6 +50,7 @@ export const Decks = () => {
   const { data, error, isLoading } = useGetDecksQuery({
     currentPage,
   })
+  const totalItemsCount = data?.pagination?.totalItems ?? 0
 
   const handleSortChange = (newSort: Sort) => {
     setSort(newSort)
@@ -115,8 +116,9 @@ export const Decks = () => {
       <Pagination
         currentPage={currentPage}
         onPageChange={page => setCurrentPage(page)}
+        options={}
         pageSize={PageSize}
-        totalCount={data?.pagination.totalItems}
+        totalCount={totalItemsCount}
       />
     </div>
   )
