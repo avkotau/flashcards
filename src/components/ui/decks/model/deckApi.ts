@@ -1,4 +1,4 @@
-import { baseApi } from '@/services/base-api'
+import { baseApi } from '@/app/base-api'
 import {
   CreateDeckArgs,
   GetDeckByIdArgs,

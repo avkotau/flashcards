@@ -1,23 +1,33 @@
 import { Typography } from '@/components'
-import { CustomSelect } from '@/components/ui/select'
+import { CustomSelect, CustomSelectProps } from '@/components/ui/select'
+import { SelectItemType } from '@/components/ui/select/selectItem'
 import cn from 'classnames'
 
 import s from './pagination.module.scss'
 
 import { DOTS, usePagination } from './usePagination'
 
-type PaginationProps = {
+export type PaginationProps = {
   className?: string
   currentPage: number
   onPageChange: (page: number) => void
-  pageSize?: number
+  onPageSizeChange: (newPageSize: string) => void
+  options: SelectItemType[]
+  pageSize: number
   siblingCount?: number
-  totalCount?: number
-}
+  totalCount: number
+} & CustomSelectProps
 
-export const Pagination = (props: PaginationProps) => {
-  const { className, currentPage, onPageChange, pageSize, siblingCount = 1, totalCount } = props
-
+export const Pagination = ({
+  className,
+  currentPage,
+  onPageChange,
+  onPageSizeChange,
+  pageSize,
+  siblingCount = 1,
+  totalCount,
+  ...rest
+}: PaginationProps) => {
   const paginationRange = usePagination({
     currentPage,
     pageSize,
@@ -55,21 +65,17 @@ export const Pagination = (props: PaginationProps) => {
         {paginationRange?.map((pageNumber, index) => {
           // If the pageItem is a DOT, render the DOTS unicode character
           if (pageNumber === DOTS) {
-            return (
-              <li className={s.paginationItemDots} key={index + 'DOTS'}>
-                &#8230;
-              </li>
-            )
+            return <li key={index + 'DOTS'}>&#8230;</li>
           }
 
           // Render our Page Pills
           return (
             <li
               className={cn(s.paginationItem, {
-                selected: pageNumber === currentPage,
+                [s.selected]: pageNumber === currentPage,
               })}
               key={index}
-              onClick={() => onPageChange(pageNumber)}
+              onClick={() => onPageChange(Number(pageNumber))}
             >
               {pageNumber}
             </li>
@@ -87,7 +93,7 @@ export const Pagination = (props: PaginationProps) => {
       </ul>
       <div className={s.paginationControl}>
         <Typography.Body2>Показать</Typography.Body2>
-        <CustomSelect options={[]} />
+        <CustomSelect {...rest} onValueChange={onPageSizeChange} pageSize={pageSize} />
         <Typography.Body2>на странице</Typography.Body2>
       </div>
     </div>

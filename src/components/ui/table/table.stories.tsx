@@ -2,8 +2,8 @@ import { CSSProperties, useState } from 'react'
 
 import { DeleteIcon, EditIcon, PlayIcon } from '@/assets'
 import { Button, IconButton, Table, Typography } from '@/components'
+import { DataItem } from '@/components/ui/decks/decks'
 import { Sort, TableHeader, titleColumns } from '@/components/ui/table/tableHeader'
-import { DataItem } from '@/services/decks'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {

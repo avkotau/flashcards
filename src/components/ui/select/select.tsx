@@ -15,11 +15,12 @@ export type CustomSelectProps = {
   fullWidth?: boolean
   label?: string
   options: SelectItemType[]
+  pageSize: number
   placeholder?: string
 } & ComponentPropsWithoutRef<typeof Root>
 
 export const CustomSelect = forwardRef<ElementRef<typeof Root>, CustomSelectProps>(
-  ({ disabled, fullWidth, label, onValueChange, options, placeholder }, ref) => {
+  ({ disabled, fullWidth, label, onValueChange, options, pageSize, placeholder, ...rest }, ref) => {
     const classNames = {
       label: cn(s.label, disabled && s.disabled),
       trigger: cn(s.selectTrigger, fullWidth && s.fullWidth),
@@ -27,11 +28,11 @@ export const CustomSelect = forwardRef<ElementRef<typeof Root>, CustomSelectProp
 
     return (
       <div>
-        <Select.Root disabled={disabled} onValueChange={onValueChange}>
+        <Select.Root disabled={disabled} onValueChange={onValueChange} {...rest}>
           {label && <Typography.Body1 className={classNames.label}>{label}</Typography.Body1>}
-          <Select.Trigger aria-label={'Food'} className={classNames.trigger} ref={ref}>
+          <Select.Trigger aria-label={'Select page size'} className={classNames.trigger} ref={ref}>
             <Typography.Body1>
-              <Select.Value placeholder={placeholder} />
+              <Select.Value placeholder={pageSize} />
             </Typography.Body1>
             <Select.Icon className={s.selectIcon}>
               <ArrowDownIcon />
