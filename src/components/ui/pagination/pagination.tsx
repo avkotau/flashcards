@@ -56,7 +56,7 @@ export const Pagination = ({
         {/* Left navigation arrow */}
         <li
           className={cn(s.paginationItem, {
-            disabled: currentPage === 1,
+            [s.disabled]: currentPage === 1,
           })}
           onClick={onPrevious}
         >
@@ -84,7 +84,7 @@ export const Pagination = ({
         {/*  Right Navigation arrow */}
         <li
           className={cn(s.paginationItem, {
-            disabled: currentPage === lastPage,
+            [s.disabled]: currentPage === lastPage,
           })}
           onClick={onNext}
         >

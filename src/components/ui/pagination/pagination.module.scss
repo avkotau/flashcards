@@ -33,7 +33,6 @@
 
       &:hover {
         cursor: pointer;
-        background-color: rgb(0 0 0 / 4%);
       }
 
       &.selected {
@@ -55,8 +54,8 @@
           width: 0.6em;
           height: 0.6em;
 
-          border-top: 0.12em solid var(--color-dark-100);
-          border-right: 0.12em solid var(--color-dark-100);
+          border-top: 0.12em solid var(--color-light-100);
+          border-right: 0.12em solid var(--color-light-100);
         }
 
         &.left {
@@ -71,14 +70,14 @@
       &.disabled {
         pointer-events: none;
 
-        .arrow::before {
-          border-top: 0.12em solid yellow;
-          border-right: 0.12em solid grey;
-        }
-
         &:hover {
           cursor: default;
           background-color: transparent;
+        }
+
+        .arrow::before {
+          border-top: 0.12em solid var(--color-dark-100);
+          border-right: 0.12em solid var(--color-dark-100);
         }
       }
     }

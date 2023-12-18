@@ -15,7 +15,7 @@ export type CustomSelectProps = {
   fullWidth?: boolean
   label?: string
   options: SelectItemType[]
-  pageSize: number
+  pageSize?: number
   placeholder?: string
 } & ComponentPropsWithoutRef<typeof Root>
 
@@ -32,7 +32,7 @@ export const CustomSelect = forwardRef<ElementRef<typeof Root>, CustomSelectProp
           {label && <Typography.Body1 className={classNames.label}>{label}</Typography.Body1>}
           <Select.Trigger aria-label={'Select page size'} className={classNames.trigger} ref={ref}>
             <Typography.Body1>
-              <Select.Value placeholder={pageSize} />
+              <Select.Value placeholder={pageSize || placeholder} />
             </Typography.Body1>
             <Select.Icon className={s.selectIcon}>
               <ArrowDownIcon />
