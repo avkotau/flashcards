@@ -15,7 +15,7 @@ export const SelectItem = forwardRef<ElementRef<typeof Select.Item>, SelectItemT
     const classNames = cn(s.selectItem, className)
 
     return (
-      <Select.Item className={classNames} ref={ref} {...props}>
+      <Select.Item className={classNames} {...props} ref={ref}>
         <Select.ItemText>{children}</Select.ItemText>
       </Select.Item>
     )

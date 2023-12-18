@@ -16,10 +16,8 @@ const options = [
   { title: '10', value: '10' },
   { title: '20', value: '20' },
   { title: '30', value: '30' },
-  { title: '40', value: '40' },
   { title: '50', value: '50' },
-  { title: '60', value: '60' },
-  { title: '70', value: '70' },
+  { title: '100', value: '100' },
 ]
 const PaginationHook = (props: PaginationProps) => {
   const [pageSize, setPageSize] = useState(props.pageSize)
@@ -29,10 +27,16 @@ const PaginationHook = (props: PaginationProps) => {
     setPageSize(Number(data))
   }
 
+  const handlePageSizeChange = (newPageSize: string) => {
+    setCurrentPage(1) // Reset current page to first
+    setPageSize(Number(newPageSize)) // Update page size
+  }
+
   return (
     <Pagination
       currentPage={currentPage}
       onPageChange={setCurrentPage}
+      onPageSizeChange={handlePageSizeChange}
       onValueChange={onChangePageSize}
       options={props.options}
       pageSize={pageSize}

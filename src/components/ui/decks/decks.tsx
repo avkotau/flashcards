@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 
 import { Pagination, Table } from '@/components'
+import { useGetDecksQuery } from '@/components/ui/decks/model/deckApi'
 import { Sort, TableHeader, titleColumns } from '@/components/ui/table/tableHeader'
 import { Typography } from '@/components/ui/typography'
-import { useGetDecksQuery } from '@/services/deckServices'
 import { GetDecksResponseItems } from '@/services/flashCards.type'
 
 export type DataItem = {
@@ -12,8 +12,6 @@ export type DataItem = {
   name: string
   updated: string
 }
-
-const PageSize = 20
 
 const getSortedData = (data: any, sort: Sort) => {
   if (!sort || !sort.key) {
@@ -43,14 +41,30 @@ const getSortedData = (data: any, sort: Sort) => {
 }
 
 export const Decks = () => {
+  const [pageSize, setPageSize] = useState(10)
+
   const [currentPage, setCurrentPage] = useState(1)
   const [open, setOpen] = useState(false)
 
   const [sort, setSort] = useState<Sort | null>(null)
   const { data, error, isLoading } = useGetDecksQuery({
     currentPage,
+    itemsPerPage: pageSize,
   })
   const totalItemsCount = data?.pagination?.totalItems ?? 0
+
+  const handlePageSizeChange = (newPageSize: string) => {
+    setCurrentPage(1) // Reset current page to first
+    setPageSize(Number(newPageSize)) // Update page size
+  }
+
+  const pageOptions = [
+    { title: '10', value: '10' },
+    { title: '20', value: '20' },
+    { title: '30', value: '30' },
+    { title: '50', value: '50' },
+    { title: '100', value: '100' },
+  ]
 
   const handleSortChange = (newSort: Sort) => {
     setSort(newSort)
@@ -116,8 +130,9 @@ export const Decks = () => {
       <Pagination
         currentPage={currentPage}
         onPageChange={page => setCurrentPage(page)}
-        options={}
-        pageSize={PageSize}
+        onPageSizeChange={handlePageSizeChange} // Page resize handler
+        options={pageOptions}
+        pageSize={pageSize}
         totalCount={totalItemsCount}
       />
     </div>
