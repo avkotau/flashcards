@@ -37,7 +37,6 @@ const createInputProps = (args: InputProps) => {
     [styles.error]: args.variant === 'error',
     [styles.focus]: args.variant === 'focus',
     [styles.hover]: args.variant === 'hover',
-    [styles['with-search-icon']]: args.leftIcon != undefined,
   })
 
   return {
