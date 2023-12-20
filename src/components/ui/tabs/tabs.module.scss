@@ -1,0 +1,17 @@
+/* reset */
+button,
+fieldset,
+input {
+  all: unset;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 0.31rem;
+  width: 100%;
+
+  .list {
+    display: flex;
+  }
+}

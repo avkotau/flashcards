@@ -4,12 +4,12 @@
   cursor: pointer;
 
   display: inline-flex;
-  gap: 10px;
+  gap: 0.62rem;
   align-items: center;
   justify-content: center;
 
   box-sizing: border-box;
-  padding: 6px 28px;
+  padding: 6px 26px;
 
   border: 2px solid transparent; /* invisible border so that use :active does not change position */
 }

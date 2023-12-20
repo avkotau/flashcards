@@ -52,6 +52,7 @@ export const Input: Story = {
     errorMessage: 'Error!',
     label: 'Input',
     placeholder: 'Input',
+    shortWidth: false,
     title: 'Value',
     type: 'text',
     variant: 'default',
@@ -65,6 +66,7 @@ export const Password: Story = {
     errorMessage: 'Error!',
     label: 'Input',
     placeholder: 'Input',
+    shortWidth: false,
     title: 'Value',
     type: 'password',
     variant: 'default',
@@ -77,6 +79,7 @@ export const Search: Story = {
   args: {
     errorMessage: 'Error!',
     placeholder: 'Input',
+    shortWidth: false,
     title: 'Value',
     type: 'text',
     variant: 'default',

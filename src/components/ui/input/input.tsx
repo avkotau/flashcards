@@ -15,6 +15,7 @@ import styles from './input.module.scss'
 
 export type InputProps = {
   className?: string
+  containerStyle?: string
   disabled?: boolean
   error?: boolean
   errorMessage?: string
@@ -23,6 +24,7 @@ export type InputProps = {
   leftIcon?: ReactNode
   onRightIconClickHandler?: () => void
   rightIcon?: ReactNode
+  shortWidth?: boolean
   type?: string
   variant?: string
 } & ComponentPropsWithoutRef<'input'>
@@ -31,6 +33,7 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
+      containerStyle,
       disabled,
       error,
       errorMessage,
@@ -39,6 +42,7 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
       leftIcon,
       onChange,
       rightIcon,
+      shortWidth,
       type,
       ...restProps
     },
@@ -63,13 +67,18 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
     const classNames = {
       crossIcon: cn(styles.crossIcon),
       eyeIcon: cn(rightIcon && leftIcon ? styles.crossIcon : styles.eyeIcon),
-      inputContainer: cn(styles.inputContainer),
+      inputContainer: cn(
+        styles.inputContainer,
+        { [styles.shortWidth]: shortWidth },
+        containerStyle
+      ),
       inputStyle: cn(
         styles.input,
         leftIcon && styles['with-search-icon'],
         className,
         error && styles.error
       ),
+      layout: cn(styles.layout),
       leftIcon: cn(styles.searchIcon),
     }
 
@@ -83,11 +92,11 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
     const rightIconClickHandler = type === 'password' ? togglePasswordVisibility : clearInputHandler
 
     return (
-      <div className={styles.layout}>
+      <div className={classNames.layout}>
         <div>
           <Typography.Body1 className={styles.label}>{label}</Typography.Body1>
         </div>
-        <div className={styles.inputContainer}>
+        <div className={classNames.inputContainer}>
           <input
             className={classNames.inputStyle}
             disabled={disabled}

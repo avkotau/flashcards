@@ -13,6 +13,10 @@
     position: relative;
     display: flex;
 
+    &.shortWidth {
+      width: 50%;
+    }
+
     // styles for icons
     .eyeIcon {
       @include input-icon(_, 0.75rem);
