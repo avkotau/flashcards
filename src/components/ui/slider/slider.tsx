@@ -10,10 +10,10 @@ export type SliderProps = { title?: string } & ComponentPropsWithoutRef<typeof S
 
 export const Slider = forwardRef<ElementRef<typeof SliderPrimitive.Root>, SliderProps>(
   ({ className, title, value, ...rest }, ref): JSX.Element => {
-    const classNames = cn(s.root, className)
+    const classNames = cn(s.root)
 
     return (
-      <div>
+      <div className={className}>
         <Typography.Body2 className={s.title}>{title}</Typography.Body2>
         <div className={s.wrapperSlider}>
           <Typography.Body1 className={s.value}>{value?.[0]}</Typography.Body1>
