@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { Pagination, Table } from '@/components'
 import { useGetDecksQuery } from '@/components/ui/decks/model/deckApi'
+import { PanelControl } from '@/components/ui/panelControl'
 import { Sort, TableHeader, titleColumns } from '@/components/ui/table/tableHeader'
 import { Typography } from '@/components/ui/typography'
 import { GetDecksResponseItems } from '@/services/flashCards.type'
@@ -97,6 +98,7 @@ export const Decks = () => {
 
   return (
     <div>
+      <PanelControl />
       <h2>current page: {data?.pagination?.currentPage}</h2>
       {!!sortedData?.length && (
         <Table.Root>
