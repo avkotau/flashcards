@@ -48,6 +48,15 @@ export const Decks = () => {
   const [open, setOpen] = useState(false)
 
   const [sort, setSort] = useState<Sort | null>(null)
+
+  const [inputValue, setValue] = useState('')
+  const [sliderData, setSliderData] = useState([1, 15])
+
+  const onClearFilter = () => {
+    setValue('')
+    setSliderData([1, 15])
+  }
+
   const { data, error, isLoading } = useGetDecksQuery({
     currentPage,
     itemsPerPage: pageSize,
@@ -98,7 +107,17 @@ export const Decks = () => {
 
   return (
     <div>
-      <PanelControl />
+      <PanelControl
+        inputValue={inputValue}
+        maxSliderValue={15}
+        minSliderValue={1}
+        onChangeSliderValue={setSliderData}
+        onChangeValueInput={setValue}
+        onClearFilter={onClearFilter}
+        sliderData={sliderData}
+        sliderTitle={'Number of cards'}
+        tabLabel={'Show packs cards'}
+      />
       <h2>current page: {data?.pagination?.currentPage}</h2>
       {!!sortedData?.length && (
         <Table.Root>
