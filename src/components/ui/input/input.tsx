@@ -22,6 +22,7 @@ export type InputProps = {
   eyeIcon?: ReactNode
   label?: string
   leftIcon?: ReactNode
+  onChangeValueInput: (value: string) => void
   onRightIconClickHandler?: () => void
   rightIcon?: ReactNode
   shortWidth?: boolean
@@ -41,6 +42,7 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
       label,
       leftIcon,
       onChange,
+      onChangeValueInput,
       rightIcon,
       shortWidth,
       type,
@@ -55,9 +57,10 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
     const togglePasswordVisibility = () => {
       setIsPasswordVisible(prevState => !prevState)
     }
-    const onChangeValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
       onChange?.(e)
       setInputValue(e.currentTarget.value)
+      onChangeValueInput?.(e.currentTarget.value)
     }
 
     const clearInputHandler = () => {
@@ -100,7 +103,7 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
           <input
             className={classNames.inputStyle}
             disabled={disabled}
-            onChange={onChangeValueHandler}
+            onChange={onChangeValue}
             type={typeInput}
             value={inputValue}
             {...restProps}
