@@ -1,10 +1,11 @@
-import { CSSProperties, useState } from 'react'
+import { CSSProperties, FC, useState } from 'react'
 
 import { DeleteIcon, EditIcon, PlayIcon } from '@/assets'
 import { Button, IconButton, Table, Typography } from '@/components'
-import { DataItem } from '@/components/ui/decks/decks'
 import { Sort, TableHeader, titleColumns } from '@/components/ui/table/tableHeader'
 import { Meta, StoryObj } from '@storybook/react'
+
+import { DataItem, data, getSortedData } from './dataSorting'
 
 const meta = {
   component: Table.Root,
@@ -16,55 +17,12 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-const data = [
-  {
-    cardsCount: 3,
-    createdByName: 'William Shakespeare',
-    name: 'Book 1',
-    updated: '10.12.2023',
-  },
-  {
-    cardsCount: 1,
-    createdByName: 'Charles Dickens',
-    name: 'Book 2',
-    updated: '04.12.2023',
-  },
-  {
-    cardsCount: 5,
-    createdByName: 'Jane Austen',
-    name: 'Book 3',
-    updated: '03.12.2023',
-  },
-  {
-    cardsCount: 4,
-    createdByName: 'George Orwell',
-    name: 'Book 4',
-    updated: '01.12.2023',
-  },
-]
-
-const getSortedData = (data: DataItem[], sort: Sort) => {
-  if (!sort || !sort.key) {
-    return data
-  }
-
-  return [...data].sort((a, b) => {
-    const key = sort.key as keyof DataItem
-    const valA = a[key]
-    const valB = b[key]
-
-    if (valA < valB) {
-      return sort.direction === 'asc' ? -1 : 1
-    }
-    if (valA > valB) {
-      return sort.direction === 'asc' ? 1 : -1
-    }
-
-    return 0
-  })
+type TableStoryProps = {
+  data: DataItem[]
+  getSortedData: (data: DataItem[], sort: Sort | null) => DataItem[]
 }
 
-const TableStory = () => {
+const TableStory: FC<TableStoryProps> = ({ data, getSortedData }) => {
   const [sort, setSort] = useState<Sort | null>(null)
   const handleSortChange = (newSort: Sort) => {
     setSort(newSort)
@@ -108,7 +66,7 @@ const TableStory = () => {
 }
 
 export const Default: Story = {
-  render: () => <TableStory />,
+  render: () => <TableStory data={data} getSortedData={getSortedData} />,
 }
 
 export const EmptyPage: Story = {

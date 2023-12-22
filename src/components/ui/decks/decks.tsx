@@ -1,18 +1,13 @@
 import { useEffect, useState } from 'react'
 
-import { Pagination, Table } from '@/components'
+import { DeleteIcon, EditIcon, PlayIcon } from '@/assets'
+import { IconButton, Pagination, Table } from '@/components'
 import { useGetDecksQuery } from '@/components/ui/decks/model/deckApi'
 import { PanelControl } from '@/components/ui/panelControl'
+import { DataItem } from '@/components/ui/table/dataSorting'
 import { Sort, TableHeader, titleColumns } from '@/components/ui/table/tableHeader'
 import { Typography } from '@/components/ui/typography'
 import { GetDecksResponseItems } from '@/services/flashCards.type'
-
-export type DataItem = {
-  cardsCount: number
-  createdByName: string
-  name: string
-  updated: string
-}
 
 const getSortedData = (data: any, sort: Sort) => {
   if (!sort || !sort.key) {
@@ -142,6 +137,11 @@ export const Decks = () => {
                 </Table.Cell>
                 <Table.Cell>
                   <Typography.Body2>{deck?.author?.name}</Typography.Body2>
+                </Table.Cell>
+                <Table.Cell>
+                  <IconButton icon={<PlayIcon />} />
+                  <IconButton icon={<EditIcon />} />
+                  <IconButton icon={<DeleteIcon />} />
                 </Table.Cell>
               </Table.Row>
             ))}
