@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react'
 
-import { DeleteIcon, EditIcon, PlayIcon } from '@/assets'
-import { IconButton, Pagination, Table } from '@/components'
+import { DecksTable, Pagination } from '@/components'
 import { useGetDecksQuery } from '@/components/ui/decks/model/deckApi'
 import { PanelControl } from '@/components/ui/panelControl'
 import { DataItem } from '@/components/ui/table/dataSorting'
-import { Sort, TableHeader, titleColumns } from '@/components/ui/table/tableHeader'
+import { Sort, titleColumns } from '@/components/ui/table/tableHeader'
 import { Typography } from '@/components/ui/typography'
-import { GetDecksResponseItems } from '@/services/flashCards.type'
 
 const getSortedData = (data: any, sort: Sort) => {
   if (!sort || !sort.key) {
@@ -86,6 +84,8 @@ export const Decks = () => {
     setOpen(open)
   }, [open])
 
+  const loading = false
+
   if (error) {
     const errorMessage = 'message' in error ? error.message : 'Unknown error'
 
@@ -114,40 +114,13 @@ export const Decks = () => {
         tabLabel={'Show packs cards'}
       />
       <h2>current page: {data?.pagination?.currentPage}</h2>
-      {!!sortedData?.length && (
-        <Table.Root>
-          <TableHeader
-            onSort={handleSortChange}
-            sort={sort}
-            titleColumns={titleColumnsWithSort}
-          ></TableHeader>
-          <Table.Body>
-            {sortedData?.map((deck: GetDecksResponseItems) => (
-              <Table.Row key={deck?.id}>
-                <Table.Cell>
-                  <Typography.Body2>{deck?.name}</Typography.Body2>
-                </Table.Cell>
-                <Table.Cell>
-                  <Typography.Body2>{deck?.cardsCount}</Typography.Body2>
-                </Table.Cell>
-                <Table.Cell>
-                  <Typography.Body2>
-                    {new Date(deck?.updated).toLocaleDateString()}
-                  </Typography.Body2>
-                </Table.Cell>
-                <Table.Cell>
-                  <Typography.Body2>{deck?.author?.name}</Typography.Body2>
-                </Table.Cell>
-                <Table.Cell>
-                  <IconButton icon={<PlayIcon />} />
-                  <IconButton icon={<EditIcon />} />
-                  <IconButton icon={<DeleteIcon />} />
-                </Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table.Root>
-      )}
+      <DecksTable
+        decksData={sortedData}
+        isDisabled={loading}
+        onSort={handleSortChange}
+        sort={sort}
+        titleColumnsWithSort={titleColumnsWithSort}
+      />
       <Pagination
         currentPage={currentPage}
         onPageChange={page => setCurrentPage(page)}
