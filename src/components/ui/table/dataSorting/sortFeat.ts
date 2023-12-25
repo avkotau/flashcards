@@ -1,15 +1,21 @@
-import { DataItem } from '@/components/ui/table/dataSorting/data'
 import { Sort } from '@/components/ui/table/tableHeader'
+import { GetDecksResponseItems } from '@/services/flashCards.type'
 
-export const getSortedData = (data: DataItem[], sort: Sort) => {
+export const getSortedData = (data: GetDecksResponseItems[], sort: Sort) => {
   if (!sort || !sort.key) {
     return data
   }
 
   return [...data].sort((a, b) => {
-    const key = sort.key as keyof DataItem
-    const valA = a[key]
-    const valB = b[key]
+    const key = sort.key as keyof GetDecksResponseItems
+
+    let valA = a[key]
+    let valB = b[key]
+
+    if (key === 'author') {
+      valA = a.author.name
+      valB = b.author.name
+    }
 
     if (valA < valB) {
       return sort.direction === 'asc' ? -1 : 1

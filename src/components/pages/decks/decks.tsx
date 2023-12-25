@@ -1,38 +1,19 @@
 import { useEffect, useState } from 'react'
 
-import { DecksTable, Pagination } from '@/components'
+import { DecksPageHeader, DecksTable, Pagination } from '@/components'
 import { useGetDecksQuery } from '@/components/ui/decks/model/deckApi'
 import { PanelControl } from '@/components/ui/panelControl'
-import { DataItem } from '@/components/ui/table/dataSorting'
+import { getSortedData } from '@/components/ui/table/dataSorting'
 import { Sort, titleColumns } from '@/components/ui/table/tableHeader'
 import { Typography } from '@/components/ui/typography'
 
-const getSortedData = (data: any, sort: Sort) => {
-  if (!sort || !sort.key) {
-    return data
-  }
-
-  return [...data].sort((a, b) => {
-    const key = sort.key as keyof DataItem
-
-    let valA = a[key]
-    let valB = b[key]
-
-    if (key === 'createdByName') {
-      valA = a.author.name
-      valB = b.author.name
-    }
-
-    if (valA < valB) {
-      return sort.direction === 'asc' ? -1 : 1
-    }
-    if (valA > valB) {
-      return sort.direction === 'asc' ? 1 : -1
-    }
-
-    return 0
-  })
-}
+export const pageOptions = [
+  { title: '10', value: '10' },
+  { title: '20', value: '20' },
+  { title: '30', value: '30' },
+  { title: '50', value: '50' },
+  { title: '100', value: '100' },
+]
 
 export const Decks = () => {
   const [pageSize, setPageSize] = useState(10)
@@ -61,14 +42,6 @@ export const Decks = () => {
     setPageSize(Number(newPageSize)) // Update page size
   }
 
-  const pageOptions = [
-    { title: '10', value: '10' },
-    { title: '20', value: '20' },
-    { title: '30', value: '30' },
-    { title: '50', value: '50' },
-    { title: '100', value: '100' },
-  ]
-
   const handleSortChange = (newSort: Sort) => {
     setSort(newSort)
   }
@@ -78,7 +51,7 @@ export const Decks = () => {
     isSorted: true,
   }))
 
-  const sortedData = getSortedData(data?.items, sort)
+  const sortedData = getSortedData(data!.items, sort)
 
   useEffect(() => {
     setOpen(open)
@@ -102,6 +75,7 @@ export const Decks = () => {
 
   return (
     <div>
+      <DecksPageHeader />
       <PanelControl
         inputValue={inputValue}
         maxSliderValue={15}
