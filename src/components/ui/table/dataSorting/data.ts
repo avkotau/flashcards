@@ -1,31 +1,43 @@
-export type DataItem = {
-  cardsCount: number
-  createdByName: string
-  name: string
-  updated: string
-}
-export const data = [
+import { GetDecksResponseItems } from '@/services/flashCards.type'
+
+export type RequiredFields = Omit<
+  GetDecksResponseItems,
+  'created' | 'id' | 'isPrivate' | 'rating' | 'shots' | 'userId'
+>
+export const data: RequiredFields[] = [
   {
+    author: {
+      id: '1',
+      name: 'William Shakespeare',
+    },
     cardsCount: 3,
-    createdByName: 'William Shakespeare',
     name: 'Book 1',
     updated: '10.12.2023',
   },
   {
+    author: {
+      id: '2',
+      name: 'Charles Dickens',
+    },
     cardsCount: 1,
-    createdByName: 'Charles Dickens',
     name: 'Book 2',
     updated: '04.12.2023',
   },
   {
+    author: {
+      id: '3',
+      name: 'Jane Austen',
+    },
     cardsCount: 5,
-    createdByName: 'Jane Austen',
     name: 'Book 3',
     updated: '03.12.2023',
   },
   {
+    author: {
+      id: '4',
+      name: 'George Orwell',
+    },
     cardsCount: 4,
-    createdByName: 'George Orwell',
     name: 'Book 4',
     updated: '01.12.2023',
   },

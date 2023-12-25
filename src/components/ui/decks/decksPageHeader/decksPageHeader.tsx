@@ -2,9 +2,11 @@ import { JSX } from 'react'
 
 import { AddDeckToModal, Button, Typography } from '@/components'
 
+import s from './decksPageHeader.module.scss'
+
 export const DecksPageHeader = (): JSX.Element => {
   return (
-    <>
+    <div className={s.wrapper}>
       <Typography.Large>Decks list</Typography.Large>
       <AddDeckToModal
         isOpenModalBtn={
@@ -15,6 +17,6 @@ export const DecksPageHeader = (): JSX.Element => {
         title={'Add New Deck'}
         valueBtn={'Add New Deck'}
       />
-    </>
+    </div>
   )
 }

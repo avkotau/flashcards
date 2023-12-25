@@ -3,9 +3,10 @@ import { CSSProperties, FC, useState } from 'react'
 import { DeleteIcon, EditIcon, PlayIcon } from '@/assets'
 import { Button, IconButton, Table, Typography } from '@/components'
 import { Sort, TableHeader, titleColumns } from '@/components/ui/table/tableHeader'
+import { GetDecksResponseItems } from '@/services/flashCards.type'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { DataItem, data, getSortedData } from './dataSorting'
+import { data, getSortedData } from './dataSorting'
 
 const meta = {
   component: Table.Root,
@@ -18,8 +19,8 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 type TableStoryProps = {
-  data: DataItem[]
-  getSortedData: (data: DataItem[], sort: Sort | null) => DataItem[]
+  data: GetDecksResponseItems[]
+  getSortedData: (data: GetDecksResponseItems[], sort: Sort | null) => GetDecksResponseItems[]
 }
 
 const TableStory: FC<TableStoryProps> = ({ data, getSortedData }) => {
@@ -51,7 +52,7 @@ const TableStory: FC<TableStoryProps> = ({ data, getSortedData }) => {
               <Typography.Body2>{item.updated}</Typography.Body2>
             </Table.Cell>
             <Table.Cell>
-              <Typography.Body2>{item.createdByName}</Typography.Body2>
+              <Typography.Body2>{item.author.name}</Typography.Body2>
             </Table.Cell>
             <Table.Cell>
               <IconButton icon={<PlayIcon />} />
@@ -66,7 +67,8 @@ const TableStory: FC<TableStoryProps> = ({ data, getSortedData }) => {
 }
 
 export const Default: Story = {
-  render: () => <TableStory data={data} getSortedData={getSortedData} />,
+  //use only for stories
+  render: () => <TableStory data={data as GetDecksResponseItems[]} getSortedData={getSortedData} />,
 }
 
 export const EmptyPage: Story = {
