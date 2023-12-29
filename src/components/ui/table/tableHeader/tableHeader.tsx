@@ -67,9 +67,12 @@ export const TableHeader = forwardRef<ElementRef<typeof Table.Head>, Props>(
     return (
       <Table.Head ref={ref} {...rest}>
         <Table.Row>
-          {titleColumns.map(({ isSorted, key, title }) => {
+          {titleColumns.map(({ isSorted, key, title }, index) => {
+            const isLastElement = index === titleColumns.length - 1
+            const handleClick = isLastElement ? () => {} : () => handleSort(key, isSorted)
+
             return (
-              <Table.HeadCell key={key} onClick={() => handleSort(key, isSorted)}>
+              <Table.HeadCell className={s.th} key={key} onClick={handleClick}>
                 <Typography.Subtitle2>
                   {title}
                   {sort?.key === key &&
