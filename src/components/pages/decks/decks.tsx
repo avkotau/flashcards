@@ -7,6 +7,8 @@ import { getSortedData } from '@/components/ui/table/dataSorting'
 import { Sort, titleColumns } from '@/components/ui/table/tableHeader'
 import { Typography } from '@/components/ui/typography'
 
+import s from './decks.module.scss'
+
 export const pageOptions = [
   { title: '10', value: '10' },
   { title: '20', value: '20' },
@@ -51,7 +53,7 @@ export const Decks = () => {
     isSorted: true,
   }))
 
-  const sortedData = getSortedData(data!.items, sort)
+  const sortedData = getSortedData(data?.items || [], sort)
 
   useEffect(() => {
     setOpen(open)
@@ -74,7 +76,7 @@ export const Decks = () => {
   }
 
   return (
-    <div>
+    <div className={s.decksWrapper}>
       <DecksPageHeader />
       <PanelControl
         inputValue={inputValue}
