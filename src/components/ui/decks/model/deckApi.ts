@@ -1,21 +1,29 @@
 import { baseApi } from '@/app/base-api'
 import {
-  CreateDeckArgs,
+  DeleteDeckParams,
+  DeleteDeckResponse,
   GetDeckByIdArgs,
   GetDecksArgs,
   GetDecksResponse,
+  GetDecksResponseItems,
 } from '@/services/flashCards.type'
 
 const deckService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
-      createDeck: builder.mutation<void, CreateDeckArgs>({
+      createDeck: builder.mutation<GetDecksResponseItems, FormData>({
         invalidatesTags: ['Deck'],
         query: args => ({
           body: args,
           method: 'POST',
           params: args ?? {},
           url: `v1/decks`,
+        }),
+      }),
+      deleteDeck: builder.mutation<DeleteDeckResponse, DeleteDeckParams>({
+        query: ({ id }) => ({
+          method: 'DELETE',
+          url: `decks/${id}`,
         }),
       }),
       getDeckById: builder.query<GetDecksResponse, GetDeckByIdArgs>({
@@ -34,4 +42,9 @@ const deckService = baseApi.injectEndpoints({
   },
 })
 
-export const { useCreateDeckMutation, useGetDeckByIdQuery, useGetDecksQuery } = deckService
+export const {
+  useCreateDeckMutation,
+  useDeleteDeckMutation,
+  useGetDeckByIdQuery,
+  useGetDecksQuery,
+} = deckService

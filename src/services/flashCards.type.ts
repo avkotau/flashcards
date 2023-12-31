@@ -20,7 +20,7 @@ export type GetDeckByIdArgs = {
 
 export type CreateDeckArgs = {
   cover?: string
-  isPrivet?: boolean
+  isPrivate?: boolean
   name: string
 }
 
@@ -51,3 +51,7 @@ export type GetDecksResponseItems = {
   updated: string
   userId: string
 }
+
+export type DeleteDeckResponse = Omit<GetDecksResponseItems, 'author'>
+
+export type DeleteDeckParams = Pick<GetDecksResponseItems, 'id'>

@@ -22,7 +22,7 @@ export type InputProps = {
   eyeIcon?: ReactNode
   label?: string
   leftIcon?: ReactNode
-  onChangeValueInput: (value: string) => void
+  onChangeValueInput?: (value: string) => void
   onRightIconClickHandler?: () => void
   rightIcon?: ReactNode
   shortWidth?: boolean
