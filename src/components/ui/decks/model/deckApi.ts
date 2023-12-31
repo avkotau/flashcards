@@ -1,15 +1,15 @@
 import { baseApi } from '@/app/base-api'
 import {
-  CreateDeckArgs,
   GetDeckByIdArgs,
   GetDecksArgs,
   GetDecksResponse,
+  GetDecksResponseItems,
 } from '@/services/flashCards.type'
 
 const deckService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
-      createDeck: builder.mutation<void, CreateDeckArgs>({
+      createDeck: builder.mutation<GetDecksResponseItems, FormData>({
         invalidatesTags: ['Deck'],
         query: args => ({
           body: args,

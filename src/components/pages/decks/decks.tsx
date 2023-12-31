@@ -26,11 +26,11 @@ export const Decks = () => {
   const [sort, setSort] = useState<Sort | null>(null)
 
   const [inputValue, setValue] = useState('')
-  const [sliderData, setSliderData] = useState([1, 15])
+  const [sliderData, setSliderData] = useState([0, 15])
 
   const onClearFilter = () => {
     setValue('')
-    setSliderData([1, 15])
+    setSliderData([0, 15])
   }
 
   const { data, error, isLoading } = useGetDecksQuery({

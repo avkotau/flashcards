@@ -10,18 +10,28 @@ import { DeckFormValues, addDeckSchema } from './deckFormSchema'
 
 type Props = {
   isOpenModal: () => void
+  onSubmit: (data: FormData) => void
   placeholder?: string
   valueBtn: string
 }
 
 export const DeckForm = forwardRef<HTMLFormElement, Props>(
-  ({ isOpenModal, placeholder, valueBtn }: Props, ref) => {
-    const { control } = useForm<DeckFormValues>({
+  ({ isOpenModal, onSubmit, placeholder, valueBtn }: Props, ref) => {
+    const { control, handleSubmit } = useForm<DeckFormValues>({
       resolver: zodResolver(addDeckSchema),
     })
 
+    const submitHandler = (data: DeckFormValues) => {
+      const formData = new FormData()
+
+      formData.append('name', data?.name)
+      formData.append('isPrivate', `${data?.isPrivate}`)
+      debugger
+      onSubmit(formData)
+    }
+
     return (
-      <form ref={ref}>
+      <form onSubmit={handleSubmit(submitHandler)} ref={ref}>
         <div className={s.wrapperBody}>
           <ControlledInput
             control={control}
@@ -41,7 +51,7 @@ export const DeckForm = forwardRef<HTMLFormElement, Props>(
           <Button onClick={isOpenModal} variant={'secondary'}>
             <Typography.Subtitle2>Cancel</Typography.Subtitle2>
           </Button>
-          <Button onClick={isOpenModal}>{valueBtn}</Button>
+          <Button type={'submit'}>{valueBtn}</Button>
         </div>
       </form>
     )
