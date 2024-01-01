@@ -6,6 +6,7 @@ import {
   GetDecksArgs,
   GetDecksResponse,
   GetDecksResponseItems,
+  UpdateDeck,
 } from '@/services/flashCards.type'
 
 const deckService = baseApi.injectEndpoints({
@@ -26,6 +27,13 @@ const deckService = baseApi.injectEndpoints({
           url: `decks/${id}`,
         }),
       }),
+      editDeck: builder.mutation<GetDecksResponseItems, UpdateDeck>({
+        query: ({ body, id }) => ({
+          body,
+          method: 'PATCH',
+          url: `decks/${id}`,
+        }),
+      }),
       getDeckById: builder.query<GetDecksResponse, GetDeckByIdArgs>({
         query: ({ id }) => ({
           url: `v1/decks/${id}`,
@@ -42,9 +50,11 @@ const deckService = baseApi.injectEndpoints({
   },
 })
 
+debugger
 export const {
   useCreateDeckMutation,
   useDeleteDeckMutation,
+  useEditDeckMutation,
   useGetDeckByIdQuery,
   useGetDecksQuery,
 } = deckService

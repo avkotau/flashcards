@@ -19,7 +19,7 @@ export type GetDeckByIdArgs = {
 }
 
 export type CreateDeckArgs = {
-  cover?: string
+  cover?: null | string
   isPrivate?: boolean
   name: string
 }
@@ -55,3 +55,8 @@ export type GetDecksResponseItems = {
 export type DeleteDeckResponse = Omit<GetDecksResponseItems, 'author'>
 
 export type DeleteDeckParams = Pick<GetDecksResponseItems, 'id'>
+
+export type UpdateDeck = {
+  body: FormData
+  id: string
+}
