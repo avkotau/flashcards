@@ -2,15 +2,15 @@ import { FC } from 'react'
 
 import { IconWrapper, PropsIconWrapper } from '@/assets'
 
-export const Logo: FC<PropsIconWrapper> = ({ color, size = 20, ...rest }) => {
+export const Logo: FC<PropsIconWrapper> = ({ color, ...rest }) => {
   return (
     <IconWrapper
       icon={
         <svg
           fill={'currentColor'}
-          height={36}
-          viewBox={'0 0 157 36'}
-          width={157}
+          height={'36'}
+          viewBox={'0 0 512 118'}
+          width={'157'}
           xmlns={'http://www.w3.org/2000/svg'}
         >
           <path

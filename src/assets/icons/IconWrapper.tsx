@@ -21,8 +21,8 @@ export const IconWrapper: FC<{ icon: ReactNode } & PropsIconWrapper> = ({
         color: color,
         display: 'inline-flex',
         fontSize: 'inherit',
-        height: size,
-        width: size,
+        height: `${size}rem`,
+        width: `${size}rem`,
       }}
       {...rest}
     >
