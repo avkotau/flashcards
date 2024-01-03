@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { IconWrapper, PropsIconWrapper } from '@/assets'
 
-export const EditIcon: FC<PropsIconWrapper> = ({ color, size = 20, ...rest }) => {
+export const EditIcon: FC<PropsIconWrapper> = ({ color, ...rest }) => {
   return (
     <IconWrapper
       icon={
