@@ -7,9 +7,9 @@ import {
   Dropdown,
   DropdownItem,
   DropdownItemWithIcon,
+  HeaderInfo,
   Typography,
 } from '@/components'
-import { HeaderInfo } from '@/components/ui/header/headerInfo'
 import cn from 'classnames'
 
 import s from './header.module.scss'
@@ -46,8 +46,6 @@ export const Header = forwardRef<ElementRef<'div'>, Props>(
       userName: s.userName,
     }
 
-    // const toProfile = () => {}
-
     return (
       <header className={classNames.root} ref={ref}>
         <div className={classNames.headerContainer}>
@@ -58,18 +56,11 @@ export const Header = forwardRef<ElementRef<'div'>, Props>(
             <div className={classNames.profileInfoWrapper}>
               <Typography.Subtitle1 className={classNames.userName}>{name}</Typography.Subtitle1>
               <Dropdown trigger={<Avatar image={avatar} size={'small'} userName={name} />}>
-                <DropdownItem
-                  className={classNames.dropdownItemWrapper}
-                  // onSelect={toProfile}
-                >
+                <DropdownItem className={classNames.dropdownItemWrapper}>
                   <HeaderInfo avatar={avatar} email={email} name={name} />
                 </DropdownItem>
 
-                <DropdownItemWithIcon
-                  icon={<NoNamePersonIcon size={1} />}
-                  // onSelect={toProfile}
-                  text={'My Profile'}
-                />
+                <DropdownItemWithIcon icon={<NoNamePersonIcon size={1} />} text={'My Profile'} />
                 <DropdownItemWithIcon
                   disabled={isDisabled}
                   icon={<LogoutIcon size={1} />}
