@@ -167,6 +167,10 @@
 
   cursor: pointer;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   // size hidden button
   width: 1.5rem;
   height: 1.5rem;

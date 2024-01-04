@@ -50,7 +50,6 @@ const deckService = baseApi.injectEndpoints({
   },
 })
 
-debugger
 export const {
   useCreateDeckMutation,
   useDeleteDeckMutation,

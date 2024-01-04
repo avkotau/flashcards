@@ -2,8 +2,9 @@ import { GetDecksResponseItems } from '@/services/flashCards.type'
 
 export type RequiredFields = Omit<
   GetDecksResponseItems,
-  'created' | 'id' | 'isPrivate' | 'rating' | 'shots' | 'userId'
+  'created' | 'id' | 'rating' | 'shots' | 'userId'
 >
+
 export const data: RequiredFields[] = [
   {
     author: {
@@ -11,6 +12,7 @@ export const data: RequiredFields[] = [
       name: 'William Shakespeare',
     },
     cardsCount: 3,
+    isPrivate: false,
     name: 'Book 1',
     updated: '10.12.2023',
   },
@@ -20,6 +22,7 @@ export const data: RequiredFields[] = [
       name: 'Charles Dickens',
     },
     cardsCount: 1,
+    isPrivate: false,
     name: 'Book 2',
     updated: '04.12.2023',
   },
@@ -29,6 +32,7 @@ export const data: RequiredFields[] = [
       name: 'Jane Austen',
     },
     cardsCount: 5,
+    isPrivate: false,
     name: 'Book 3',
     updated: '03.12.2023',
   },
@@ -38,6 +42,7 @@ export const data: RequiredFields[] = [
       name: 'George Orwell',
     },
     cardsCount: 4,
+    isPrivate: false,
     name: 'Book 4',
     updated: '01.12.2023',
   },
