@@ -5,6 +5,8 @@ import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
 import cn from 'classnames'
 import { motion } from 'framer-motion'
 
+import s from './dropdownItem.module.scss'
+
 export type DropdownItemProps = {
   children: ReactNode
   className?: string
@@ -17,10 +19,13 @@ export const DropdownItem = forwardRef<ElementRef<typeof DropdownRadix.Item>, Dr
       onSelect && onSelect(e)
       e.preventDefault()
     }
-    const classNames = cn(className)
+
+    const classNames = {
+      wrapper: cn(s.wrapper, className),
+    }
 
     return (
-      <DropdownRadix.Item className={classNames} onSelect={selectHandler} ref={ref}>
+      <DropdownRadix.Item className={classNames.wrapper} onSelect={selectHandler} ref={ref}>
         <motion.div {...dropdownAnimations.item}>{children}</motion.div>
       </DropdownRadix.Item>
     )
