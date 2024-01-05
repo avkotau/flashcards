@@ -5,6 +5,8 @@ import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
 import cn from 'classnames'
 import { motion } from 'framer-motion'
 
+import s from './dropdownItem.module.scss'
+
 export type DropdownItemWithIconProps = Omit<DropdownItemProps, 'children'> & {
   icon: ReactNode
   text: string
@@ -15,9 +17,9 @@ export const DropdownItemWithIcon = forwardRef<
   DropdownItemWithIconProps
 >(({ className, icon, onSelect, text, ...rest }, ref): JSX.Element => {
   const classNames = {
-    item: cn('s.item', className),
-    itemIcon: 's.itemIcon',
+    wrapper: cn(s.wrapper, className),
   }
+
   const onSelectHandler = (e: Event) => {
     onSelect && onSelect(e)
     e.preventDefault()
@@ -26,13 +28,13 @@ export const DropdownItemWithIcon = forwardRef<
   return (
     <DropdownRadix.Item
       asChild
-      className={classNames.item}
+      className={classNames.wrapper}
       ref={ref}
       {...rest}
       onSelect={onSelectHandler}
     >
       <motion.div {...dropdownAnimations.item}>
-        <div className={classNames.itemIcon}>{icon}</div>
+        <div>{icon}</div>
         <Typography.Caption>{text}</Typography.Caption>
       </motion.div>
     </DropdownRadix.Item>
