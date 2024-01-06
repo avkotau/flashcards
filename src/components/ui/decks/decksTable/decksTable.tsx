@@ -1,13 +1,14 @@
 import { JSX } from 'react'
 
-import { DeleteIcon, EditIcon, PlayIcon } from '@/assets'
 import { formatDate } from '@/assets/utils'
-import { IconButton, Table, Typography } from '@/components'
-import { RequiredFields } from '@/components/ui/table/dataSorting'
+import { DecksIcons, Table, Typography } from '@/components'
 import { Sort, TableHeader, TableHeaderProps } from '@/components/ui/table/tableHeader'
+import { GetDecksResponseItems } from '@/services/flashCards.type'
+
+import s from './decksTable.module.scss'
 
 type Props = {
-  decksData: RequiredFields[]
+  decksData: GetDecksResponseItems[]
   isDisabled: boolean
   onSort: (sort: Sort) => void
   sort: Sort | undefined
@@ -41,10 +42,8 @@ export const DecksTable = ({
               <Table.Cell>
                 <Typography.Body2>{item.author.name}</Typography.Body2>
               </Table.Cell>
-              <Table.Cell>
-                <IconButton icon={<PlayIcon />} />
-                <IconButton icon={<EditIcon />} />
-                <IconButton icon={<DeleteIcon />} />
+              <Table.Cell className={s.cellIcon}>
+                <DecksIcons deck={item} />
               </Table.Cell>
             </Table.Row>
           ))}
