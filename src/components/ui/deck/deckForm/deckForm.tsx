@@ -22,6 +22,7 @@ export const DeckForm = forwardRef<HTMLFormElement, Props>(
     const { control, handleSubmit } = useForm<DeckFormValues>({
       resolver: zodResolver(addDeckSchema),
     })
+    // @ts-ignore: Unused variable for future use
     const [coverImage, setCoverImage] = useState<File | null>(null)
 
     const submitHandler = (data: DeckFormValues) => {

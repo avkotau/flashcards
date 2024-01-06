@@ -22,5 +22,10 @@ export const AddDeckIntoModal: Story = {
     ),
     title: 'Add New Deck',
     valueBtn: 'Add New Deck',
+    values: {
+      cover: 'https://placehold.co/120',
+      isPrivate: false,
+      name: 'Example input text',
+    },
   },
 }
