@@ -1,18 +1,21 @@
 import { ReactNode, useState } from 'react'
 
-import { Modal } from '@/components'
+import { Modal, useEditDeckMutation } from '@/components'
 import { DeckForm } from '@/components/ui/deck'
 import { CreateDeckArgs } from '@/services/flashCards.type'
 
 type Props = {
-  data: CreateDeckArgs
+  id: string
   isOpenModalBtn: ReactNode
-  title: string
+  title?: string
   valueBtn: string
+  values: CreateDeckArgs
 }
 
-export const EditDeckToModal = ({ data, isOpenModalBtn, title, valueBtn }: Props) => {
+export const EditDeckToModal = ({ id, isOpenModalBtn, title, valueBtn, values }: Props) => {
   const [open, setOpen] = useState(false)
+
+  const [editDeck] = useEditDeckMutation()
 
   const currentPlaceholder = title === 'Edit Deck' ? 'Edit card name' : 'Enter new card name'
 
@@ -20,18 +23,19 @@ export const EditDeckToModal = ({ data, isOpenModalBtn, title, valueBtn }: Props
     setOpen(false)
   }
 
-  const editCallback = () => {
+  const editCallback = (data: FormData) => {
+    editDeck({ body: data, id })
     isOpenModal()
   }
 
   return (
     <Modal isOpenModalBtn={isOpenModalBtn} open={open} setOpen={setOpen} title={'Edit Deck'}>
       <DeckForm
-        data={data}
         isOpenModal={isOpenModal}
         onSubmit={editCallback}
         placeholder={currentPlaceholder}
         valueBtn={valueBtn}
+        values={values}
       ></DeckForm>
     </Modal>
   )

@@ -13,7 +13,7 @@ export type TabsSwitcherProps = {
 export const TabsSwitcher = forwardRef<ElementRef<typeof Tabs.Root>, TabsSwitcherProps>(
   ({ children, className, label, ...rest }, ref): JSX.Element => {
     return (
-      <Tabs.Root className={s.root} defaultValue={'tab1'} {...rest} ref={ref}>
+      <Tabs.Root className={s.root} defaultValue={'allCards'} {...rest} ref={ref}>
         {label && <Typography.Body2>{label}</Typography.Body2>}
         <Tabs.List aria-label={'Manage your account'} className={cn(s.list, className)} loop>
           {children}

@@ -7,6 +7,7 @@ import s from './deleteDeckToModal.module.scss'
 type Props = {
   entityName: EntityType
   isOpenModalBtn: ReactNode
+  onClick: () => void
   title: string
   value: string
   valueBtn: string
@@ -15,6 +16,7 @@ type Props = {
 export const DeleteDeckToModal = ({
   entityName,
   isOpenModalBtn,
+  onClick,
   title,
   value,
   valueBtn,
@@ -22,6 +24,11 @@ export const DeleteDeckToModal = ({
   const [open, setOpen] = useState(false)
 
   const isOpenModal = () => {
+    setOpen(false)
+  }
+
+  const buttonClickHandler = () => {
+    onClick()
     setOpen(false)
   }
 
@@ -38,7 +45,9 @@ export const DeleteDeckToModal = ({
         <Button onClick={isOpenModal} variant={'secondary'}>
           <Typography.Subtitle2>Cancel</Typography.Subtitle2>
         </Button>
-        <Button onClick={isOpenModal}>{valueBtn}</Button>
+        <Button onClick={buttonClickHandler}>
+          <Typography.Subtitle2>{valueBtn}</Typography.Subtitle2>
+        </Button>
       </div>
     </Modal>
   )

@@ -1,7 +1,8 @@
-import { forwardRef } from 'react'
+import { JSX, forwardRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Button, ControlledCheckbox, ControlledInput, Typography } from '@/components'
+import { CreateDeckArgs } from '@/services/flashCards.type'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './deckForm.module.scss'
@@ -13,25 +14,34 @@ type Props = {
   onSubmit: (data: FormData) => void
   placeholder?: string
   valueBtn: string
+  values: CreateDeckArgs
 }
 
 export const DeckForm = forwardRef<HTMLFormElement, Props>(
-  ({ isOpenModal, onSubmit, placeholder, valueBtn }: Props, ref) => {
+  ({ isOpenModal, onSubmit, placeholder, valueBtn, values }: Props, ref): JSX.Element => {
     const { control, handleSubmit } = useForm<DeckFormValues>({
       resolver: zodResolver(addDeckSchema),
     })
+    const [coverImage, setCoverImage] = useState<File | null>(null)
 
     const submitHandler = (data: DeckFormValues) => {
       const formData = new FormData()
 
       formData.append('name', data?.name)
       formData.append('isPrivate', `${data?.isPrivate}`)
-      debugger
+
       onSubmit(formData)
     }
 
+    const imageUrl = coverImage ? URL.createObjectURL(coverImage) : values?.cover
+
     return (
       <form onSubmit={handleSubmit(submitHandler)} ref={ref}>
+        {imageUrl && (
+          <div>
+            <img alt={'Deck cover'} src={imageUrl} />
+          </div>
+        )}
         <div className={s.wrapperBody}>
           <ControlledInput
             control={control}
