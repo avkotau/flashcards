@@ -8,7 +8,7 @@ type Props = {
   isOpenModalBtn: ReactNode
   title: string
   valueBtn: string
-  values: CreateDeckArgs
+  values?: CreateDeckArgs
 }
 
 export const AddDeckToModal = ({ isOpenModalBtn, title, valueBtn, values }: Props) => {

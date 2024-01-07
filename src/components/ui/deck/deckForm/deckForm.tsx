@@ -14,7 +14,7 @@ type Props = {
   onSubmit: (data: FormData) => void
   placeholder?: string
   valueBtn: string
-  values: CreateDeckArgs
+  values?: CreateDeckArgs
 }
 
 export const DeckForm = forwardRef<HTMLFormElement, Props>(
@@ -22,8 +22,8 @@ export const DeckForm = forwardRef<HTMLFormElement, Props>(
     const { control, handleSubmit } = useForm<DeckFormValues>({
       resolver: zodResolver(addDeckSchema),
     })
-    // @ts-ignore: Unused variable for future use
-    const [coverImage, setCoverImage] = useState<File | null>(null)
+    //add setCover
+    const [cover] = useState<File | null>(null)
 
     const submitHandler = (data: DeckFormValues) => {
       const formData = new FormData()
@@ -31,10 +31,12 @@ export const DeckForm = forwardRef<HTMLFormElement, Props>(
       formData.append('name', data?.name)
       formData.append('isPrivate', `${data?.isPrivate}`)
 
+      cover && formData.append('cover', cover)
+
       onSubmit(formData)
     }
 
-    const imageUrl = coverImage ? URL.createObjectURL(coverImage) : values?.cover
+    const imageUrl = cover ? URL.createObjectURL(cover) : values?.cover
 
     return (
       <form onSubmit={handleSubmit(submitHandler)} ref={ref}>

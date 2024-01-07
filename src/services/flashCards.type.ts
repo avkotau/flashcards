@@ -44,7 +44,7 @@ export type GetDecksResponseItems = {
   id: string
   isBlocked?: any
   isDeleted?: boolean | null
-  isPrivate: boolean | null
+  isPrivate: boolean
   name: string
   rating: number
   shots: number
