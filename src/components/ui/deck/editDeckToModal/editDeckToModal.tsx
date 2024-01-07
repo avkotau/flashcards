@@ -9,7 +9,7 @@ type Props = {
   isOpenModalBtn: ReactNode
   title?: string
   valueBtn: string
-  values: CreateDeckArgs
+  values?: CreateDeckArgs
 }
 
 export const EditDeckToModal = ({ id, isOpenModalBtn, title, valueBtn, values }: Props) => {
