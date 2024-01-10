@@ -13,7 +13,6 @@ export const baseQueryWithReauth: BaseQueryFn<
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
-  debugger
   // wait until the mutex is available without locking it
   await mutex.waitForUnlock()
   let result = await baseQuery(args, api, extraOptions)
@@ -24,7 +23,10 @@ export const baseQueryWithReauth: BaseQueryFn<
       const release = await mutex.acquire()
 
       try {
-        await baseQuery('/refreshToken', api, extraOptions)
+        await baseQuery({ method: 'POST', url: '/v1/auth/refresh-token' }, api, extraOptions)
+
+        // retry the initial query
+        result = await baseQuery(args, api, extraOptions)
       } finally {
         // release must be called once the mutex should be released again.
         release()
