@@ -45,47 +45,46 @@ const deckService = baseApi.injectEndpoints({
         async onQueryStarted({ body, id }, { dispatch, getState, queryFulfilled }) {
           const state = getState() as RootState
 
-          let cover = ''
+          const currentPage = state.decks.currentPage
+          const name = state.decks.search
+          const minCards = state.decks.cardsCount.min
+          const maxCards = state.decks.cardsCount.max
+          const pageSize = state.decks.pageSize
 
-          const patchResult = dispatch(
-            // @ts-ignore
-            deckService.util.updateQueryData('getDecks', state, draft => {
-              const index = draft.items.findIndex(deck => deck.id === id)
+          const updateDeckInCache = dispatch(
+            deckService.util.updateQueryData(
+              'getDecks',
+              {
+                currentPage,
+                itemsPerPage: pageSize,
+                maxCardsCount: maxCards,
+                minCardsCount: minCards,
+                name,
+              },
+              draft => {
+                const deck = draft.items.find(deck => deck.id === id)
 
-              const name = body.get('name')
-              const isPrivate = body.get('isPrivate')
-              const coverBlob = body.get('cover')
-
-              if (coverBlob instanceof Blob) {
-                cover = URL.createObjectURL(coverBlob)
-              }
-
-              if (index !== -1) {
-                draft.items[index] = {
-                  ...draft.items[index],
-                  cover: cover,
-                  isPrivate: !!isPrivate,
-                  name: typeof name === 'string' ? name : '',
+                if (deck) {
+                  Object.assign(deck, {
+                    ...deck,
+                    ...body,
+                  })
                 }
               }
-            })
+            )
           )
 
           try {
             await queryFulfilled
           } catch {
-            patchResult.undo()
-          } finally {
-            URL.revokeObjectURL(cover)
+            updateDeckInCache.undo()
           }
         },
-        query: ({ body, id }) => {
-          return {
-            body,
-            method: 'PATCH',
-            url: `v1/decks/${id}`,
-          }
-        },
+        query: ({ body, id }) => ({
+          body,
+          method: 'PATCH',
+          url: `v1/decks/${id}`,
+        }),
       }),
     }
   },
