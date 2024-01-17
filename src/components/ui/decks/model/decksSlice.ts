@@ -1,3 +1,4 @@
+import { Sort } from '@/components/ui/table/tableHeader'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 export type CardsCount = {
@@ -15,6 +16,7 @@ export const decksSlice = createSlice({
     currentTab: 'all',
     pageSize: 10,
     search: '',
+    sortOptions: undefined as Sort | undefined,
   },
   name: 'decks',
   reducers: {
