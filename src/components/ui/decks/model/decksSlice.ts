@@ -8,6 +8,7 @@ export type CardsCount = {
 
 export const decksSlice = createSlice({
   initialState: {
+    authorId: undefined as string | undefined,
     cardsCount: {
       max: undefined,
       min: 0,
@@ -15,11 +16,20 @@ export const decksSlice = createSlice({
     currentPage: 1,
     currentTab: 'all',
     pageSize: 10,
-    search: '',
+    searchName: '',
     sortOptions: undefined as Sort | undefined,
   },
   name: 'decks',
   reducers: {
+    resetFilters: state => {
+      state.searchName = ''
+      state.currentTab = 'all'
+      state.authorId = undefined
+      state.sortOptions = null
+    },
+    setAuthorId: (state, action: PayloadAction<{ authorId: string | undefined }>) => {
+      state.authorId = action.payload.authorId
+    },
     setCardsCount: (state, action: PayloadAction<{ cardsCount: CardsCount }>) => {
       state.cardsCount = action.payload.cardsCount
     },
@@ -28,6 +38,12 @@ export const decksSlice = createSlice({
     },
     setPageSize: (state, action: PayloadAction<{ pageSize: number }>) => {
       state.pageSize = action.payload.pageSize
+    },
+    setSearchByName: (state, action: PayloadAction<{ searchName: string }>) => {
+      state.searchName = action.payload.searchName
+    },
+    setTabValue: (state, action: PayloadAction<{ currentTab: string }>) => {
+      state.currentTab = action.payload.currentTab
     },
   },
 })
