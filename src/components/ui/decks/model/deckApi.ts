@@ -15,6 +15,33 @@ const deckService = baseApi.injectEndpoints({
     return {
       createDeck: builder.mutation<GetDecksResponseItems, FormData>({
         invalidatesTags: ['Deck'],
+        async onQueryStarted(_, { dispatch, getState, queryFulfilled }) {
+          const state = getState() as RootState
+
+          const currentPage = state.decks.currentPage
+          const name = state.decks.searchName
+          const minCards = state.decks.cardsCount.min
+          const maxCards = state.decks.cardsCount.max
+          const pageSize = state.decks.pageSize
+
+          const res = await queryFulfilled
+
+          dispatch(
+            deckService.util.updateQueryData(
+              'getDecks',
+              {
+                currentPage: currentPage,
+                itemsPerPage: pageSize,
+                maxCardsCount: maxCards,
+                minCardsCount: minCards,
+                name,
+              },
+              draft => {
+                draft.items.unshift(res.data)
+              }
+            )
+          )
+        },
         query: args => ({
           body: args,
           method: 'POST',
@@ -46,7 +73,7 @@ const deckService = baseApi.injectEndpoints({
           const state = getState() as RootState
 
           const currentPage = state.decks.currentPage
-          const name = state.decks.search
+          const name = state.decks.searchName
           const minCards = state.decks.cardsCount.min
           const maxCards = state.decks.cardsCount.max
           const pageSize = state.decks.pageSize
