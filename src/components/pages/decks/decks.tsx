@@ -33,11 +33,18 @@ export const Decks = () => {
     setSliderData([0, 15])
   }
 
-  const { data, error, isLoading } = useGetDecksQuery({
+  const {
+    currentData: currentDecksData,
+    data: decksData,
+    error,
+    isLoading,
+  } = useGetDecksQuery({
     currentPage,
     itemsPerPage: pageSize,
   })
-  const totalItemsCount = data?.pagination?.totalItems ?? 0
+
+  const decks = currentDecksData ?? decksData
+  const totalItemsCount = decks?.pagination?.totalItems ?? 0
 
   const handlePageSizeChange = (newPageSize: string) => {
     setCurrentPage(1) // Reset current page to first
@@ -53,7 +60,7 @@ export const Decks = () => {
     isSorted: true,
   }))
 
-  const sortedData = getSortedData(data?.items || [], sort)
+  const sortedData = getSortedData(decks?.items || [], sort)
 
   useEffect(() => {
     setOpen(open)
@@ -89,7 +96,7 @@ export const Decks = () => {
         sliderTitle={'Number of cards'}
         tabLabel={'Show packs cards'}
       />
-      <h2>current page: {data?.pagination?.currentPage}</h2>
+      <h2>current page: {decks?.pagination?.currentPage}</h2>
       <DecksTable
         decksData={sortedData}
         isDisabled={loading}
