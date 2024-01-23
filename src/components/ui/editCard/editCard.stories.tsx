@@ -1,4 +1,5 @@
-import { Button } from '@/components'
+import { EditIcon } from '@/assets'
+import { IconButton } from '@/components'
 import { SelectItemType } from '@/components/ui/select/selectItem'
 import { Meta, StoryObj } from '@storybook/react'
 
@@ -24,6 +25,6 @@ const initialState: SelectItemType[] = [
 export const Default: Story = {
   args: {
     initialState,
-    isOpenModalBtn: <Button>Save Changes</Button>,
+    isOpenModalBtn: <IconButton icon={<EditIcon />} />,
   },
 }
