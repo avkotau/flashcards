@@ -50,10 +50,16 @@ const deckService = baseApi.injectEndpoints({
         }),
       }),
       deleteDeck: builder.mutation<DeleteDeckResponse, DeleteDeckParams>({
-        query: ({ id }) => ({
-          method: 'DELETE',
-          url: `decks/${id}`,
-        }),
+        invalidatesTags: ['Deck'],
+        async onQueryStarted(_, { dispatch }) {
+          dispatch(deckService.util.updateQueryData('getDecks', {}, () => {}))
+        },
+        query: ({ id }) => {
+          return {
+            method: 'DELETE',
+            url: `v1/decks/${id}`,
+          }
+        },
       }),
       getDeckById: builder.query<GetDecksResponse, GetDeckByIdArgs>({
         query: ({ id }) => ({
