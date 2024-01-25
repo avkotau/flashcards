@@ -42,6 +42,9 @@ export const decksSlice = createSlice({
     setSearchByName: (state, action: PayloadAction<{ searchName: string }>) => {
       state.searchName = action.payload.searchName
     },
+    setSortOptions: (state, action: PayloadAction<{ sortOptions: Sort | undefined }>) => {
+      state.sortOptions = action.payload.sortOptions
+    },
     setTabValue: (state, action: PayloadAction<{ currentTab: string }>) => {
       state.currentTab = action.payload.currentTab
     },
