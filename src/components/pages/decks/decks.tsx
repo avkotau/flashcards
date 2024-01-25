@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { DecksPageHeader, DecksTable, Pagination } from '@/components'
+import { AppDispatch, RootState } from '@/app/store'
+import { DecksPageHeader, DecksTable, Pagination, decksSlice } from '@/components'
 import { useGetDecksQuery } from '@/components/ui/decks/model/deckApi'
 import { PanelControl } from '@/components/ui/panelControl'
 import { getSortedData } from '@/components/ui/table/dataSorting'
@@ -23,10 +25,24 @@ export const Decks = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [open, setOpen] = useState(false)
 
-  const [sort, setSort] = useState<Sort | null>(null)
-
   const [inputValue, setValue] = useState('')
   const [sliderData, setSliderData] = useState([0, 15])
+
+  const useAppDispatch: () => AppDispatch = useDispatch
+
+  const dispatch = useAppDispatch()
+
+  const { setSortOptions } = decksSlice.actions
+
+  const selectSortOptions = (state: RootState) => state.decks.sortOptions
+
+  const sort = useSelector(selectSortOptions)
+
+  const handleSortChange = (newSort: Sort) => {
+    const formattedSort = newSort ? `${newSort.key},${newSort.direction}` : undefined
+
+    dispatch(setSortOptions({ sortOptions: formattedSort }))
+  }
 
   const onClearFilter = () => {
     setValue('')
@@ -41,6 +57,7 @@ export const Decks = () => {
   } = useGetDecksQuery({
     currentPage,
     itemsPerPage: pageSize,
+    orderBy: sort,
   })
 
   const decks = currentDecksData ?? decksData
@@ -49,10 +66,6 @@ export const Decks = () => {
   const handlePageSizeChange = (newPageSize: string) => {
     setCurrentPage(1) // Reset current page to first
     setPageSize(Number(newPageSize)) // Update page size
-  }
-
-  const handleSortChange = (newSort: Sort) => {
-    setSort(newSort)
   }
 
   const titleColumnsWithSort = titleColumns.map(column => ({
