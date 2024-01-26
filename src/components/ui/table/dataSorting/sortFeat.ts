@@ -1,7 +1,7 @@
 import { Sort } from '@/components/ui/table/tableHeader'
 import { GetDecksResponseItems } from '@/services/flashCards.type'
 
-export const getSortedData = (data: GetDecksResponseItems[], sort: Sort) => {
+export const getSortedData = (data: GetDecksResponseItems[], sort: Sort | undefined) => {
   if (!sort || !sort.key) {
     return data
   }
