@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 
-import { AppDispatch, RootState } from '@/app/store'
-import { DecksPageHeader, DecksTable, Pagination, decksSlice } from '@/components'
+import { DecksPageHeader, DecksTable, Pagination } from '@/components'
 import { useGetDecksQuery } from '@/components/ui/decks/model/deckApi'
 import { PanelControl } from '@/components/ui/panelControl'
 import { getSortedData } from '@/components/ui/table/dataSorting'
 import { Sort, titleColumns } from '@/components/ui/table/tableHeader'
 import { Typography } from '@/components/ui/typography'
+import { useDeckSettings } from '@/features'
 
 import s from './decks.module.scss'
 
@@ -28,21 +27,13 @@ export const Decks = () => {
   const [inputValue, setValue] = useState('')
   const [sliderData, setSliderData] = useState([0, 15])
 
-  const useAppDispatch: () => AppDispatch = useDispatch
+  const { onChangeSort, sortOptions } = useDeckSettings()
 
-  const dispatch = useAppDispatch()
-
-  const { setSortOptions } = decksSlice.actions
-
-  const selectSortOptions = (state: RootState) => state.decks.sortOptions
-
-  const sort = useSelector(selectSortOptions)
-
-  const handleSortChange = (newSort: Sort) => {
-    const formattedSort = newSort ? `${newSort.key},${newSort.direction}` : undefined
-
-    dispatch(setSortOptions({ sortOptions: formattedSort }))
+  const formattedSort = (newSort: Sort | undefined) => {
+    return newSort ? `${newSort.key}-${newSort.direction}` : undefined
   }
+
+  const sortString = formattedSort(sortOptions)
 
   const onClearFilter = () => {
     setValue('')
@@ -57,7 +48,7 @@ export const Decks = () => {
   } = useGetDecksQuery({
     currentPage,
     itemsPerPage: pageSize,
-    orderBy: sort,
+    orderBy: sortString,
   })
 
   const decks = currentDecksData ?? decksData
@@ -73,7 +64,7 @@ export const Decks = () => {
     isSorted: true,
   }))
 
-  const sortedData = getSortedData(decks?.items || [], sort)
+  const sortedData = getSortedData(decks?.items || [], sortOptions)
 
   useEffect(() => {
     setOpen(open)
@@ -113,8 +104,8 @@ export const Decks = () => {
       <DecksTable
         decksData={sortedData}
         isDisabled={loading}
-        onSort={handleSortChange}
-        sort={sort}
+        onSort={onChangeSort}
+        sort={sortOptions}
         titleColumnsWithSort={titleColumnsWithSort}
       />
       <Pagination
