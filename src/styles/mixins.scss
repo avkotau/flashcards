@@ -1,6 +1,5 @@
 @mixin input-icon($left, $right) {
   position: absolute;
-  top: 25%;
   right: $right;
   left: $left;
 }
