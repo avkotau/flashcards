@@ -22,21 +22,6 @@ type Props = {
   titleColumns: TableHeaderProps[]
 } & ComponentPropsWithoutRef<typeof Table.Head>
 
-const useSortHandler =
-  (sort: Sort | undefined, onSort: Props['onSort']) =>
-  (key: string, isSorted: boolean = false) => {
-    if (!onSort || !isSorted) {
-      return
-    }
-
-    const newSort: Sort =
-      sort?.key === key
-        ? { direction: sort.direction === 'asc' ? 'desc' : 'asc', key }
-        : { direction: 'asc', key }
-
-    onSort(newSort)
-  }
-
 export const titleColumns: TableHeaderProps[] = [
   {
     key: 'name',
@@ -62,7 +47,24 @@ export const titleColumns: TableHeaderProps[] = [
 
 export const TableHeader = forwardRef<ElementRef<typeof Table.Head>, Props>(
   ({ key, onSort, sort, style, title, titleColumns, ...rest }, ref) => {
-    const handleSort = useSortHandler(sort, onSort)
+    const handleSort = (key: string, isSorted?: boolean) => {
+      if (!onSort || !isSorted) {
+        return undefined
+      }
+
+      if (sort?.key !== key) {
+        return onSort({ direction: 'asc', key })
+      }
+
+      if (sort.direction === 'desc') {
+        return onSort(null)
+      }
+
+      return onSort({
+        direction: sort?.direction === 'asc' ? 'desc' : 'asc',
+        key,
+      })
+    }
 
     return (
       <Table.Head ref={ref} {...rest}>
