@@ -25,9 +25,9 @@ export const Decks = () => {
   const [open, setOpen] = useState(false)
 
   const [inputValue, setValue] = useState('')
-  const [sliderData, setSliderData] = useState([0, 15])
 
-  const { onChangeSort, sortOptions } = useDeckSettings()
+  const { onChangeSliderValue, onChangeSort, onClearFilter, sliderValue, sortOptions } =
+    useDeckSettings()
 
   const formattedSort = (newSort: Sort | undefined) => {
     return newSort ? `${newSort.key}-${newSort.direction}` : undefined
@@ -35,23 +35,13 @@ export const Decks = () => {
 
   const sortString = formattedSort(sortOptions)
 
-  const onClearFilter = () => {
-    setValue('')
-    setSliderData([0, 15])
-  }
-
-  const {
-    currentData: currentDecksData,
-    data: decksData,
-    error,
-    isLoading,
-  } = useGetDecksQuery({
+  const { currentData, data, error, isLoading } = useGetDecksQuery({
     currentPage,
     itemsPerPage: pageSize,
     orderBy: sortString,
   })
 
-  const decks = currentDecksData ?? decksData
+  const decks = currentData ?? data
   const totalItemsCount = decks?.pagination?.totalItems ?? 0
 
   const handlePageSizeChange = (newPageSize: string) => {
@@ -91,12 +81,12 @@ export const Decks = () => {
       <DecksPageHeader />
       <PanelControl
         inputValue={inputValue}
-        maxSliderValue={15}
+        maxSliderValue={61}
         minSliderValue={1}
-        onChangeSliderValue={setSliderData}
+        onChangeSliderValue={onChangeSliderValue}
         onChangeValueInput={setValue}
         onClearFilter={onClearFilter}
-        sliderData={sliderData}
+        sliderData={[sliderValue?.min ?? 0, sliderValue?.max ?? currentData?.maxCardsCount ?? 0]}
         sliderTitle={'Number of cards'}
         tabLabel={'Show packs cards'}
       />

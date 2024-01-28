@@ -21,7 +21,10 @@ export const decksSlice = createSlice({
   },
   name: 'decks',
   reducers: {
-    resetFilters: state => {
+    goToFirstPage: state => {
+      state.currentPage = 1
+    },
+    resetFilter: state => {
       state.searchName = ''
       state.currentTab = 'all'
       state.authorId = undefined
@@ -50,3 +53,5 @@ export const decksSlice = createSlice({
     },
   },
 })
+
+export const decksActions = decksSlice.actions
