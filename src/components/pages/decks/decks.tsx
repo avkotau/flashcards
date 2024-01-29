@@ -26,7 +26,7 @@ export const Decks = () => {
 
   const [inputValue, setValue] = useState('')
 
-  const { onChangeSliderValue, onChangeSort, onClearFilter, sliderValue, sortOptions } =
+  const { cardsCount, onChangeSliderValue, onChangeSort, onClearFilter, sliderValue, sortOptions } =
     useDeckSettings()
 
   const formattedSort = (newSort: Sort | undefined) => {
@@ -81,8 +81,8 @@ export const Decks = () => {
       <DecksPageHeader />
       <PanelControl
         inputValue={inputValue}
-        maxSliderValue={61}
-        minSliderValue={1}
+        maxSliderValue={Number(data?.maxCardsCount)}
+        minSliderValue={cardsCount.min}
         onChangeSliderValue={onChangeSliderValue}
         onChangeValueInput={setValue}
         onClearFilter={onClearFilter}

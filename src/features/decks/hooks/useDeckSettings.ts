@@ -18,6 +18,9 @@ export const useDeckSettings = () => {
   const selectSortOptions = (state: RootState) => state.decks.sortOptions
   const sortOptions = useSelector(selectSortOptions)
 
+  const selectCardsCount = (state: RootState) => state.decks.cardsCount
+  const cardsCount = useSelector(selectCardsCount)
+
   const onChangeSort = (orderBy: Sort) => {
     dispatch(setSortOptions({ sortOptions: orderBy }))
   }
@@ -33,5 +36,5 @@ export const useDeckSettings = () => {
     setCardsCount({ cardsCount: { max: sliderValues[1], min: sliderValues[0] } })
   }
 
-  return { onChangeSliderValue, onChangeSort, onClearFilter, sliderValue, sortOptions }
+  return { cardsCount, onChangeSliderValue, onChangeSort, onClearFilter, sliderValue, sortOptions }
 }
