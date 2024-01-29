@@ -24,10 +24,20 @@ export const Decks = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [open, setOpen] = useState(false)
 
-  const [inputValue, setValue] = useState('')
+  // const [inputValue, setValue] = useState('')
 
-  const { cardsCount, onChangeSliderValue, onChangeSort, onClearFilter, sliderValue, sortOptions } =
-    useDeckSettings()
+  const {
+    cardsCount,
+    onChangeSliderValue,
+    onChangeSort,
+    onChangeTabValue,
+    onClearFilter,
+    onSearch,
+    searchName,
+    sliderValue,
+    sortOptions,
+    tabValue,
+  } = useDeckSettings()
 
   const formattedSort = (newSort: Sort | undefined) => {
     return newSort ? `${newSort.key}-${newSort.direction}` : undefined
@@ -80,15 +90,17 @@ export const Decks = () => {
     <div className={s.decksWrapper}>
       <DecksPageHeader />
       <PanelControl
-        inputValue={inputValue}
+        inputValue={searchName}
         maxSliderValue={Number(data?.maxCardsCount)}
         minSliderValue={cardsCount.min}
         onChangeSliderValue={onChangeSliderValue}
-        onChangeValueInput={setValue}
+        onChangeTabValue={onChangeTabValue}
+        onChangeValueInput={onSearch}
         onClearFilter={onClearFilter}
         sliderData={[sliderValue?.min ?? 0, sliderValue?.max ?? currentData?.maxCardsCount ?? 0]}
         sliderTitle={'Number of cards'}
         tabLabel={'Show packs cards'}
+        tabValue={tabValue}
       />
       <h2>current page: {decks?.pagination?.currentPage}</h2>
       <DecksTable

@@ -48,8 +48,8 @@ export const decksSlice = createSlice({
     setSortOptions: (state, action: PayloadAction<{ sortOptions: Sort | undefined }>) => {
       state.sortOptions = action.payload.sortOptions
     },
-    setTabValue: (state, action: PayloadAction<{ currentTab: string }>) => {
-      state.currentTab = action.payload.currentTab
+    setTabValue: (state, action: PayloadAction<{ tabValue: string }>) => {
+      state.currentTab = action.payload.tabValue
     },
   },
 })

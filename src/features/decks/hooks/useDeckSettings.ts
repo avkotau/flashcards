@@ -10,7 +10,14 @@ export const useDeckSettings = () => {
     min: 0,
   })
 
-  const { goToFirstPage, resetFilter, setCardsCount, setSortOptions } = decksActions
+  const {
+    goToFirstPage,
+    resetFilter,
+    setCardsCount,
+    setSearchByName,
+    setSortOptions,
+    setTabValue,
+  } = decksActions
 
   const useAppDispatch: () => AppDispatch = useDispatch
 
@@ -20,6 +27,12 @@ export const useDeckSettings = () => {
 
   const selectCardsCount = (state: RootState) => state.decks.cardsCount
   const cardsCount = useSelector(selectCardsCount)
+
+  const selectSearchName = (state: RootState) => state.decks.searchName
+  const searchName = useSelector(selectSearchName)
+
+  const selectTabValue = (state: RootState) => state.decks.currentTab
+  const tabValue = useSelector(selectTabValue)
 
   const onChangeSort = (orderBy: Sort) => {
     dispatch(setSortOptions({ sortOptions: orderBy }))
@@ -36,5 +49,24 @@ export const useDeckSettings = () => {
     setCardsCount({ cardsCount: { max: sliderValues[1], min: sliderValues[0] } })
   }
 
-  return { cardsCount, onChangeSliderValue, onChangeSort, onClearFilter, sliderValue, sortOptions }
+  const onSearch = (name: string) => {
+    dispatch(setSearchByName({ searchName: name }))
+  }
+
+  const onChangeTabValue = (tabValue: string) => {
+    dispatch(setTabValue({ tabValue }))
+  }
+
+  return {
+    cardsCount,
+    onChangeSliderValue,
+    onChangeSort,
+    onChangeTabValue,
+    onClearFilter,
+    onSearch,
+    searchName,
+    sliderValue,
+    sortOptions,
+    tabValue,
+  }
 }
