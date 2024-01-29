@@ -11,11 +11,13 @@ export type PanelControlProps = {
   maxSliderValue: number
   minSliderValue: number
   onChangeSliderValue: (value: number[]) => void
+  onChangeTabValue: (tabValue: string) => void
   onChangeValueInput: (value: string) => void
   onClearFilter: () => void
   sliderData: number[]
   sliderTitle: string
   tabLabel: string
+  tabValue: string
 }
 
 export const PanelControl = ({
@@ -23,11 +25,13 @@ export const PanelControl = ({
   maxSliderValue,
   minSliderValue,
   onChangeSliderValue,
+  onChangeTabValue,
   onChangeValueInput,
   onClearFilter,
   sliderData,
   sliderTitle,
   tabLabel,
+  tabValue,
 }: PanelControlProps) => {
   const classNames = {
     button: cn(s.button),
@@ -49,11 +53,16 @@ export const PanelControl = ({
         value={inputValue}
         variant={'default'}
       />
-      <TabsSwitcher className={classNames.tabsSwitcher} label={tabLabel}>
-        <Tab value={'myCards'}>
+      <TabsSwitcher
+        className={classNames.tabsSwitcher}
+        label={tabLabel}
+        onValueChange={onChangeTabValue}
+        value={tabValue}
+      >
+        <Tab value={'my'}>
           <Typography.Body1>My Cards</Typography.Body1>
         </Tab>
-        <Tab value={'allCards'}>
+        <Tab value={'all'}>
           <Typography.Body1>All Cards</Typography.Body1>
         </Tab>
       </TabsSwitcher>
