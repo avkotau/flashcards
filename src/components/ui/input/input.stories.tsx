@@ -1,3 +1,5 @@
+import { ChangeEvent, FC, useState } from 'react'
+
 import { CrossIcon, SearchIcon } from '@/assets'
 import { InputFactory, InputProps } from '@/components'
 import { Meta, StoryObj } from '@storybook/react'
@@ -47,6 +49,47 @@ const createInputProps = (args: InputProps) => {
   }
 }
 
+const InputComponent: FC<InputProps & { type: string }> = (props: InputProps) => {
+  debugger
+  const { type, ...otherProps } = props
+  const [value, setValue] = useState('')
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value)
+    if (props.onChange) {
+      props.onChange(e)
+    }
+  }
+
+  const resetValue = () => {
+    setValue('')
+  }
+
+  let leftIcon, rightIcon
+
+  if (type === 'search') {
+    leftIcon = <SearchIcon />
+    rightIcon = <CrossIcon />
+  }
+
+  const inputProps = createInputProps({
+    ...otherProps,
+    leftIcon,
+    onChange: handleInputChange,
+    rightIcon: type === 'password' ? true : rightIcon,
+    value,
+  })
+
+  return (
+    <InputFactory
+      {...inputProps}
+      leftIcon={leftIcon}
+      onChangeValueInput={resetValue}
+      rightIcon={rightIcon}
+      type={type}
+    />
+  )
+}
+
 export const Input: Story = {
   args: {
     errorMessage: 'Error!',
@@ -58,21 +101,21 @@ export const Input: Story = {
     variant: 'default',
   },
 
-  render: args => <InputFactory {...createInputProps(args)} type={'text'} />,
+  render: args => <InputComponent {...args} type={'text'} />,
 }
 
 export const Password: Story = {
   args: {
     errorMessage: 'Error!',
     label: 'Input',
-    placeholder: 'Input',
+    placeholder: 'Password',
     shortWidth: false,
     title: 'Value',
     type: 'password',
     variant: 'default',
   },
 
-  render: args => <InputFactory {...createInputProps(args)} rightIcon type={args.type} />,
+  render: args => <InputComponent {...args} type={'password'} />,
 }
 
 export const Search: Story = {
@@ -84,17 +127,5 @@ export const Search: Story = {
     type: 'text',
     variant: 'default',
   },
-  render: args => {
-    const leftIcon = <SearchIcon />
-    const rightIcon = <CrossIcon />
-
-    return (
-      <InputFactory
-        {...createInputProps({ ...args, leftIcon })}
-        leftIcon={leftIcon}
-        rightIcon={rightIcon}
-        type={'text'} // it must be overwritten
-      />
-    )
-  },
+  render: args => <InputComponent {...args} type={'search'} />,
 }
