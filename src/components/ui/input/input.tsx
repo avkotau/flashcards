@@ -46,25 +46,28 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
       rightIcon,
       shortWidth,
       type,
+      value,
       ...restProps
     },
     ref
   ) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
-    const [inputValue, setInputValue] = useState('')
-
     const togglePasswordVisibility = () => {
       setIsPasswordVisible(prevState => !prevState)
     }
     const onChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
       onChange?.(e)
-      setInputValue(e.currentTarget.value)
+      if (onChangeValueInput) {
+        onChangeValueInput(e.currentTarget.value)
+      }
       onChangeValueInput?.(e.currentTarget.value)
     }
 
     const clearInputHandler = () => {
-      setInputValue('')
+      if (onChangeValueInput) {
+        onChangeValueInput('')
+      }
     }
 
     const classNames = {
@@ -105,14 +108,14 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
             disabled={disabled}
             onChange={onChangeValue}
             type={typeInput}
-            value={inputValue}
+            value={value}
             {...restProps}
             ref={ref}
           />
 
           <IconButton className={classNames.leftIcon} disabled={disabled} icon={leftIcon} />
 
-          {inputValue && (
+          {value && (
             <IconButton
               className={classNames.eyeIcon}
               disabled={disabled}

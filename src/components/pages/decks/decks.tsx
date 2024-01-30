@@ -24,8 +24,6 @@ export const Decks = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [open, setOpen] = useState(false)
 
-  // const [inputValue, setValue] = useState('')
-
   const {
     cardsCount,
     onChangeSliderValue,
