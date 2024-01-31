@@ -2,13 +2,19 @@ import { FC } from 'react'
 
 import { IconWrapper, PropsIconWrapper } from '@/assets'
 
-export const CrossIcon: FC<PropsIconWrapper> = ({ color, size = 20, ...rest }) => {
+export const CrossIcon: FC<PropsIconWrapper & { onClick?: () => void }> = ({
+  color,
+  onClick,
+  size = 20,
+  ...rest
+}) => {
   return (
     <IconWrapper
       icon={
         <svg
           fill={'currentColor'}
           height={size}
+          onClick={onClick}
           viewBox={'0 0 15 15'}
           width={size}
           xmlns={'http://www.w3.org/2000/svg'}

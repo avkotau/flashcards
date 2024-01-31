@@ -50,7 +50,6 @@ const createInputProps = (args: InputProps) => {
 }
 
 const InputComponent: FC<InputProps & { type: string }> = (props: InputProps) => {
-  debugger
   const { type, ...otherProps } = props
   const [value, setValue] = useState('')
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +67,7 @@ const InputComponent: FC<InputProps & { type: string }> = (props: InputProps) =>
 
   if (type === 'search') {
     leftIcon = <SearchIcon />
-    rightIcon = <CrossIcon />
+    rightIcon = <CrossIcon onClick={resetValue} />
   }
 
   const inputProps = createInputProps({
@@ -79,15 +78,7 @@ const InputComponent: FC<InputProps & { type: string }> = (props: InputProps) =>
     value,
   })
 
-  return (
-    <InputFactory
-      {...inputProps}
-      leftIcon={leftIcon}
-      onChangeValueInput={resetValue}
-      rightIcon={rightIcon}
-      type={type}
-    />
-  )
+  return <InputFactory {...inputProps} leftIcon={leftIcon} rightIcon={rightIcon} type={type} />
 }
 
 export const Input: Story = {
