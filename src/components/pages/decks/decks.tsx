@@ -38,7 +38,14 @@ export const Decks = () => {
   } = useDeckSettings()
 
   const formattedSort = (newSort: Sort | undefined) => {
-    return newSort ? `${newSort.key}-${newSort.direction}` : undefined
+    if (!newSort) {
+      return undefined
+    }
+    if (newSort?.key === 'author') {
+      return `author.name-${newSort?.direction}`
+    }
+
+    return `${newSort?.key}-${newSort?.direction}`
   }
 
   const sortString = formattedSort(sortOptions)
