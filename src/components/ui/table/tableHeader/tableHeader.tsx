@@ -46,7 +46,7 @@ export const titleColumns: TableHeaderProps[] = [
 ]
 
 export const TableHeader = forwardRef<ElementRef<typeof Table.Head>, Props>(
-  ({ key, onSort, sort, style, title, titleColumns, ...rest }, ref) => {
+  ({ onSort, sort, style, title, titleColumns, ...rest }, ref) => {
     const handleSort = (key: string, isSorted?: boolean) => {
       if (!onSort || !isSorted) {
         return undefined
@@ -78,7 +78,6 @@ export const TableHeader = forwardRef<ElementRef<typeof Table.Head>, Props>(
                 <Typography.Subtitle2>
                   {title}
                   {sort?.key === key &&
-                    key !== 'icons' &&
                     (sort.direction === 'asc' ? (
                       <ArrowUpIcon className={s.sortIcon} />
                     ) : (

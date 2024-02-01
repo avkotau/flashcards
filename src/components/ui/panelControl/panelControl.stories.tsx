@@ -17,10 +17,18 @@ type Story = StoryObj<typeof PanelControl>
 const PanelControlStory = (props: PanelControlProps) => {
   const [inputValue, setValue] = useState(props.inputValue)
   const [sliderData, setSliderData] = useState(props.sliderData)
+  const [tabValueData, settabValueData] = useState('all')
 
   const onClearFilter = () => {
     setValue('')
     setSliderData(props.sliderData)
+    settabValueData('all')
+  }
+
+  const onChangeTabValue = () => {
+    const newTabValue = tabValueData === 'all' ? 'my' : 'all'
+
+    settabValueData(newTabValue)
   }
 
   return (
@@ -29,11 +37,13 @@ const PanelControlStory = (props: PanelControlProps) => {
       maxSliderValue={props.maxSliderValue}
       minSliderValue={props.minSliderValue}
       onChangeSliderValue={setSliderData}
+      onChangeTabValue={onChangeTabValue}
       onChangeValueInput={setValue}
       onClearFilter={onClearFilter}
       sliderData={sliderData}
       sliderTitle={props.sliderTitle}
       tabLabel={props.tabLabel}
+      tabValue={tabValueData}
     />
   )
 }
