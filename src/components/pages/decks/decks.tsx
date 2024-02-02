@@ -53,6 +53,8 @@ export const Decks = () => {
   const { currentData, data, error, isLoading } = useGetDecksQuery({
     currentPage,
     itemsPerPage: pageSize,
+    maxCardsCount: sliderValue.max,
+    minCardsCount: sliderValue.min,
     orderBy: sortString,
   })
 
