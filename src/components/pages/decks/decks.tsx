@@ -55,6 +55,7 @@ export const Decks = () => {
     itemsPerPage: pageSize,
     maxCardsCount: sliderValue.max,
     minCardsCount: sliderValue.min,
+    name: searchName,
     orderBy: sortString,
   })
 

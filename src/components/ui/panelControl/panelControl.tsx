@@ -46,7 +46,7 @@ export const PanelControl = ({
       <InputFactory
         containerStyle={classNames.containerStyle}
         leftIcon={<SearchIcon />}
-        onChangeValueInput={onChangeValueInput}
+        onChangeValue={onChangeValueInput}
         placeholder={'Input search'}
         rightIcon={<CrossIcon />}
         type={'text'}
