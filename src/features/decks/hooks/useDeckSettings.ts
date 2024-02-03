@@ -49,8 +49,8 @@ export const useDeckSettings = () => {
     setCardsCount({ cardsCount: { max: sliderValues[1], min: sliderValues[0] } })
   }
 
-  const onSearch = (name: string) => {
-    dispatch(setSearchByName({ searchName: name }))
+  const onSearch = (searchName: string) => {
+    dispatch(setSearchByName({ searchName }))
   }
 
   const onChangeTabValue = (tabValue: string) => {
