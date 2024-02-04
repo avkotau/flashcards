@@ -21,24 +21,14 @@ type RefType<T extends ElementType> = T extends ElementType
 
 export const Button = forwardRef(
   <T extends ElementType = 'button'>(props: ButtonProps<T>, ref: RefType<T>) => {
-    const {
-      as: Component = 'button',
-      className,
-      fullWidth,
-      icon,
-      variant = 'primary',
-      ...rest
-    } = props
+    const { as: Component = 'button', className, fullWidth, variant = 'primary', ...rest } = props
 
     return (
       <Component
         className={`${s.button} ${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className}`}
         ref={ref}
         {...rest}
-      >
-        {icon}
-        {rest.children}
-      </Component>
+      />
     )
   }
 )
