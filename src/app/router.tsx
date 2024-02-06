@@ -20,7 +20,7 @@ const publicRoutes: RouteObject[] = [
 const privateRoutes: RouteObject[] = [
   {
     element: <Decks />,
-    path: '/decks',
+    path: '/',
   },
 ]
 
@@ -45,18 +45,19 @@ const UserLayoutWithNavigation = () => {
   )
 }
 
+const router = createBrowserRouter([
+  {
+    children: [
+      {
+        children: privateRoutes,
+        element: <PrivateRoutes />,
+      },
+      ...publicRoutes,
+    ],
+    element: <UserLayoutWithNavigation />,
+  },
+])
+
 export const Router = () => {
   return <RouterProvider router={router} />
 }
-
-const router = createBrowserRouter([
-  ...publicRoutes,
-  {
-    element: <UserLayoutWithNavigation />,
-    path: '/',
-  },
-  {
-    children: privateRoutes,
-    element: <PrivateRoutes />,
-  },
-])
