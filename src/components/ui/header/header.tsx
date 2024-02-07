@@ -1,6 +1,8 @@
 import { ComponentPropsWithoutRef, ElementRef, JSX, forwardRef } from 'react'
+import { Link } from 'react-router-dom'
 
 import { Logo, LogoutIcon, NoNamePersonIcon } from '@/assets'
+import { Routes } from '@/common'
 import {
   Avatar,
   Button,
@@ -70,7 +72,11 @@ export const Header = forwardRef<ElementRef<'div'>, Props>(
               </Dropdown>
             </div>
           )}
-          {!isLoggedIn && <Button>Sign In</Button>}
+          {!isLoggedIn && (
+            <Button as={Link} to={Routes.SignIn}>
+              Sign In
+            </Button>
+          )}
         </div>
       </header>
     )

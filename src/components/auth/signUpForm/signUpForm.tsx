@@ -1,6 +1,8 @@
 import { JSX, forwardRef } from 'react'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
+import { Routes } from '@/common'
 import { Button, Card, ControlledInput, Typography } from '@/components'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -56,7 +58,13 @@ export const SignUpForm = forwardRef<HTMLFormElement, Props>(
           <Button fullWidth>Sign Up</Button>
         </form>
         <Typography.Link1 className={s.registerAcc}>Already have an account?</Typography.Link1>
-        <Button as={'a'} className={s.signInBtn} type={'submit'} variant={'link'}>
+        <Button
+          as={Link}
+          className={s.signInBtn}
+          to={Routes.SignIn}
+          type={'submit'}
+          variant={'link'}
+        >
           Sign In
         </Button>
       </Card>
