@@ -5,7 +5,7 @@ import { SignInForm } from '@/components'
 import { useLoginMutation } from '@/services/authApi'
 import { LoginArgs } from '@/services/authApi.types'
 
-export const SignInPage = () => {
+export const SignIn = () => {
   const [login] = useLoginMutation()
   const navigate = useNavigate()
 

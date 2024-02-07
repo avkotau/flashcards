@@ -6,14 +6,18 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 
-import { Header, SignInPage } from '@/components'
+import { Header, SignIn, SingUp } from '@/components'
 import { Decks } from '@/components/pages/decks/decks'
 import { useMeQuery } from '@/services/authApi'
 
 const publicRoutes: RouteObject[] = [
   {
-    element: <SignInPage />,
-    path: '/login',
+    element: <SignIn />,
+    path: '/sign-in',
+  },
+  {
+    element: <SingUp />,
+    path: '/sign-up',
   },
 ]
 
@@ -33,7 +37,7 @@ function PrivateRoutes() {
 
   const isAuthenticated = !isError
 
-  return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
+  return isAuthenticated ? <Outlet /> : <Navigate to={'/sign-in'} />
 }
 
 const UserLayoutWithNavigation = () => {
