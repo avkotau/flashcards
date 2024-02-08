@@ -8,7 +8,7 @@ import {
 
 import { Routes } from '@/common'
 import { Decks, Header, SignIn, SingUp } from '@/components'
-import { useMeQuery } from '@/services/authApi'
+import { useLogoutMutation, useMeQuery } from '@/services/authApi'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -45,9 +45,11 @@ function PrivateRoutes() {
 }
 
 const UserLayoutWithNavigation = () => {
+  const [logout] = useLogoutMutation()
+
   return (
     <>
-      <Header isDisabled={false} isLoggedIn={false} logout={() => {}} />
+      <Header isDisabled={false} isLoggedIn={false} logout={logout} />
       <Outlet />
     </>
   )
