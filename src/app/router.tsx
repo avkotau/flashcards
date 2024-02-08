@@ -6,25 +6,29 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 
-import { Header, SignIn, SingUp } from '@/components'
-import { Decks } from '@/components/pages/decks/decks'
-import { useMeQuery } from '@/services/authApi'
+import { Routes } from '@/common'
+import { Decks, Header, SignIn, SingUp } from '@/components'
+import { useLogoutMutation, useMeQuery } from '@/services/authApi'
 
 const publicRoutes: RouteObject[] = [
   {
     element: <SignIn />,
-    path: '/sign-in',
+    path: Routes.SignIn,
   },
   {
     element: <SingUp />,
-    path: '/sign-up',
+    path: Routes.SignUp,
   },
 ]
 
 const privateRoutes: RouteObject[] = [
   {
+    element: <Navigate to={Routes.Decks} />,
+    path: Routes.Main,
+  },
+  {
     element: <Decks />,
-    path: '/',
+    path: Routes.Decks,
   },
 ]
 
@@ -41,9 +45,11 @@ function PrivateRoutes() {
 }
 
 const UserLayoutWithNavigation = () => {
+  const [logout] = useLogoutMutation()
+
   return (
     <>
-      <Header isDisabled={false} isLoggedIn={false} logout={() => {}} />
+      <Header isDisabled={false} isLoggedIn={false} logout={logout} />
       <Outlet />
     </>
   )
