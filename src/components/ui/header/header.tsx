@@ -17,7 +17,7 @@ import cn from 'classnames'
 import s from './header.module.scss'
 
 type Props = {
-  avatar?: string
+  avatar?: null | string
   className?: string
   email?: string
   isDisabled: boolean
@@ -57,9 +57,9 @@ export const Header = forwardRef<ElementRef<'div'>, Props>(
           {isLoggedIn && (
             <div className={classNames.profileInfoWrapper}>
               <Typography.Subtitle1 className={classNames.userName}>{name}</Typography.Subtitle1>
-              <Dropdown trigger={<Avatar image={avatar} size={'small'} userName={name} />}>
+              <Dropdown trigger={<Avatar image={avatar ?? ''} size={'small'} userName={name} />}>
                 <DropdownItem className={classNames.dropdownItemWrapper}>
-                  <HeaderInfo avatar={avatar} email={email} name={name} />
+                  <HeaderInfo avatar={avatar ?? ''} email={email} name={name} />
                 </DropdownItem>
 
                 <DropdownItemWithIcon icon={<NoNamePersonIcon size={1} />} text={'My Profile'} />
