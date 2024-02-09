@@ -45,11 +45,20 @@ function PrivateRoutes() {
 }
 
 const UserLayoutWithNavigation = () => {
+  const { data, isError } = useMeQuery()
+
   const [logout] = useLogoutMutation()
 
   return (
     <>
-      <Header isDisabled={false} isLoggedIn={false} logout={logout} />
+      <Header
+        avatar={data?.avatar}
+        email={data?.email}
+        isDisabled={false}
+        isLoggedIn={!isError}
+        logout={logout}
+        name={data?.name}
+      />
       <Outlet />
     </>
   )
