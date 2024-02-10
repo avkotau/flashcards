@@ -21,9 +21,6 @@ export const decksSlice = createSlice({
   },
   name: 'decks',
   reducers: {
-    goToFirstPage: state => {
-      state.currentPage = 1
-    },
     resetFilter: state => {
       state.searchName = ''
       state.currentTab = 'all'
@@ -50,6 +47,9 @@ export const decksSlice = createSlice({
     },
     setTabValue: (state, action: PayloadAction<{ tabValue: string }>) => {
       state.currentTab = action.payload.tabValue
+    },
+    setToFirstPage: state => {
+      state.currentPage = 1
     },
   },
 })

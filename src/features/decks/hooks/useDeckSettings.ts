@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { AppDispatch, RootState } from '@/app/store'
 import { CardsCount, Sort, decksActions } from '@/components'
+import { useMeQuery } from '@/services'
 
 export const useDeckSettings = () => {
   const [sliderValue, setSliderValue] = useState<CardsCount>({
@@ -10,13 +11,16 @@ export const useDeckSettings = () => {
     min: 0,
   })
 
+  const { data } = useMeQuery()
+
   const {
-    goToFirstPage,
     resetFilter,
+    setAuthorId,
     setCardsCount,
     setSearchByName,
     setSortOptions,
     setTabValue,
+    setToFirstPage,
   } = decksActions
 
   const useAppDispatch: () => AppDispatch = useDispatch
@@ -44,7 +48,7 @@ export const useDeckSettings = () => {
   }
 
   const onChangeSliderValue = (sliderValues: number[]) => {
-    dispatch(goToFirstPage())
+    dispatch(setToFirstPage())
     setSliderValue({ max: sliderValues[1], min: sliderValues[0] })
     setCardsCount({ cardsCount: { max: sliderValues[1], min: sliderValues[0] } })
   }
@@ -55,6 +59,12 @@ export const useDeckSettings = () => {
 
   const onChangeTabValue = (tabValue: string) => {
     dispatch(setTabValue({ tabValue }))
+
+    if (tabValue === 'my') {
+      dispatch(setAuthorId({ authorId: data?.id }))
+    } else {
+      dispatch(setAuthorId({ authorId: undefined }))
+    }
   }
 
   return {

@@ -1,4 +1,20 @@
-.cellIcon {
+.icon {
   display: flex;
   gap: 0.625rem;
+}
+
+.img {
+  cursor: pointer;
+
+  display: flex;
+  flex-flow: row nowrap;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+
+  img {
+    max-width: 6.7rem;
+    max-height: 3.7rem;
+  }
 }
