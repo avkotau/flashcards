@@ -30,8 +30,11 @@ export const DecksTable = ({
         {!!decksData &&
           decksData.map((item, index) => (
             <Table.Row key={item.name + index}>
-              <Table.Cell>
-                <Typography.Body2>{item.name}</Typography.Body2>
+              <Table.Cell className={s.name}>
+                <div className={s.img}>
+                  {item.cover && <img alt={'Cover'} src={item.cover} />}
+                  <Typography.Body2>{item.name}</Typography.Body2>
+                </div>
               </Table.Cell>
               <Table.Cell>
                 <Typography.Body2>{item.cardsCount}</Typography.Body2>
@@ -42,7 +45,7 @@ export const DecksTable = ({
               <Table.Cell>
                 <Typography.Body2>{item.author.name}</Typography.Body2>
               </Table.Cell>
-              <Table.Cell className={s.cellIcon}>
+              <Table.Cell className={s.icon}>
                 <DecksIcons deck={item} />
               </Table.Cell>
             </Table.Row>
