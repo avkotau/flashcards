@@ -25,6 +25,7 @@ export const Decks = () => {
   const [open, setOpen] = useState(false)
 
   const {
+    authorId,
     cardsCount,
     onChangeSliderValue,
     onChangeSort,
@@ -51,6 +52,7 @@ export const Decks = () => {
   const sortString = formattedSort(sortOptions)
 
   const { currentData, data, error, isLoading } = useGetDecksQuery({
+    authorId,
     currentPage,
     itemsPerPage: pageSize,
     maxCardsCount: sliderValue.max,
