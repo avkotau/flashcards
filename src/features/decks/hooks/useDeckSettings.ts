@@ -38,6 +38,9 @@ export const useDeckSettings = () => {
   const selectTabValue = (state: RootState) => state.decks.currentTab
   const tabValue = useSelector(selectTabValue)
 
+  const selectAuthorId = (state: RootState) => state.decks.authorId
+  const authorId = useSelector(selectAuthorId)
+
   const onChangeSort = (orderBy: Sort) => {
     dispatch(setSortOptions({ sortOptions: orderBy }))
   }
@@ -68,6 +71,7 @@ export const useDeckSettings = () => {
   }
 
   return {
+    authorId,
     cardsCount,
     onChangeSliderValue,
     onChangeSort,
