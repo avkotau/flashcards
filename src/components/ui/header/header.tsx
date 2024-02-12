@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, ElementRef, JSX, forwardRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { Logo, LogoutIcon, NoNamePersonIcon } from '@/assets'
 import { Routes } from '@/common'
@@ -48,6 +48,12 @@ export const Header = forwardRef<ElementRef<'div'>, Props>(
       userName: s.userName,
     }
 
+    const navigate = useNavigate()
+
+    const onProfile = () => {
+      navigate(Routes.PersonalInformation)
+    }
+
     return (
       <header className={classNames.root} ref={ref}>
         <div className={classNames.headerContainer}>
@@ -62,7 +68,11 @@ export const Header = forwardRef<ElementRef<'div'>, Props>(
                   <HeaderInfo avatar={avatar ?? ''} email={email} name={name} />
                 </DropdownItem>
 
-                <DropdownItemWithIcon icon={<NoNamePersonIcon size={1} />} text={'My Profile'} />
+                <DropdownItemWithIcon
+                  icon={<NoNamePersonIcon size={1} />}
+                  onSelect={onProfile}
+                  text={'My Profile'}
+                />
                 <DropdownItemWithIcon
                   disabled={isDisabled}
                   icon={<LogoutIcon size={1} />}
