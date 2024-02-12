@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom'
 
 import { Routes } from '@/common'
-import { Decks, Header, SignIn, SingUp } from '@/components'
+import { Decks, Header, PersonalInformation, SignIn, SingUp } from '@/components'
 import { useLogoutMutation, useMeQuery } from '@/services/authApi'
 
 const publicRoutes: RouteObject[] = [
@@ -29,6 +29,10 @@ const privateRoutes: RouteObject[] = [
   {
     element: <Decks />,
     path: Routes.Decks,
+  },
+  {
+    element: <PersonalInformation />,
+    path: Routes.PersonalInformation,
   },
 ]
 

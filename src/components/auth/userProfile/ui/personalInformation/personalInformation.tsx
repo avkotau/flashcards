@@ -2,28 +2,31 @@ import { JSX, useState } from 'react'
 
 import { EditIcon } from '@/assets'
 import { Avatar, Card, EditName, IconButton, PersonalInfo, Typography } from '@/components'
+import { useMeQuery } from '@/services'
 
 import s from './personalInformation.module.scss'
 
 import { EditProfileValues } from '../editName/editNameSchema'
 
-type PersonalDataType = {
+export type ProfileDataType = {
   avatar?: string
   email: string
   name: string
 }
 
-type Props = {
-  data: PersonalDataType
-  updateName: (data: EditProfileValues) => void
-}
+export const PersonalInformation = (): JSX.Element => {
+  const { data } = useMeQuery()
+  const { avatar, email, name } = data as ProfileDataType
 
-export const PersonalInformation = ({ data, updateName }: Props): JSX.Element => {
-  const { avatar, email, name } = data
+  debugger
   const [edit, setEdit] = useState(false)
 
   const onSubmit = (data: EditProfileValues) => {
-    updateName(data)
+    const form = new FormData()
+
+    Object.keys(data).forEach(key => {
+      form.append(key, data[key as keyof EditProfileValues])
+    })
     setEdit(false)
   }
   const onEditName = () => {
