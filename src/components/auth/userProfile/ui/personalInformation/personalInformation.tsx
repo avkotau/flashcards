@@ -1,7 +1,6 @@
 import { JSX, useState } from 'react'
 
-import { EditIcon } from '@/assets'
-import { Avatar, Card, EditName, IconButton, PersonalInfo, Typography } from '@/components'
+import { AvatarUpload, Card, EditName, PersonalInfo, Typography } from '@/components'
 import { useMeQuery } from '@/services'
 
 import s from './personalInformation.module.scss'
@@ -36,10 +35,7 @@ export const PersonalInformation = (): JSX.Element => {
   return (
     <Card className={s.wrapper}>
       <Typography.Large className={s.title}>Personal Information</Typography.Large>
-      <div className={s.wrapperAvatar}>
-        <Avatar image={avatar} size={'large'} userName={name} />
-        <IconButton className={s.uploaderInAvatar} icon={<EditIcon />} />
-      </div>
+      <AvatarUpload editable={!edit} image={avatar} userName={name} />
 
       {edit ? (
         <EditName initialName={{ name: name }} onSubmit={onSubmit}></EditName>
