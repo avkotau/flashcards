@@ -17,7 +17,6 @@ export const PersonalInformation = (): JSX.Element => {
   const { data } = useMeQuery()
   const { avatar, email, name } = data as ProfileDataType
 
-  debugger
   const [edit, setEdit] = useState(false)
 
   const onSubmit = (data: EditProfileValues) => {
@@ -36,7 +35,6 @@ export const PersonalInformation = (): JSX.Element => {
     <Card className={s.wrapper}>
       <Typography.Large className={s.title}>Personal Information</Typography.Large>
       <AvatarUpload editable={!edit} image={avatar} userName={name} />
-
       {edit ? (
         <EditName initialName={{ name: name }} onSubmit={onSubmit}></EditName>
       ) : (
