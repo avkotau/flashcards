@@ -1,5 +1,5 @@
 import { baseApi } from '@/app/base-api'
-import { LoginArgs, UserArgs } from '@/services/authApi.types'
+import { LoginArgs, SignUpParams, UserArgs } from '@/services/authApi.types'
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: builder => ({
@@ -22,7 +22,15 @@ export const authApi = baseApi.injectEndpoints({
       providesTags: ['Me'],
       query: () => 'v1/auth/me',
     }),
+    signUp: builder.mutation<UserArgs, SignUpParams>({
+      invalidatesTags: ['Me'],
+      query: params => ({
+        body: params,
+        method: 'POST',
+        url: 'v1/auth/sign-up',
+      }),
+    }),
   }),
 })
 
-export const { useLoginMutation, useLogoutMutation, useMeQuery } = authApi
+export const { useLoginMutation, useLogoutMutation, useMeQuery, useSignUpMutation } = authApi
