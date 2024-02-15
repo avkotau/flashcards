@@ -57,7 +57,7 @@ export const Header = forwardRef<ElementRef<'div'>, Props>(
     return (
       <header className={classNames.root} ref={ref}>
         <div className={classNames.headerContainer}>
-          <Button variant={'link'}>
+          <Button as={Link} to={Routes.Main} variant={'link'}>
             <Logo className={classNames.logo} />
           </Button>
           {isLoggedIn && (
