@@ -12,6 +12,7 @@ type Props = {
   initialName?: EditProfileValues
   onSubmit: (data: EditProfileValues) => void
 }
+
 export const EditName: FC<Props> = ({
   initialName = { name: '' },
   onSubmit,
