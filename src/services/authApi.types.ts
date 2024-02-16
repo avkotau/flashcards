@@ -4,7 +4,7 @@ export type LoginArgs = {
   rememberMe?: boolean
 }
 
-export type UserArgs = {
+export type BaseResponse = {
   avatar?: null | string
   created: string
   email: string

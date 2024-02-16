@@ -1,7 +1,7 @@
 import { JSX, useState } from 'react'
 
 import { AvatarUpload, Card, EditName, PersonalInfo, Typography } from '@/components'
-import { useMeQuery } from '@/services'
+import { useMeQuery, useUpdateProfileMutation } from '@/services'
 
 import s from './personalInformation.module.scss'
 
@@ -15,17 +15,25 @@ export type ProfileDataType = {
 
 export const PersonalInformation = (): JSX.Element => {
   const { data } = useMeQuery()
+  const [updateProfile] = useUpdateProfileMutation()
+
   const { avatar, email, name } = data as ProfileDataType
 
   const [edit, setEdit] = useState(false)
 
-  const onSubmit = (data: EditProfileValues) => {
+  const onSubmit = async (data: EditProfileValues) => {
     const form = new FormData()
 
     Object.keys(data).forEach(key => {
       form.append(key, data[key as keyof EditProfileValues])
     })
-    setEdit(false)
+
+    try {
+      await updateProfile(form).unwrap()
+      setEdit(false)
+    } catch (error) {
+      console.error('Error when updating profile:', error)
+    }
   }
   const onEditName = () => {
     setEdit(true)
