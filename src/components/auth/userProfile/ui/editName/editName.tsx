@@ -1,12 +1,10 @@
 import { FC, JSX } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Button, ControlledInput } from '@/components'
+import { Button, ControlledInput, EditProfileValues, editNameSchema } from '@/components'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './editName.module.scss'
-
-import { EditProfileValues, editNameSchema } from './editNameSchema'
 
 type Props = {
   initialName?: EditProfileValues

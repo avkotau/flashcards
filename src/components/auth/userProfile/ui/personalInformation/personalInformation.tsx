@@ -1,40 +1,25 @@
 import { JSX, useState } from 'react'
 
 import { AvatarUpload, Card, EditName, PersonalInfo, Typography } from '@/components'
-import { useMeQuery, useUpdateProfileMutation } from '@/services'
+import { BaseResponse } from '@/services'
 
 import s from './personalInformation.module.scss'
 
-import { EditProfileValues } from '../editName/editNameSchema'
-
-export type ProfileDataType = {
-  avatar?: string
-  email: string
-  name: string
+type Props = {
+  data: BaseResponse
+  update: (data: BaseResponse) => void
 }
 
-export const PersonalInformation = (): JSX.Element => {
-  const { data } = useMeQuery()
-  const [updateProfile] = useUpdateProfileMutation()
-
-  const { avatar, email, name } = data as ProfileDataType
+export const PersonalInformation = ({ data, update }: Props): JSX.Element => {
+  const { avatar, email, name } = data
 
   const [edit, setEdit] = useState(false)
 
-  const onSubmit = async (data: EditProfileValues) => {
-    const form = new FormData()
-
-    Object.keys(data).forEach(key => {
-      form.append(key, data[key as keyof EditProfileValues])
-    })
-
-    try {
-      await updateProfile(form).unwrap()
-      setEdit(false)
-    } catch (error) {
-      console.error('Error when updating profile:', error)
-    }
+  const onSubmit = () => {
+    update(data)
+    setEdit(false)
   }
+
   const onEditName = () => {
     setEdit(true)
   }
