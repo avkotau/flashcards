@@ -5,7 +5,7 @@ export type LoginArgs = {
 }
 
 export type BaseResponse = {
-  avatar?: null | string
+  avatar?: string | undefined
   created: string
   email: string
   id: string

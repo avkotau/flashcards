@@ -10,7 +10,7 @@ import s from './avatar.module.scss'
 type Props = {
   className?: string
   editable?: boolean
-  image?: string
+  image?: string | undefined
   userName: string
 }
 export const AvatarUpload = ({ className, editable, image, userName }: Props): JSX.Element => {
