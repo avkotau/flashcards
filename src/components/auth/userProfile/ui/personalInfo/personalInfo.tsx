@@ -21,7 +21,7 @@ export const PersonalInfo = ({ email, name, onEditName }: Props): JSX.Element =>
 
   return (
     <div className={s.wrapper}>
-      <div className={s.nameAndIconWrapper}>
+      <div className={s.nameIconWrapper}>
         <Typography.H1>{name}</Typography.H1>
         <IconButton className={s.icon} icon={<EditIcon />} onClick={onEditName} />
       </div>

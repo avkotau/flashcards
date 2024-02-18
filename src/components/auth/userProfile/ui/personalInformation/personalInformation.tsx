@@ -1,13 +1,20 @@
 import { JSX, useState } from 'react'
 
-import { AvatarUpload, Card, EditName, PersonalInfo, Typography } from '@/components'
+import {
+  AvatarUpload,
+  Card,
+  EditName,
+  EditProfileValues,
+  PersonalInfo,
+  Typography,
+} from '@/components'
 import { BaseResponse } from '@/services'
 
 import s from './personalInformation.module.scss'
 
 type Props = {
   data: BaseResponse
-  update: (data: BaseResponse) => void
+  update: (name: EditProfileValues) => void
 }
 
 export const PersonalInformation = ({ data, update }: Props): JSX.Element => {
@@ -15,8 +22,8 @@ export const PersonalInformation = ({ data, update }: Props): JSX.Element => {
 
   const [edit, setEdit] = useState(false)
 
-  const onSubmit = () => {
-    update(data)
+  const onSubmit = (name: EditProfileValues) => {
+    update(name)
     setEdit(false)
   }
 

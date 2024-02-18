@@ -15,4 +15,12 @@
     padding-bottom: 0.81rem;
     color: var(--color-dark-100);
   }
+
+  .nameIconWrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.9rem;
+    align-items: center;
+    justify-content: center;
+  }
 }
