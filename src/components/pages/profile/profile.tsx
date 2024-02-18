@@ -4,6 +4,7 @@ import { BaseResponse, useMeQuery, useUpdateProfileMutation } from '@/services'
 export const Profile = () => {
   const { data } = useMeQuery()
   const [updateProfile] = useUpdateProfileMutation()
+
   const onSubmit = async (data: EditProfileValues) => {
     const form = new FormData()
 
