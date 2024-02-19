@@ -2,15 +2,15 @@ import { FC } from 'react'
 
 import { IconWrapper, PropsIconWrapper } from '@/assets'
 
-export const LogoutIcon: FC<PropsIconWrapper> = ({ color, ...rest }) => {
+export const LogoutIcon: FC<PropsIconWrapper> = ({ color, size = 20, ...rest }) => {
   return (
     <IconWrapper
       icon={
         <svg
           fill={'currentColor'}
-          height={'100%'}
+          height={size}
           viewBox={'0 0 16 16'}
-          width={'100%'}
+          width={size}
           xmlns={'http://www.w3.org/2000/svg'}
         >
           <path

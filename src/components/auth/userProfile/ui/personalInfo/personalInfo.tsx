@@ -1,6 +1,6 @@
 import { JSX } from 'react'
 
-import { ComeInIcon, EditIcon } from '@/assets'
+import { ComeInIcon, EditIcon, LogoutIcon } from '@/assets'
 import { Button, IconButton, Typography } from '@/components'
 import { useLogoutMutation } from '@/services'
 
@@ -27,6 +27,7 @@ export const PersonalInfo = ({ email, name, onEditName }: Props): JSX.Element =>
       </div>
       <Typography.Body2 className={s.email}>{email}</Typography.Body2>
       <Button as={'button'} icon={<ComeInIcon />} onClick={onLogout} variant={'secondary'}>
+        <LogoutIcon />
         <Typography.Subtitle2>Logout</Typography.Subtitle2>
       </Button>
     </div>
