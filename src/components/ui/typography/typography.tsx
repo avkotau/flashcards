@@ -1,19 +1,17 @@
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode, createElement } from 'react'
 
 import cn from 'classnames'
 import { JSX } from 'react/jsx-runtime'
 
 import s from './typography.module.scss'
 
-import IntrinsicElements = JSX.IntrinsicElements
-
-export type ReactTag = keyof IntrinsicElements
+export type ReactTag = keyof JSX.IntrinsicElements
 
 type TypographyProps<Ttag extends ReactTag> = {
   children: ReactNode
   className?: string
   component?: Ttag
-}
+} & JSX.IntrinsicElements[Ttag]
 
 const COMPONENTS = {
   body1: 'p',
@@ -40,11 +38,7 @@ export const CreateTypographyComponent = <T extends ReactTag>(
 
     const classNames = cn(s[Tag], className)
 
-    return (
-      <Component className={classNames} {...rest}>
-        {children}
-      </Component>
-    )
+    return createElement(Component, { className: classNames, ...rest }, children)
   }
 }
 
