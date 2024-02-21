@@ -64,18 +64,18 @@ export const Header = forwardRef<ElementRef<'div'>, Props>(
             <div className={classNames.profileInfoWrapper}>
               <Typography.Subtitle1 className={classNames.userName}>{name}</Typography.Subtitle1>
               <Dropdown trigger={<Avatar image={avatar ?? ''} size={'small'} userName={name} />}>
-                <DropdownItem className={classNames.dropdownItemWrapper}>
+                <DropdownItem className={classNames.dropdownItemWrapper} onSelect={onProfile}>
                   <HeaderInfo avatar={avatar ?? ''} email={email} name={name} />
                 </DropdownItem>
 
                 <DropdownItemWithIcon
-                  icon={<NoNamePersonIcon size={1} />}
+                  icon={<NoNamePersonIcon size={16} />}
                   onSelect={onProfile}
                   text={'My Profile'}
                 />
                 <DropdownItemWithIcon
                   disabled={isDisabled}
-                  icon={<LogoutIcon size={1} />}
+                  icon={<LogoutIcon size={16} />}
                   onSelect={logout}
                   text={'Logout'}
                 />
