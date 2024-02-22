@@ -11,7 +11,7 @@ export const DecksPageHeader = (): JSX.Element => {
       <AddDeckToModal
         isOpenModalBtn={
           <Button>
-            <Typography.Subtitle2>Add New Card</Typography.Subtitle2>
+            <Typography.Subtitle2>Add New Deck</Typography.Subtitle2>
           </Button>
         }
         title={'Add New Deck'}
