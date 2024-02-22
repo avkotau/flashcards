@@ -1,9 +1,16 @@
 import { JSX, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Button, ControlledCheckbox, ControlledInput, Typography } from '@/components'
+import {
+  Button,
+  ControlledCheckbox,
+  ControlledInput,
+  Typography,
+  UploaderAvatar,
+} from '@/components'
 import { CreateDeckArgs } from '@/services/flashCards.type'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { ImageIcon } from '@radix-ui/react-icons'
 
 import s from './deckForm.module.scss'
 
@@ -27,8 +34,12 @@ export const DeckForm = ({
   const { control, handleSubmit } = useForm<DeckFormValues>({
     resolver: zodResolver(addDeckSchema),
   })
-  //add setCover
-  const [cover] = useState<File | null>(null)
+
+  const [image, setImage] = useState<File | null>(null)
+
+  const imageUrl = image ? URL.createObjectURL(image) : values?.cover
+
+  const buttonUploadText = imageUrl ? 'Change Image' : ' Add Image'
 
   const submitHandler = (data: DeckFormValues) => {
     const formData = new FormData()
@@ -36,20 +47,29 @@ export const DeckForm = ({
     formData.append('name', data?.name)
     formData.append('isPrivate', `${data?.isPrivate}`)
 
-    cover && formData.append('cover', cover)
+    image && formData.append('image', image)
     onSubmit(formData)
   }
 
-  const imageUrl = cover ? URL.createObjectURL(cover) : values?.cover
+  const onLoadImg = (data: File) => {
+    setImage(data)
+  }
 
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
       {imageUrl && (
-        <div>
-          <img alt={'Deck cover'} src={imageUrl} />
+        <div className={s.imageWrapper}>
+          <img alt={'Deck image'} src={imageUrl} />
         </div>
       )}
       <div className={s.wrapperBody}>
+        <UploaderAvatar className={s.uploader} onLoadAvatar={onLoadImg}>
+          <Button fullWidth type={'button'} variant={'secondary'}>
+            <ImageIcon />
+            <Typography.Subtitle2>{buttonUploadText}</Typography.Subtitle2>
+          </Button>
+        </UploaderAvatar>
+
         <ControlledInput
           control={control}
           label={'Name Deck'}
