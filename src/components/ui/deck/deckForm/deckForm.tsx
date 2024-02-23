@@ -35,11 +35,11 @@ export const DeckForm = ({
     resolver: zodResolver(addDeckSchema),
   })
 
-  const [image, setImage] = useState<File | null>(null)
+  const [cover, setCover] = useState<File | null>(null)
 
-  const imageUrl = image ? URL.createObjectURL(image) : values?.cover
+  const imageUrl = cover ? URL.createObjectURL(cover) : values?.cover
 
-  const buttonUploadText = imageUrl ? 'Change Image' : ' Add Image'
+  const buttonUploadText = imageUrl ? 'Change cover' : ' Add cover'
 
   const submitHandler = (data: DeckFormValues) => {
     const formData = new FormData()
@@ -47,19 +47,19 @@ export const DeckForm = ({
     formData.append('name', data?.name)
     formData.append('isPrivate', `${data?.isPrivate}`)
 
-    image && formData.append('image', image)
+    cover && formData.append('cover', cover)
     onSubmit(formData)
   }
 
   const onLoadImg = (data: File) => {
-    setImage(data)
+    setCover(data)
   }
 
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
       {imageUrl && (
         <div className={s.imageWrapper}>
-          <img alt={'Deck image'} src={imageUrl} />
+          <img alt={'Deck cover'} src={imageUrl} />
         </div>
       )}
       <div className={s.wrapperBody}>
