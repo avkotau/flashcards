@@ -32,6 +32,10 @@ export const DeckForm = ({
   values,
 }: Props): JSX.Element => {
   const { control, handleSubmit } = useForm<DeckFormValues>({
+    defaultValues: {
+      isPrivate: values?.isPrivate,
+      name: values?.name,
+    },
     resolver: zodResolver(addDeckSchema),
   })
 
@@ -51,6 +55,7 @@ export const DeckForm = ({
     onSubmit(formData)
   }
 
+  debugger
   const onLoadImg = (data: File) => {
     setCover(data)
   }
