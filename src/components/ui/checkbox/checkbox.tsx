@@ -21,7 +21,7 @@ export const CustomCheckbox = forwardRef<
   HTMLButtonElement,
   CheckboxProps & Omit<ComponentPropsWithoutRef<typeof Checkbox.Root>, 'ref'>
 >((props, ref) => {
-  const { defaultValue, disabled, id, label, name, onBlur, onChange, required } = props
+  const { defaultValue, disabled, id, label, name, onBlur, onChange, required, ...rest } = props
 
   return (
     <div className={s.form}>
@@ -36,6 +36,7 @@ export const CustomCheckbox = forwardRef<
           onCheckedChange={onChange}
           ref={ref}
           required={required}
+          {...rest}
         >
           <Checkbox.Indicator className={s.indicator}>
             <CheckIcon />
