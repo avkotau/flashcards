@@ -55,7 +55,6 @@ export const DeckForm = ({
     onSubmit(formData)
   }
 
-  debugger
   const onLoadImg = (data: File) => {
     setCover(data)
   }
