@@ -3,18 +3,26 @@
   gap: 0.625rem;
 }
 
-.img {
-  cursor: pointer;
+a {
+  all: unset;
 
-  display: flex;
-  flex-flow: row nowrap;
-  flex-wrap: nowrap;
-  gap: 1rem;
-  align-items: center;
-  justify-content: flex-start;
+  .img {
+    cursor: pointer;
 
-  img {
-    max-width: 6.7rem;
-    max-height: 3.7rem;
+    display: flex;
+    flex-flow: row nowrap;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+
+    img {
+      max-width: 6.7rem;
+      max-height: 3.7rem;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 }
