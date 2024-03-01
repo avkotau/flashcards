@@ -3,7 +3,8 @@ import { RootState } from '@/app/store'
 import {
   DeleteDeckParams,
   DeleteDeckResponse,
-  GetDeckByIdArgs,
+  GetDeckParams,
+  GetDeckResponse,
   GetDecksArgs,
   GetDecksResponse,
   GetDecksResponseItems,
@@ -61,8 +62,10 @@ const deckService = baseApi.injectEndpoints({
           }
         },
       }),
-      getDeckById: builder.query<GetDecksResponse, GetDeckByIdArgs>({
+      getDeckById: builder.query<GetDeckResponse, GetDeckParams>({
+        providesTags: ['Deck', { id: 'List', type: 'Deck' }],
         query: ({ id }) => ({
+          method: 'GET',
           url: `v1/decks/${id}`,
         }),
       }),
