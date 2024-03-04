@@ -8,7 +8,7 @@ import s from './typography.module.scss'
 export type ReactTag = keyof JSX.IntrinsicElements
 
 type TypographyProps<Ttag extends ReactTag> = {
-  children: ReactNode
+  children?: ReactNode
   className?: string
   component?: Ttag
 } & JSX.IntrinsicElements[Ttag]
