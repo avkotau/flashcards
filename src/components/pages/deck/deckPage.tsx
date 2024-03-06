@@ -10,12 +10,25 @@ import {
   Table,
   useGetDeckByIdQuery,
 } from '@/components'
+import { useGetCardsQuery } from '@/features'
 import { useMeQuery } from '@/services'
 
 export const DeckPage = (): JSX.Element => {
   const { id = '' } = useParams<{ id: string }>()
+
+  const queryParams = {
+    id,
+    params: {
+      currentPage: 1,
+      itemsPerPage: 10,
+      orderBy: '',
+      question: '',
+    },
+  }
+
   const { data: user } = useMeQuery()
   const { data: deck } = useGetDeckByIdQuery({ id })
+  const { data: deckData } = useGetCardsQuery(queryParams)
 
   const isOwner = user?.id === deck?.userId
 
@@ -28,7 +41,7 @@ export const DeckPage = (): JSX.Element => {
       {isEmptyCard && (
         <>
           <InputFactory leftIcon={<SearchIcon />} placeholder={'Input search'} type={'search'} />
-          <CardsTable />
+          <CardsTable cards={deckData?.items} isOwner={isOwner} />
         </>
       )}
 
