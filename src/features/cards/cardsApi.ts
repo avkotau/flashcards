@@ -7,7 +7,7 @@ export const cardsApi = baseApi.injectEndpoints({
       query: ({ id, params }) => ({
         method: 'GET',
         params: params,
-        url: `decks/${id}/cards`,
+        url: `v1/decks/${id}/cards`,
       }),
     }),
   }),
