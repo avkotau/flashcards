@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-import { AppDispatch, RootState } from '@/app/store'
+import { RootState } from '@/app/store'
+import { useAppDispatch } from '@/common'
 import { CardsCount, Sort, decksActions } from '@/components'
 import { useMeQuery } from '@/services'
 
@@ -22,8 +23,6 @@ export const useDeckSettings = () => {
     setTabValue,
     setToFirstPage,
   } = decksActions
-
-  const useAppDispatch: () => AppDispatch = useDispatch
 
   const dispatch = useAppDispatch()
   const selectSortOptions = (state: RootState) => state.decks.sortOptions
