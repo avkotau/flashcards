@@ -1,7 +1,16 @@
 import { JSX } from 'react'
 
+import { EditIcon } from '@/assets'
 import { formatDate } from '@/assets/utils'
-import { Rating, Table, TableHeader, Typography, getCardsHeaderTableData } from '@/components'
+import {
+  IconButton,
+  Rating,
+  Table,
+  TableHeader,
+  Typography,
+  getCardsHeaderTableData,
+} from '@/components'
+import { EditCard } from '@/components/ui/editCard'
 import { Card } from '@/features'
 
 import s from './cardsTable.module.scss'
@@ -20,7 +29,7 @@ export const CardsTable = ({ cards, isOwner }: Props): JSX.Element => {
           return (
             <Table.Row key={card.id}>
               <Table.Cell className={s.question}>
-                <div className={s.imageWrapper}>
+                <div className={s.imageBox}>
                   {!!card.questionImg && <img alt={'Card question'} src={card.questionImg} />}
                   <Typography.Body2>{card.question}</Typography.Body2>
                 </div>
@@ -39,9 +48,15 @@ export const CardsTable = ({ cards, isOwner }: Props): JSX.Element => {
               <Table.Cell>
                 <Rating rating={card.grade} />
               </Table.Cell>
-              <Table.Cell>
-                <Typography.Body2>5</Typography.Body2>
-              </Table.Cell>
+              {isOwner && (
+                <Table.Cell>
+                  <EditCard
+                    initialState={[{ title: 'string', value: 'string' }]}
+                    isOpenModalBtn={<IconButton icon={<EditIcon />} />}
+                  />
+                  <Typography.Body2>5</Typography.Body2>
+                </Table.Cell>
+              )}
             </Table.Row>
           )
         })}
