@@ -6,8 +6,16 @@ import s from './cardFormControl.module.scss'
 
 import { SelectItemType } from '../select/selectItem'
 
+export type CardValues = {
+  answer: string
+  answerImg: null | string
+  question: string
+  questionImg: null | string
+}
+
 type Props = {
   btnTitle: string
+  cardValues?: CardValues
   initialState: SelectItemType[]
   isOpenModal: () => void
   onSubmit: (data: FormData) => void
@@ -16,6 +24,7 @@ type Props = {
 
 export const CardFormControl = ({
   btnTitle,
+  cardValues,
   initialState,
   isOpenModal,
   onSubmit,
@@ -23,8 +32,8 @@ export const CardFormControl = ({
 }: Props) => {
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      answer: 'answer1',
-      question: 'question1',
+      answer: cardValues?.answer,
+      question: cardValues?.question,
       questionFormat: 'text',
     },
   })

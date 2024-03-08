@@ -50,11 +50,7 @@ export const CardsTable = ({ cards, isOwner }: Props): JSX.Element => {
               </Table.Cell>
               {isOwner && (
                 <Table.Cell>
-                  <EditCard
-                    initialState={[{ title: 'string', value: 'string' }]}
-                    isOpenModalBtn={<IconButton icon={<EditIcon />} />}
-                  />
-                  <Typography.Body2>5</Typography.Body2>
+                  <EditCard card={card} isOpenModalBtn={<IconButton icon={<EditIcon />} />} />
                 </Table.Cell>
               )}
             </Table.Row>

@@ -8,9 +8,11 @@ import s from './selectItem.module.scss'
 export type SelectItemType = {
   title: string
   value: string
-} & ComponentPropsWithoutRef<typeof Select.Item>
+}
 
-export const SelectItem = forwardRef<ElementRef<typeof Select.Item>, SelectItemType>(
+type Props = ComponentPropsWithoutRef<typeof Select.Item>
+
+export const SelectItem = forwardRef<ElementRef<typeof Select.Item>, Props>(
   ({ children, className, ...props }, ref) => {
     const classNames = cn(s.selectItem, className)
 
