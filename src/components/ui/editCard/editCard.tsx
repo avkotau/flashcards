@@ -1,18 +1,22 @@
 import { JSX, ReactNode } from 'react'
 
-import { SelectItemType } from '@/components/ui/select/selectItem'
+import { Card } from '@/features'
 
 import { EditCardModal } from './editCardModal'
 
 type Props = {
-  initialState: SelectItemType[]
+  card: Card
   isOpenModalBtn: ReactNode
 }
-export const EditCard = ({ initialState, isOpenModalBtn }: Props): JSX.Element => {
+export const EditCard = ({ card, isOpenModalBtn }: Props): JSX.Element => {
   return (
     <EditCardModal
       btnTitle={'Save Changes'}
-      initialState={initialState}
+      card={card}
+      initialState={[
+        { title: 'Text', value: 'text' },
+        { title: 'Picture', value: 'picture' },
+      ]}
       isOpenModalBtn={isOpenModalBtn}
     />
   )
