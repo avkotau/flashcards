@@ -13,6 +13,8 @@ import {
 import { useGetCardsQuery } from '@/features'
 import { useMeQuery } from '@/services'
 
+import s from './deckPage.module.scss'
+
 export const DeckPage = (): JSX.Element => {
   const { id = '' } = useParams<{ id: string }>()
 
@@ -35,7 +37,7 @@ export const DeckPage = (): JSX.Element => {
   const isEmptyCard = deck && deck.cardsCount > 0
 
   return (
-    <>
+    <div className={s.deckPageWrapper}>
       <GoBack title={'Back to Decks List'} />
       {deck && <DeckPageHeader deck={deck} isOwner={isOwner} />}
       {isEmptyCard && (
@@ -48,6 +50,6 @@ export const DeckPage = (): JSX.Element => {
       {!isOwner && !isEmptyCard && (
         <Table.EmptyPage text={'The deck is empty, please go back to learn other decks.'} />
       )}
-    </>
+    </div>
   )
 }
