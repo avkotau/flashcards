@@ -1,6 +1,5 @@
 import { EditIcon } from '@/assets'
 import { IconButton } from '@/components'
-import { SelectItemType } from '@/components/ui/select/selectItem'
 import { Meta, StoryObj } from '@storybook/react'
 
 import { EditCard } from './editCard'
@@ -14,17 +13,25 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const initialState: SelectItemType[] = [
-  { title: 'Select 1', value: '1' },
-  { title: 'Select 2', value: '2' },
-  { title: 'Select 3', value: '3' },
-  { title: 'Select 4', value: '4' },
-  { title: 'Select 5', value: '5' },
-]
+const card = {
+  answer: 'It is functions',
+  answerImg: 'no',
+  answerVideo: 'no',
+  created: new Date().toDateString(),
+  deckId: 'ascasca',
+  grade: 1,
+  id: '1wdwd23dwdw',
+  question: 'What is hooks?',
+  questionImg: 'no',
+  questionVideo: 'no',
+  shots: 0,
+  updated: new Date().toDateString(),
+  userId: 'sdvsdvsdv',
+}
 
 export const Default: Story = {
   args: {
-    initialState,
+    card,
     isOpenModalBtn: <IconButton icon={<EditIcon />} />,
   },
 }
