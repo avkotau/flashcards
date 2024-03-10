@@ -38,11 +38,16 @@ export const DeckPage = (): JSX.Element => {
 
   return (
     <div className={s.deckPageWrapper}>
-      <GoBack title={'Back to Decks List'} />
+      <GoBack className={s.linkGoBack} title={'Back to Decks List'} />
       {deck && <DeckPageHeader deck={deck} isOwner={isOwner} />}
       {isEmptyCard && (
         <>
-          <InputFactory leftIcon={<SearchIcon />} placeholder={'Input search'} type={'search'} />
+          <InputFactory
+            containerStyle={s.input}
+            leftIcon={<SearchIcon />}
+            placeholder={'Input search'}
+            type={'search'}
+          />
           <CardsTable cards={deckData?.items} isOwner={isOwner} />
         </>
       )}

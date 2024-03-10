@@ -4,15 +4,6 @@
   &:hover {
     background-color: var(--color-dark-100);
   }
-
-  &:last-child {
-    cursor: default;
-    color: black;
-
-    &:hover {
-      background-color: var(--color-dark-500);
-    }
-  }
 }
 
 .sortIcon {

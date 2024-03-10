@@ -74,7 +74,11 @@ export const TableHeader = forwardRef<ElementRef<typeof Table.Head>, Props>(
             const handleClick = isLastElement ? () => {} : () => handleSort(key, isSorted)
 
             return (
-              <Table.HeadCell className={s.th} key={key} onClick={handleClick}>
+              <Table.HeadCell
+                className={!isLastElement ? s.th : ''}
+                key={key}
+                onClick={handleClick}
+              >
                 <Typography.Subtitle2>
                   {title}
                   {sort?.key === key &&
