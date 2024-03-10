@@ -4,6 +4,8 @@ import { Routes } from '@/common'
 import { AddNewCard, Button, Typography } from '@/components'
 import { GetDeckResponse } from '@/services'
 
+import s from './deckPageHeader.module.scss'
+
 type Props = {
   deck: GetDeckResponse
   isOwner: boolean
@@ -11,7 +13,7 @@ type Props = {
 
 export const DeckPageHeader = ({ deck, isOwner }: Props) => {
   return (
-    <div>
+    <div className={s.root}>
       <Typography.Large>{isOwner ? 'My Deck' : 'Friends Deck'}</Typography.Large>
       {isOwner && !!deck.cardsCount && (
         <AddNewCard initialState={[]} isOpenModalBtn={<Button>Add New Card</Button>} />
