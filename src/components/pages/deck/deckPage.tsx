@@ -10,21 +10,22 @@ import {
   Table,
   useGetDeckByIdQuery,
 } from '@/components'
-import { useGetCardsQuery } from '@/features'
+import { useCardsSettings, useGetCardsQuery } from '@/features'
 import { useMeQuery } from '@/services'
 
 import s from './deckPage.module.scss'
 
 export const DeckPage = (): JSX.Element => {
   const { id = '' } = useParams<{ id: string }>()
+  const { currentPage, itemsPerPage, question } = useCardsSettings()
 
   const queryParams = {
     id,
     params: {
-      currentPage: 1,
-      itemsPerPage: 10,
+      currentPage,
+      itemsPerPage,
       orderBy: '',
-      question: '',
+      question,
     },
   }
 
