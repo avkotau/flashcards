@@ -5,6 +5,9 @@ import { cardsActions } from '@/features'
 export const useCardsSettings = () => {
   const dispatch = useAppDispatch()
 
+  const selectCardsPaginationOptions = (state: RootState) => state.cards.paginationOptions
+  const paginationOptions = useAppSelector(selectCardsPaginationOptions)
+
   const selectCardsCurrentPage = (state: RootState) => state.cards.currentPage
   const currentPage = useAppSelector(selectCardsCurrentPage)
 
@@ -18,10 +21,16 @@ export const useCardsSettings = () => {
     dispatch(cardsActions.setCurrentPage({ currentPage }))
   }
 
+  const onChangePageSize = (value: string) => {
+    dispatch(cardsActions.setPageSize({ pageSize: Number(value) }))
+  }
+
   return {
     currentPage,
     itemsPerPage,
     onChangePage,
+    onChangePageSize,
+    paginationOptions,
     question,
   }
 }

@@ -7,6 +7,7 @@ import {
   DeckPageHeader,
   GoBack,
   InputFactory,
+  Pagination,
   Table,
   useGetDeckByIdQuery,
 } from '@/components'
@@ -17,7 +18,8 @@ import s from './deckPage.module.scss'
 
 export const DeckPage = (): JSX.Element => {
   const { id = '' } = useParams<{ id: string }>()
-  const { currentPage, itemsPerPage, question } = useCardsSettings()
+  const { currentPage, itemsPerPage, onChangePage, onChangePageSize, paginationOptions, question } =
+    useCardsSettings()
 
   const queryParams = {
     id,
@@ -50,6 +52,15 @@ export const DeckPage = (): JSX.Element => {
             type={'search'}
           />
           <CardsTable cards={deckData?.items} isOwner={isOwner} />
+          <Pagination
+            currentPage={currentPage}
+            onPageChange={onChangePage}
+            onPageSizeChange={onChangePageSize}
+            options={paginationOptions}
+            pageSize={itemsPerPage}
+            totalCount={deckData?.pagination.totalItems || 0}
+            value={String(itemsPerPage)}
+          />
         </>
       )}
 
