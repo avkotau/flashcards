@@ -7,9 +7,9 @@ export const cardsSlice = createSlice({
     currentPage: 1,
     pageSize: 10,
     paginationOptions: [
-      { title: '5', value: '5' },
       { title: '10', value: '10' },
-      { title: '15', value: '15' },
+      { title: '20', value: '20' },
+      { title: '30', value: '30' },
     ] as PaginationOptions,
     question: '',
   },
@@ -17,6 +17,9 @@ export const cardsSlice = createSlice({
   reducers: {
     setCurrentPage: (state, action: PayloadAction<{ currentPage: number }>) => {
       state.currentPage = action.payload.currentPage
+    },
+    setPageSize: (state, action: PayloadAction<{ pageSize: number }>) => {
+      state.pageSize = action.payload.pageSize
     },
   },
 })
