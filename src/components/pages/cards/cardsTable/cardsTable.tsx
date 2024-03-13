@@ -5,6 +5,7 @@ import { formatDate } from '@/assets/utils'
 import {
   IconButton,
   Rating,
+  Sort,
   Table,
   TableHeader,
   Typography,
@@ -18,12 +19,14 @@ import s from './cardsTable.module.scss'
 type Props = {
   cards?: Card[]
   isOwner: boolean
+  onSort: (value: Sort) => void
+  sort: Sort
 }
 
-export const CardsTable = ({ cards, isOwner }: Props): JSX.Element => {
+export const CardsTable = ({ cards, isOwner, onSort, sort }: Props): JSX.Element => {
   return (
     <Table.Root className={s.root}>
-      <TableHeader titleColumns={getCardsHeaderTableData(isOwner)} />
+      <TableHeader onSort={onSort} sort={sort} titleColumns={getCardsHeaderTableData(isOwner)} />
       <Table.Body>
         {cards?.map(card => {
           return (

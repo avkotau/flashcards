@@ -18,8 +18,16 @@ import s from './deckPage.module.scss'
 
 export const DeckPage = (): JSX.Element => {
   const { id = '' } = useParams<{ id: string }>()
-  const { currentPage, itemsPerPage, onChangePage, onChangePageSize, paginationOptions, question } =
-    useCardsSettings()
+  const {
+    currentPage,
+    itemsPerPage,
+    onChangePage,
+    onChangePageSize,
+    onSort,
+    paginationOptions,
+    question,
+    sort,
+  } = useCardsSettings()
 
   const queryParams = {
     id,
@@ -51,7 +59,7 @@ export const DeckPage = (): JSX.Element => {
             placeholder={'Input search'}
             type={'search'}
           />
-          <CardsTable cards={deckData?.items} isOwner={isOwner} />
+          <CardsTable cards={deckData?.items} isOwner={isOwner} onSort={onSort} sort={sort} />
           <Pagination
             currentPage={currentPage}
             onPageChange={onChangePage}
