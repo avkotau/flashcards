@@ -1,5 +1,6 @@
 import { RootState } from '@/app/store'
 import { useAppDispatch, useAppSelector } from '@/common'
+import { Sort } from '@/components'
 import { cardsActions } from '@/features'
 
 export const useCardsSettings = () => {
@@ -17,6 +18,9 @@ export const useCardsSettings = () => {
   const selectCardsQuestion = (state: RootState) => state.cards.question
   const question = useAppSelector(selectCardsQuestion)
 
+  const selectCardsSortParams = (state: RootState) => state.cards.sortParams
+  const sort = useAppSelector(selectCardsSortParams)
+
   const onChangePage = (currentPage: number) => {
     dispatch(cardsActions.setCurrentPage({ currentPage }))
   }
@@ -25,12 +29,18 @@ export const useCardsSettings = () => {
     dispatch(cardsActions.setPageSize({ pageSize: Number(value) }))
   }
 
+  const onSort = (sortParams: Sort) => {
+    dispatch(cardsActions.setSortOrderBy({ sortParams }))
+  }
+
   return {
     currentPage,
     itemsPerPage,
     onChangePage,
     onChangePageSize,
+    onSort,
     paginationOptions,
     question,
+    sort,
   }
 }
