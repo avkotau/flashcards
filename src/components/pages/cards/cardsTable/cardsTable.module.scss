@@ -3,22 +3,17 @@
 
   .question,
   .answer {
-    width: 32rem;
-
     .imageBox {
       display: flex;
+      flex-wrap: wrap;
       gap: 1rem;
       align-items: center;
 
       img {
         max-width: 16rem;
-        height: 100%;
+        height: auto;
         max-height: 6.2rem;
       }
     }
-  }
-
-  .updated {
-    width: 20rem;
   }
 }
