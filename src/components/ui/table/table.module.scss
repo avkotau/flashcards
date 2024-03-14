@@ -18,23 +18,23 @@
     padding: 0.38rem 1.5rem;
 
     &:nth-child(1) {
-      width: 201px;
+      max-width: 201px;
     }
 
     &:nth-child(2) {
-      width: 201px;
+      max-width: 201px;
     }
 
     &:nth-child(3) {
-      width: 201px;
+      max-width: 201px;
     }
 
     &:nth-child(4) {
-      width: 286px;
+      max-width: 286px;
     }
 
     &:nth-child(5) {
-      width: 135px;
+      max-width: 135px;
     }
   }
 }

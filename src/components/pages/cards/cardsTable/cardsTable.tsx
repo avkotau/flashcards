@@ -39,9 +39,7 @@ export const CardsTable = ({ cards, isOwner, onSort, sort }: Props): JSX.Element
               </Table.Cell>
               <Table.Cell className={s.answer}>
                 <div className={s.imageBox}>
-                  {!!card.answerImg && (
-                    <img alt={'Card answer'} className={s.image} src={card.answerImg} />
-                  )}
+                  {!!card.answerImg && <img alt={'Card answer'} src={card.answerImg} />}
                   <Typography.Body2>{card.answer}</Typography.Body2>
                 </div>
               </Table.Cell>
