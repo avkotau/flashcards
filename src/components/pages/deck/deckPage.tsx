@@ -71,8 +71,7 @@ export const DeckPage = (): JSX.Element => {
           />
         </>
       )}
-
-      {!isOwner && !isEmptyCard && (
+      {isOwner && !isEmptyCard && (
         <Table.EmptyPage text={'The deck is empty, please go back to learn other decks.'} />
       )}
     </div>

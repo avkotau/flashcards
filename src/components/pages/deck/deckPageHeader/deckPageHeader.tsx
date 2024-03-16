@@ -16,7 +16,7 @@ export const DeckPageHeader = ({ deck, isOwner }: Props) => {
     <div className={s.root}>
       <Typography.Large>{isOwner ? 'My Deck' : 'Friends Deck'}</Typography.Large>
       {isOwner && !!deck.cardsCount && (
-        <AddNewCard initialState={[]} isOpenModalBtn={<Button>Add New Card</Button>} />
+        <AddNewCard isOpenModalBtn={<Button>Add New Card</Button>} />
       )}
       <Button as={Link} to={`${Routes.Decks}/${deck.id}/learn`}>
         <Typography.Subtitle2>Learn Deck</Typography.Subtitle2>

@@ -1,18 +1,18 @@
 import { JSX, ReactNode } from 'react'
 
-import { AddCardModal } from '@/components/ui/addNewCard/addCardModal'
-
-import { SelectItemType } from '../select/selectItem'
+import { AddCardModal } from '@/components'
 
 type Props = {
-  initialState: SelectItemType[]
   isOpenModalBtn: ReactNode
 }
-export const AddNewCard = ({ initialState, isOpenModalBtn }: Props): JSX.Element => {
+export const AddNewCard = ({ isOpenModalBtn }: Props): JSX.Element => {
   return (
     <AddCardModal
       btnTitle={'Add New Card'}
-      initialState={initialState}
+      initialState={[
+        { title: 'Text', value: 'text' },
+        { title: 'Picture', value: 'picture' },
+      ]}
       isOpenModalBtn={isOpenModalBtn}
     />
   )
