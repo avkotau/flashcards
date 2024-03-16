@@ -1,7 +1,7 @@
+@import '@/styles/mixins';
+
 .deckPageWrapper {
-  max-width: 63rem;
-  margin: 0 auto;
-  padding-top: 2rem;
+  @include container-decks;
 
   .linkGoBack {
     margin-bottom: 3.4rem;
