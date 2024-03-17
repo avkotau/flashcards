@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom'
 
 import { Routes } from '@/common'
-import { DeckPage, Decks, Header, Profile, SignIn, SingUp } from '@/components'
+import { DeckPage, Decks, ForgotPasswordPage, Header, Profile, SignIn, SingUp } from '@/components'
 import { useLogoutMutation, useMeQuery } from '@/services/authApi'
 
 const publicRoutes: RouteObject[] = [
@@ -19,6 +19,8 @@ const publicRoutes: RouteObject[] = [
     element: <SingUp />,
     path: Routes.SignUp,
   },
+
+  { element: <ForgotPasswordPage />, path: Routes.ForgotPassword },
 ]
 
 const privateRoutes: RouteObject[] = [
