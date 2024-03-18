@@ -1,6 +1,8 @@
 import { JSX, forwardRef } from 'react'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
+import { Routes } from '@/common'
 import { Button, Card, ControlledInput, Typography } from '@/components'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -45,7 +47,7 @@ export const ForgotPasswordForm = forwardRef<HTMLFormElement, Props>(
         <Typography.Link1 className={s.registerAcc}>
           Did you remember your password?
         </Typography.Link1>
-        <Button as={'a'} className={s.sendBtn} type={'submit'} variant={'link'}>
+        <Button as={Link} className={s.sendBtn} to={Routes.SignIn} type={'submit'} variant={'link'}>
           Try logging in
         </Button>
       </Card>
