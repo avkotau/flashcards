@@ -53,7 +53,7 @@ export const SignInForm = forwardRef<HTMLFormElement, Props>(
             label={'Remember me'}
             name={'rememberMe'}
           />
-          <Typography.Link1 to={Routes.ForgotPassword}>Forgot Password?</Typography.Link1>
+          <Typography.Link1 href={Routes.ForgotPassword}>Forgot Password?</Typography.Link1>
           <Button fullWidth>Sign In</Button>
         </form>
         <Typography.Link1 className={s.registerAcc}>Don&apos;t have an account?</Typography.Link1>
