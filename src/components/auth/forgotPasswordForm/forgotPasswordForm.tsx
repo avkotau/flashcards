@@ -1,4 +1,4 @@
-import { JSX, forwardRef } from 'react'
+import { JSX } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 
@@ -18,39 +18,35 @@ type Props = {
   onSubmit: (data: FormValues) => void
 }
 
-export const ForgotPasswordForm = forwardRef<HTMLFormElement, Props>(
-  ({ onSubmit }: Props, ref): JSX.Element => {
-    const { control, handleSubmit } = useForm<FormValues>({
-      defaultValues: {
-        email: '',
-      },
-      resolver: zodResolver(forgotPasswordFormSchema),
-    })
+export const ForgotPasswordForm = ({ onSubmit }: Props): JSX.Element => {
+  const { control, handleSubmit } = useForm<FormValues>({
+    defaultValues: {
+      email: '',
+    },
+    resolver: zodResolver(forgotPasswordFormSchema),
+  })
 
-    return (
-      <Card className={s.wrapper}>
-        <DevTool control={control} />
-        <Typography.Large className={s.title}>Forgot your password?</Typography.Large>
-        <form className={s.form} onSubmit={handleSubmit(onSubmit)} ref={ref}>
-          <ControlledInput
-            control={control}
-            label={'Email'}
-            name={'email'}
-            placeholder={'Enter email'}
-            type={'text'}
-          />
-          <Typography.Body2>
-            Enter your email address and we will send you further instructions
-          </Typography.Body2>
-          <Button fullWidth>Send Instructions</Button>
-        </form>
-        <Typography.Link1 className={s.registerAcc}>
-          Did you remember your password?
-        </Typography.Link1>
-        <Button as={Link} className={s.sendBtn} to={Routes.SignIn} type={'submit'} variant={'link'}>
-          Try logging in
-        </Button>
-      </Card>
-    )
-  }
-)
+  return (
+    <Card className={s.wrapper}>
+      <DevTool control={control} />
+      <Typography.Large className={s.title}>Forgot your password?</Typography.Large>
+      <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+        <ControlledInput
+          control={control}
+          label={'Email'}
+          name={'email'}
+          placeholder={'Enter email'}
+          type={'text'}
+        />
+        <Typography.Body2>
+          Enter your email address and we will send you further instructions
+        </Typography.Body2>
+        <Button fullWidth>Send Instructions</Button>
+      </form>
+      <Typography.Link1 className={s.registerAcc}>Did you remember your password?</Typography.Link1>
+      <Button as={Link} className={s.sendBtn} to={Routes.SignIn} type={'submit'} variant={'link'}>
+        Try logging in
+      </Button>
+    </Card>
+  )
+}

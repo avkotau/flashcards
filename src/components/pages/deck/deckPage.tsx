@@ -34,7 +34,6 @@ export const DeckPage = (): JSX.Element => {
     params: {
       currentPage,
       itemsPerPage,
-      orderBy: '',
       question,
     },
   }

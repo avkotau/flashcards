@@ -124,7 +124,9 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
             />
           )}
         </div>
-        {error && <Typography.Caption className={styles.error}>{errorMessage}</Typography.Caption>}
+        {(!!errorMessage || error) && (
+          <Typography.Caption className={styles.error}>{errorMessage}</Typography.Caption>
+        )}
       </div>
     )
   }
