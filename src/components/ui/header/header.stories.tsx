@@ -1,8 +1,21 @@
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
+
+import { store } from '@/app/store'
 import { Header } from '@/components'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
   component: Header,
+  decorators: [
+    Story => (
+      <Provider store={store}>
+        <BrowserRouter>
+          <Story />
+        </BrowserRouter>
+      </Provider>
+    ),
+  ],
   tags: ['autodocs'],
   title: 'Components/Header',
 } satisfies Meta<typeof Header>
