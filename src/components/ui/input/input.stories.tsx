@@ -83,7 +83,7 @@ const InputComponent: FC<InputProps & { type: string }> = (props: InputProps) =>
 
 export const Input: Story = {
   args: {
-    errorMessage: 'Error!',
+    errorMessage: '',
     label: 'Input',
     placeholder: 'Input',
     shortWidth: false,

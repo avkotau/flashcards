@@ -1,6 +1,14 @@
 import { useForm } from 'react-hook-form'
 
-import { Button, ControlledInput, ControlledSelector, Typography } from '@/components'
+import {
+  Button,
+  CardFormValuesType,
+  ControlledInput,
+  ControlledSelector,
+  Typography,
+  cardSchema,
+} from '@/components'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './cardFormControl.module.scss'
 
@@ -32,14 +40,19 @@ export const CardFormControl = ({
 }: Props) => {
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      answer: cardValues?.answer,
-      question: cardValues?.question,
+      answer: cardValues?.answer || '',
+      answerFormat: 'text',
+      question: cardValues?.question || '',
       questionFormat: 'text',
     },
+    resolver: zodResolver(cardSchema),
   })
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = (data: CardFormValuesType) => {
     const formData = new FormData()
+
+    formData.append('question', data.question)
+    formData.append('answer', data.answer)
 
     onSubmit(formData)
   }
