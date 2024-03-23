@@ -1,9 +1,8 @@
 import { JSX, ReactNode, useState } from 'react'
 
-import { Modal } from '@/components'
-import { CardFormControl } from '@/components/ui/cardFormControl'
+import { CardFormControl, Modal } from '@/components'
 import { SelectItemType } from '@/components/ui/select/selectItem'
-import { Card } from '@/features'
+import { Card, useUpdateCardMutation } from '@/features'
 
 type Props = {
   btnTitle: string
@@ -20,15 +19,18 @@ export const EditCardModal = ({
 }: Props): JSX.Element => {
   const [open, setOpen] = useState(false)
 
-  const { answer, answerImg, question, questionImg } = card
+  const [updateCard] = useUpdateCardMutation()
+
+  const { answer, answerImg, deckId, id, question, questionImg } = card
   const cardValues = { answer, answerImg, question, questionImg }
 
   const isOpenModal = () => {
     setOpen(false)
   }
 
-  const onSubmit = () => {
+  const onSubmit = (body: FormData) => {
     setOpen(false)
+    updateCard({ body, cardId: id, deckId })
   }
 
   return (

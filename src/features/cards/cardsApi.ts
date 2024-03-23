@@ -11,7 +11,14 @@ export const cardsApi = baseApi.injectEndpoints({
         url: `v1/decks/${id}/cards`,
       }),
     }),
+    updateCard: builder.mutation<any, any>({
+      query: ({ body, cardId }) => ({
+        body,
+        method: 'PATCH',
+        url: `v1/cards/${cardId}`,
+      }),
+    }),
   }),
 })
 
-export const { useGetCardsQuery } = cardsApi
+export const { useGetCardsQuery, useUpdateCardMutation } = cardsApi
