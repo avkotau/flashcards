@@ -44,13 +44,13 @@ export const DeckPage = (): JSX.Element => {
 
   const isOwner = user?.id === deck?.userId
 
-  const isEmptyCard = deck && deck.cardsCount > 0
+  const isEmptyCard = deck && deck.cardsCount <= 0
 
   return (
     <div className={s.deckPageWrapper}>
       <GoBack className={s.linkGoBack} title={'Back to Decks List'} />
-      {deck && <DeckPageHeader deck={deck} isOwner={isOwner} />}
-      {isEmptyCard && (
+      {deck && <DeckPageHeader deck={deck} isEmptyCard={isEmptyCard} isOwner={isOwner} />}
+      {!isEmptyCard && (
         <>
           <InputFactory
             containerStyle={s.input}
@@ -70,7 +70,7 @@ export const DeckPage = (): JSX.Element => {
           />
         </>
       )}
-      {isOwner && !isEmptyCard && (
+      {isEmptyCard && (
         <Table.EmptyPage text={'The deck is empty, please go back to learn other decks.'} />
       )}
     </div>
