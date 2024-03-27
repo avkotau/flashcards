@@ -1,0 +1,25 @@
+.root {
+  width: 100%;
+  max-width: 26.25rem;
+  margin: 0 auto;
+  padding: 2rem 2.25rem 3rem;
+
+  .learn {
+    margin-bottom: 2.8rem;
+    text-align: center;
+  }
+
+  .question,
+  .answer {
+    margin-bottom: 1.1rem;
+  }
+
+  .attempts {
+    margin-bottom: 0.7rem;
+    color: var(--color-dark-100);
+  }
+
+  .rate {
+    margin-bottom: 1.8rem;
+  }
+}
