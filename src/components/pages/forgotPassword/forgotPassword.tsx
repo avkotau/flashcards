@@ -1,6 +1,6 @@
 import { ForgotPasswordForm } from '@/components'
 
-export const ForgotPasswordPage = () => {
+export const ForgotPassword = () => {
   return (
     <div>
       <ForgotPasswordForm onSubmit={() => {}} />

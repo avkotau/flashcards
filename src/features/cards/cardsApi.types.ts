@@ -31,3 +31,10 @@ export type CardsParams = {
   orderBy?: string
   question?: string
 }
+
+export type CardLearnResponse = Omit<Card, 'userId'>
+
+export type LearnCardRequest = {
+  id: string
+  previousCardId?: string
+}

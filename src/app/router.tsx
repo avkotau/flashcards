@@ -10,7 +10,7 @@ import { Routes } from '@/common'
 import {
   DeckPage,
   Decks,
-  ForgotPasswordPage,
+  ForgotPassword,
   Header,
   Learn,
   Profile,
@@ -29,7 +29,7 @@ const publicRoutes: RouteObject[] = [
     path: Routes.SignUp,
   },
 
-  { element: <ForgotPasswordPage />, path: Routes.ForgotPassword },
+  { element: <ForgotPassword />, path: Routes.ForgotPassword },
 ]
 
 const privateRoutes: RouteObject[] = [
