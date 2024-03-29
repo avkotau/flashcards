@@ -1,5 +1,5 @@
 import { baseApi } from '@/app/base-api'
-import { CardLearnResponse, CardsParams, CardsResponse, LearnCardRequest } from '@/features'
+import { Card, CardLearnResponse, CardsParams, CardsResponse, LearnCardRequest } from '@/features'
 import { GetDeckResponse } from '@/services'
 
 export const cardsApi = baseApi.injectEndpoints({
@@ -29,7 +29,7 @@ export const cardsApi = baseApi.injectEndpoints({
       }),
     }),
 
-    updateCard: builder.mutation<any, any>({
+    updateCard: builder.mutation<Card, { body: FormData; cardId: string }>({
       query: ({ body, cardId }) => ({
         body,
         method: 'PATCH',
