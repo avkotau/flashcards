@@ -14,6 +14,21 @@
     margin-bottom: 1.1rem;
   }
 
+  .imgBox {
+    width: 100%;
+    max-width: 26.25rem;
+
+    img {
+      width: 100%;
+      transition: transform 0.3s ease;
+
+      &.zoomedImage {
+        cursor: zoom-out;
+        transform: scale(2);
+      }
+    }
+  }
+
   .attempts {
     margin-bottom: 0.7rem;
     color: var(--color-dark-100);
