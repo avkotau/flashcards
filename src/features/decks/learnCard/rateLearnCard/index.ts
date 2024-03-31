@@ -1,2 +1,2 @@
-export * from './learnCard'
 export * from './rateLearnCard'
+export * from './options'
