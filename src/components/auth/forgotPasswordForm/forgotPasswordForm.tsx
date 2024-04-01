@@ -41,7 +41,9 @@ export const ForgotPasswordForm = ({ onSubmit }: Props): JSX.Element => {
         <Typography.Body2>
           Enter your email address and we will send you further instructions
         </Typography.Body2>
-        <Button fullWidth>Send Instructions</Button>
+        <Button fullWidth type={'submit'}>
+          Send Instructions
+        </Button>
       </form>
       <Typography.Link1 className={s.registerAcc}>Did you remember your password?</Typography.Link1>
       <Button as={Link} className={s.sendBtn} to={Routes.SignIn} type={'submit'} variant={'link'}>

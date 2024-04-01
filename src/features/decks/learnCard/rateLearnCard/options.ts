@@ -1,4 +1,9 @@
-import { RadioOption } from '@/components/ui/radioGroup/radioGroup.stories'
+export type RadioOption = {
+  disabled: boolean
+  id: string
+  label: string
+  value: string
+}
 
 export const rateOptions: RadioOption[] = [
   { disabled: false, id: '1', label: 'Did not know', value: '1' },

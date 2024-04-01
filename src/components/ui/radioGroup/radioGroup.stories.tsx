@@ -21,8 +21,6 @@ const InitialState = [
   { disabled: true, id: 'r4', label: 'Fourth Radio', value: 'FourthRadio' },
 ]
 
-export type RadioOption = (typeof InitialState)[number]
-
 const RadioSelector = (args: RadioSelectorProps) => {
   const [isActive, setIsActive] = useState(args.value)
 
