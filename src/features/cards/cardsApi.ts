@@ -29,7 +29,7 @@ export const cardsApi = baseApi.injectEndpoints({
       },
     }),
 
-    updateCard: builder.mutation<Card, { body: FormData; cardId: string }>({
+    updateCard: builder.mutation<Card, { body: FormData; cardId: string; deckId: string }>({
       query: ({ body, cardId }) => ({
         body,
         method: 'PATCH',

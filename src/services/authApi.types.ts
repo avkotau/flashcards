@@ -22,3 +22,5 @@ export type SignUpParams = {
   sendConfirmationEmail?: boolean
   subject?: string
 }
+
+export type RecoverPasswordParams = Pick<SignUpParams, 'email'>

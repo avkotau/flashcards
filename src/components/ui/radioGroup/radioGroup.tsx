@@ -1,11 +1,11 @@
 import { ComponentPropsWithoutRef, ElementRef, JSX, forwardRef } from 'react'
 
+import { RadioOption } from '@/features'
 import * as Radio from '@radix-ui/react-radio-group'
 import cn from 'classnames'
 
 import s from './radioGroup.module.scss'
 
-import { RadioOption } from './radioGroup.stories'
 import { RadioItem } from './radioItem'
 
 export type RadioSelectorProps = {
@@ -22,7 +22,7 @@ export const RadioGroup = forwardRef<ElementRef<typeof Radio.Root>, RadioGroupPr
     return (
       <Radio.Root className={classNames} ref={ref} {...rest}>
         {options.map(item => (
-          <RadioItem key={item.value} {...item} />
+          <RadioItem key={item?.value} {...item} />
         ))}
       </Radio.Root>
     )
