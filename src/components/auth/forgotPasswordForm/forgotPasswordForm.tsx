@@ -29,8 +29,8 @@ export const ForgotPasswordForm = ({ onSubmit }: Props): JSX.Element => {
   return (
     <Card className={s.wrapper}>
       <DevTool control={control} />
-      <Typography.Large className={s.title}>Forgot your password?</Typography.Large>
       <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+        <Typography.Large className={s.title}>Forgot your password?</Typography.Large>
         <ControlledInput
           control={control}
           label={'Email'}
