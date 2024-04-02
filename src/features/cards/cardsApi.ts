@@ -1,6 +1,6 @@
 import { baseApi } from '@/app/base-api'
 import { Card, CardLearnResponse, CardsParams, CardsResponse, LearnCardRequest } from '@/features'
-import { GetDeckResponse } from '@/services'
+import { GetDeckResponse, RecoverPasswordParams } from '@/services'
 
 export const cardsApi = baseApi.injectEndpoints({
   endpoints: builder => ({
@@ -28,6 +28,17 @@ export const cardsApi = baseApi.injectEndpoints({
         return { data: { ...cardData, name: deckData.name } }
       },
     }),
+    recoverPassword: builder.mutation<void, RecoverPasswordParams>({
+      query: arg => ({
+        body: {
+          email: arg.email,
+          html: '<h1>Hi, ##name##</h1><p>Click <a href="https://quizcreatorscards.vercel.app/##token##">here</a> to recover your password</p>',
+          subject: 'Recover password',
+        },
+        method: 'POST',
+        url: 'v1/auth/recover-password',
+      }),
+    }),
 
     updateCard: builder.mutation<Card, { body: FormData; cardId: string; deckId: string }>({
       query: ({ body, cardId }) => ({
@@ -39,4 +50,9 @@ export const cardsApi = baseApi.injectEndpoints({
   }),
 })
 
-export const { useGetCardsQuery, useGetRandomCardQuery, useUpdateCardMutation } = cardsApi
+export const {
+  useGetCardsQuery,
+  useGetRandomCardQuery,
+  useRecoverPasswordMutation,
+  useUpdateCardMutation,
+} = cardsApi

@@ -1,19 +1,22 @@
 import { useState } from 'react'
 
 import { CheckEmail, ForgotPasswordForm } from '@/components'
+import { useRecoverPasswordMutation } from '@/features'
 import { RecoverPasswordParams } from '@/services'
 
 export const ForgotPassword = () => {
   const [email, setEmail] = useState('')
 
-  const onSubmit = (requestData: RecoverPasswordParams) => {
-    setEmail(requestData.email)
+  const [recoverPassword, { isSuccess }] = useRecoverPasswordMutation()
+
+  const onSubmit = (request: RecoverPasswordParams) => {
+    recoverPassword(request)
+    setEmail(request.email)
   }
 
   return (
     <div>
-      <ForgotPasswordForm onSubmit={onSubmit} />
-      <CheckEmail email={email} />
+      {!isSuccess ? <ForgotPasswordForm onSubmit={onSubmit} /> : <CheckEmail email={email} />}
     </div>
   )
 }
