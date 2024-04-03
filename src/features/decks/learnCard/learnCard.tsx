@@ -7,11 +7,15 @@ import { useGetRandomCardQuery } from '@/features'
 import s from './learnCard.module.scss'
 
 export const LearnCard = () => {
-  const [isImageZoomed, setIsImageZoomed] = useState(false)
+  const [isImageZoomed, setIsImageZoomed] = useState({ answerImg: false, questionImg: false })
+
   const [showAnswer, setShowAnswer] = useState(false)
 
-  const toggleZoom = () => {
-    setIsImageZoomed(!isImageZoomed)
+  const toggleZoom = (imageKey: keyof typeof isImageZoomed) => {
+    setIsImageZoomed(prevState => ({
+      ...prevState,
+      [imageKey]: !prevState[imageKey],
+    }))
   }
 
   const params = useParams()
@@ -31,8 +35,8 @@ export const LearnCard = () => {
         <div className={s.imgBox}>
           <img
             alt={'Question'}
-            className={isImageZoomed ? s.zoomedImage : ''}
-            onClick={toggleZoom}
+            className={isImageZoomed.questionImg ? s.zoomedImage : ''}
+            onClick={() => toggleZoom('questionImg')}
             src={card.questionImg}
           />
         </div>
@@ -45,8 +49,8 @@ export const LearnCard = () => {
             <div className={s.imgBox}>
               <img
                 alt={'Answer'}
-                className={isImageZoomed ? s.zoomedImage : ''}
-                onClick={toggleZoom}
+                className={isImageZoomed.answerImg ? s.zoomedImage : ''}
+                onClick={() => toggleZoom('answerImg')}
                 src={card.answerImg}
               />
             </div>
