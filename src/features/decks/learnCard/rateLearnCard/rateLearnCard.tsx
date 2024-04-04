@@ -1,9 +1,11 @@
 import { useForm } from 'react-hook-form'
 
-import { ControlledRadioGroup } from '@/components'
+import { Button, ControlledRadioGroup } from '@/components'
 import { rateOptions } from '@/features'
 
-type RateLearnCardValues = {
+import s from './rateLearnCard.module.scss'
+
+export type RateLearnCardValues = {
   grade: string
 }
 
@@ -17,8 +19,11 @@ export const RateLearnCard = ({ onSubmit }: Props) => {
   })
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
       <ControlledRadioGroup control={control} name={'grade'} options={rateOptions} value={'1'} />
+      <Button fullWidth type={'submit'}>
+        Next
+      </Button>
     </form>
   )
 }

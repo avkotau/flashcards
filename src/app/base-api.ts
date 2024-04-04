@@ -6,6 +6,6 @@ export const baseApi = createApi({
   endpoints: () => ({}),
 
   reducerPath: 'baseApi',
-  refetchOnFocus: true,
+  // refetchOnFocus: true,
   tagTypes: ['Me', 'Deck', 'Cards'],
 })

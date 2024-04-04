@@ -2,7 +2,12 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { Button, Card, Typography } from '@/components'
-import { useGetRandomCardQuery } from '@/features'
+import {
+  RateLearnCard,
+  RateLearnCardValues,
+  useGetRandomCardQuery,
+  useRateCardMutation,
+} from '@/features'
 
 import s from './learnCard.module.scss'
 
@@ -10,6 +15,7 @@ export const LearnCard = () => {
   const [isImageZoomed, setIsImageZoomed] = useState({ answerImg: false, questionImg: false })
 
   const [showAnswer, setShowAnswer] = useState(false)
+  const [rateCard] = useRateCardMutation()
 
   const toggleZoom = (imageKey: keyof typeof isImageZoomed) => {
     setIsImageZoomed(prevState => ({
@@ -27,6 +33,10 @@ export const LearnCard = () => {
     setShowAnswer(!showAnswer)
   }
 
+  const onHandlerRate = (data: RateLearnCardValues) => {
+    rateCard(data)
+  }
+
   return (
     <Card className={s.root}>
       <Typography.Large className={s.learn}>Learn {card?.name}</Typography.Large>
@@ -42,7 +52,7 @@ export const LearnCard = () => {
         </div>
       )}
       <Typography.Body2 className={s.attempts}>Number of attempts: {card?.shots}</Typography.Body2>
-      {showAnswer && (
+      {showAnswer ? (
         <>
           <Typography.Subtitle1 className={s.answer}>Answer: {card?.answer}</Typography.Subtitle1>
           {card?.answerImg && (
@@ -56,12 +66,13 @@ export const LearnCard = () => {
             </div>
           )}
           <Typography.Subtitle1 className={s.rate}>Rate yourself: </Typography.Subtitle1>
+          <RateLearnCard onSubmit={onHandlerRate} />
         </>
+      ) : (
+        <Button fullWidth onClick={onShowAnswer}>
+          Show Answer
+        </Button>
       )}
-
-      <Button fullWidth onClick={onShowAnswer}>
-        Show Answer
-      </Button>
     </Card>
   )
 }
