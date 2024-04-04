@@ -28,6 +28,15 @@ export const cardsApi = baseApi.injectEndpoints({
         return { data: { ...cardData, name: deckData.name } }
       },
     }),
+    rateCard: builder.mutation<any, any>({
+      invalidatesTags: ['Cards'],
+      query: (deskId, ...rest) => ({
+        body: rest,
+        method: 'POST',
+        url: `v1/decks/${deskId}/learn`,
+      }),
+    }),
+
     recoverPassword: builder.mutation<void, RecoverPasswordParams>({
       query: arg => ({
         body: {
@@ -39,7 +48,6 @@ export const cardsApi = baseApi.injectEndpoints({
         url: 'v1/auth/recover-password',
       }),
     }),
-
     updateCard: builder.mutation<Card, { body: FormData; cardId: string; deckId: string }>({
       query: ({ body, cardId }) => ({
         body,
@@ -53,6 +61,7 @@ export const cardsApi = baseApi.injectEndpoints({
 export const {
   useGetCardsQuery,
   useGetRandomCardQuery,
+  useRateCardMutation,
   useRecoverPasswordMutation,
   useUpdateCardMutation,
 } = cardsApi
