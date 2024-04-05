@@ -80,7 +80,7 @@
       // for story
       &.focus {
         color: var(--color-dark-100);
-        border: 2px solid var(--color-info-700, #2f68cc);
+        border: 1px solid var(--color-info-700, #2f68cc);
 
         &::placeholder {
           color: var(--color-dark-100);
@@ -89,7 +89,7 @@
 
       &:focus {
         color: var(--color-dark-100);
-        border: 2px solid var(--color-info-700, #2f68cc);
+        border: 1px solid var(--color-info-700, #2f68cc);
 
         &::placeholder {
           color: var(--color-dark-100);

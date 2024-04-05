@@ -42,4 +42,15 @@ body {
   &.sb-show-main {
     background-color: var(--color-dark-900) !important;
   }
+
+  // autocomplete
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s !important;
+
+    -webkit-text-fill-color: var(--color-light-100) !important;
+  }
 }
