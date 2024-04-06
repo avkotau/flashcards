@@ -4,6 +4,14 @@ import { GetDeckResponse, RecoverPasswordParams } from '@/services'
 
 export const cardsApi = baseApi.injectEndpoints({
   endpoints: builder => ({
+    createCard: builder.mutation<Card, { body: FormData; id: string }>({
+      invalidatesTags: ['Cards', 'Deck'],
+      query: ({ body, id }) => ({
+        body,
+        method: 'POST',
+        url: `v1/decks/${id}/cards`,
+      }),
+    }),
     getCards: builder.query<CardsResponse, { id: string; params: CardsParams }>({
       providesTags: ['Cards'],
       query: ({ id, params }) => ({
@@ -28,6 +36,7 @@ export const cardsApi = baseApi.injectEndpoints({
         return { data: { ...cardData, name: deckData.name } }
       },
     }),
+
     rateCard: builder.mutation<any, any>({
       invalidatesTags: ['Cards'],
       query: (deskId, ...rest) => ({
@@ -36,7 +45,6 @@ export const cardsApi = baseApi.injectEndpoints({
         url: `v1/decks/${deskId}/learn`,
       }),
     }),
-
     recoverPassword: builder.mutation<void, RecoverPasswordParams>({
       query: arg => ({
         body: {
@@ -59,6 +67,7 @@ export const cardsApi = baseApi.injectEndpoints({
 })
 
 export const {
+  useCreateCardMutation,
   useGetCardsQuery,
   useGetRandomCardQuery,
   useRateCardMutation,

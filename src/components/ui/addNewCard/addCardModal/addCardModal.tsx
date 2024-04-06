@@ -1,9 +1,9 @@
 import { JSX, ReactNode, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
-import { Modal } from '@/components'
-
-import { CardFormControl } from '../../cardFormControl'
-import { SelectItemType } from '../../select/selectItem'
+import { CardFormControl, Modal } from '@/components'
+import { SelectItemType } from '@/components/ui/select/selectItem'
+import { useCreateCardMutation } from '@/features'
 
 type Props = {
   btnTitle: string
@@ -13,12 +13,14 @@ type Props = {
 
 export const AddCardModal = ({ btnTitle, initialState, isOpenModalBtn }: Props): JSX.Element => {
   const [open, setOpen] = useState(false)
-
+  const { id = '' } = useParams<{ id: string }>()
+  const [createCard] = useCreateCardMutation()
   const isOpenModal = () => {
     setOpen(false)
   }
 
-  const onSubmit = () => {
+  const onSubmit = (body: FormData) => {
+    createCard({ body, id })
     setOpen(false)
   }
 
