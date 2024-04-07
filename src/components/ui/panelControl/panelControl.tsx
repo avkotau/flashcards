@@ -1,7 +1,5 @@
 import { CrossIcon, DeleteIcon, SearchIcon } from '@/assets'
-import { Button, InputFactory, Slider, Typography } from '@/components'
-import { TabsSwitcher } from '@/components/ui/tabs'
-import { Tab } from '@/components/ui/tabs/tab'
+import { Button, InputFactory, Slider, Tab, TabsSwitcher, Typography } from '@/components'
 import cn from 'classnames'
 
 import s from './panelControl.module.scss'

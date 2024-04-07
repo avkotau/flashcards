@@ -72,7 +72,7 @@ export const CardFormControl = ({
         <Button onClick={isOpenModal} variant={'secondary'}>
           <Typography.Subtitle2>Cancel</Typography.Subtitle2>
         </Button>
-        <Button onClick={isOpenModal}>{btnTitle}</Button>
+        <Button type={'submit'}>{btnTitle}</Button>
       </div>
     </form>
   )
