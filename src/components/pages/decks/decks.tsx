@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react'
 
-import { DecksPageHeader, DecksTable, Pagination } from '@/components'
-import { useGetDecksQuery } from '@/components/ui/decks/model/deckApi'
-import { PanelControl } from '@/components/ui/panelControl'
-import { getSortedData } from '@/components/ui/table/dataSorting'
-import { Sort, titleColumns } from '@/components/ui/table/tableHeader'
-import { Typography } from '@/components/ui/typography'
+import {
+  DecksPageHeader,
+  DecksTable,
+  Pagination,
+  PanelControl,
+  Sort,
+  Typography,
+  getSortedData,
+  titleColumns,
+  useGetDecksQuery,
+} from '@/components'
 import { useDeckSettings } from '@/features'
 
 import s from './decks.module.scss'

@@ -1,4 +1,4 @@
-import { Sort } from '@/components/ui/table/tableHeader'
+import { Sort } from '@/components'
 import { GetDecksResponseItems } from '@/services/flashCards.type'
 
 export const getSortedData = (data: GetDecksResponseItems[], sort: Sort | undefined) => {
