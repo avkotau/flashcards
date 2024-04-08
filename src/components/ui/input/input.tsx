@@ -1,7 +1,8 @@
-import {
+import React, {
   ChangeEvent,
   ComponentPropsWithoutRef,
   ElementRef,
+  MouseEventHandler,
   ReactNode,
   forwardRef,
   useState,
@@ -53,7 +54,8 @@ export const InputFactory = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
-    const togglePasswordVisibility = () => {
+    const togglePasswordVisibility = (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.preventDefault()
       setIsPasswordVisible(prevState => !prevState)
     }
     const onChangeValueInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -136,7 +138,7 @@ type IconProps = {
   className?: string
   disabled?: boolean
   icon?: ReactNode
-  onClick?: () => void
+  onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
 export const IconButton = forwardRef<ElementRef<'button'>, IconProps>(
