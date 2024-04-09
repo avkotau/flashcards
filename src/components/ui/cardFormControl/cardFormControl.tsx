@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import {
   Button,
+  CardFieldEditor,
   CardFormValuesType,
   ControlledInput,
   ControlledSelector,
@@ -16,7 +18,7 @@ import { SelectItemType } from '../select/selectItem'
 
 export type CardValues = {
   answer: string
-  answerImg: null | string
+  imageSrc: null | string | undefined
   question: string
   questionImg: null | string
 }
@@ -47,6 +49,9 @@ export const CardFormControl = ({
     },
     resolver: zodResolver(cardSchema),
   })
+  const [questionPic, setQuestionPic] = useState<File | null>(null)
+
+  const questionImageSrc = questionPic ? URL.createObjectURL(questionPic) : cardValues?.questionImg
 
   const onSubmitHandler = (data: CardFormValuesType) => {
     const formData = new FormData()
@@ -55,6 +60,10 @@ export const CardFormControl = ({
     formData.append('answer', data.answer)
 
     onSubmit(formData)
+  }
+
+  const onLoadQuestionPic = (data: File) => {
+    setQuestionPic(data)
   }
 
   return (
@@ -66,6 +75,7 @@ export const CardFormControl = ({
         options={initialState}
         placeholder={placeholder}
       />
+      <CardFieldEditor imageScr={questionImageSrc} onLoadPic={onLoadQuestionPic} />
       <ControlledInput control={control} label={'Question'} name={'question'} type={'text'} />
       <ControlledInput control={control} label={'Answer'} name={'answer'} type={'text'} />
       <div className={s.wrapperBtns}>
