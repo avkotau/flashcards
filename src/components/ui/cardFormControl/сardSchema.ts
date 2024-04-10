@@ -7,4 +7,4 @@ export const cardSchema = z.object({
   questionFormat: z.string().trim(),
 })
 
-export type CardFormValuesType = z.infer<typeof cardSchema>
+export type CardFormType = z.infer<typeof cardSchema>

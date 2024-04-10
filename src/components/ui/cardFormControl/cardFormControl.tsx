@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import {
   Button,
   CardFieldEditor,
-  CardFormValuesType,
+  CardFormType,
   ControlledInput,
   ControlledSelector,
   Typography,
@@ -53,7 +53,7 @@ export const CardFormControl = ({
 
   const questionImageSrc = questionPic ? URL.createObjectURL(questionPic) : cardValues?.questionImg
 
-  const onSubmitHandler = (data: CardFormValuesType) => {
+  const onSubmitHandler = (data: CardFormType) => {
     const formData = new FormData()
 
     formData.append('question', data.question)
@@ -75,8 +75,14 @@ export const CardFormControl = ({
         options={initialState}
         placeholder={placeholder}
       />
-      <CardFieldEditor imageScr={questionImageSrc} onLoadPic={onLoadQuestionPic} />
-      <ControlledInput control={control} label={'Question'} name={'question'} type={'text'} />
+      <CardFieldEditor
+        control={control}
+        imageScr={questionImageSrc}
+        label={'Question'}
+        name={'question'}
+        onLoadPic={onLoadQuestionPic}
+      />
+
       <ControlledInput control={control} label={'Answer'} name={'answer'} type={'text'} />
       <div className={s.wrapperBtns}>
         <Button onClick={isOpenModal} variant={'secondary'}>
