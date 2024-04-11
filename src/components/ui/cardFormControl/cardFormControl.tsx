@@ -5,7 +5,6 @@ import {
   Button,
   CardFieldEditor,
   CardFormType,
-  ControlledInput,
   ControlledSelector,
   Typography,
   cardSchema,
@@ -50,8 +49,10 @@ export const CardFormControl = ({
     resolver: zodResolver(cardSchema),
   })
   const [questionPic, setQuestionPic] = useState<File | null>(null)
+  const [answerPic, setAnswerPic] = useState<File | null>(null)
 
   const questionImageSrc = questionPic ? URL.createObjectURL(questionPic) : cardValues?.questionImg
+  const answerImageSrc = answerPic ? URL.createObjectURL(answerPic) : cardValues?.questionImg
 
   const onSubmitHandler = (data: CardFormType) => {
     const formData = new FormData()
@@ -64,6 +65,10 @@ export const CardFormControl = ({
 
   const onLoadQuestionPic = (data: File) => {
     setQuestionPic(data)
+  }
+
+  const onLoadAnswerPic = (data: File) => {
+    setAnswerPic(data)
   }
 
   return (
@@ -82,8 +87,13 @@ export const CardFormControl = ({
         name={'question'}
         onLoadPic={onLoadQuestionPic}
       />
-
-      <ControlledInput control={control} label={'Answer'} name={'answer'} type={'text'} />
+      <CardFieldEditor
+        control={control}
+        imageScr={answerImageSrc}
+        label={'Answer'}
+        name={'answer'}
+        onLoadPic={onLoadAnswerPic}
+      />
       <div className={s.wrapperBtns}>
         <Button onClick={isOpenModal} variant={'secondary'}>
           <Typography.Subtitle2>Cancel</Typography.Subtitle2>
