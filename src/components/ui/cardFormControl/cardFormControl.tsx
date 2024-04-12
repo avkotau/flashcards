@@ -39,7 +39,7 @@ export const CardFormControl = ({
   onSubmit,
   placeholder,
 }: Props) => {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, watch } = useForm({
     defaultValues: {
       answer: cardValues?.answer || '',
       answerFormat: 'text',
@@ -53,6 +53,9 @@ export const CardFormControl = ({
 
   const questionImageSrc = questionPic ? URL.createObjectURL(questionPic) : cardValues?.questionImg
   const answerImageSrc = answerPic ? URL.createObjectURL(answerPic) : cardValues?.questionImg
+
+  const questionType = watch('questionFormat')
+  const answerType = watch('answerFormat')
 
   const onSubmitHandler = (data: CardFormType) => {
     const formData = new FormData()
@@ -76,6 +79,7 @@ export const CardFormControl = ({
       <ControlledSelector
         control={control}
         fullWidth
+        label={'Choose a question format'}
         name={'questionFormat'}
         options={initialState}
         placeholder={placeholder}
@@ -86,6 +90,15 @@ export const CardFormControl = ({
         label={'Question'}
         name={'question'}
         onLoadPic={onLoadQuestionPic}
+        selectFormat={questionType}
+      />
+      <ControlledSelector
+        control={control}
+        fullWidth
+        label={'Choose a answer format'}
+        name={'answerFormat'}
+        options={initialState}
+        placeholder={placeholder}
       />
       <CardFieldEditor
         control={control}
@@ -93,6 +106,7 @@ export const CardFormControl = ({
         label={'Answer'}
         name={'answer'}
         onLoadPic={onLoadAnswerPic}
+        selectFormat={answerType}
       />
       <div className={s.wrapperBtns}>
         <Button onClick={isOpenModal} variant={'secondary'}>

@@ -14,12 +14,5 @@ export const ControlledSelector = <T extends FieldValues>({
     field: { onChange, value },
   } = useController({ control, name })
 
-  return (
-    <CustomSelect
-      label={rest.label || 'Choose a question format'}
-      onValueChange={onChange}
-      value={value}
-      {...rest}
-    />
-  )
+  return <CustomSelect label={rest.label} onValueChange={onChange} value={value} {...rest} />
 }
