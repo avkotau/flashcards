@@ -1,10 +1,9 @@
-import { useState } from 'react'
 import { Control } from 'react-hook-form'
 
 import { Button, CardFormType, ControlledInput, Typography, UploaderAvatar } from '@/components'
 import { ImageIcon } from '@radix-ui/react-icons'
 
-import s from '@/components/ui/deck/deckForm/deckForm.module.scss'
+import s from './cardFieldEditor.module.scss'
 
 type Props = {
   control: Control<CardFormType>
@@ -15,26 +14,36 @@ type Props = {
   selectFormat: string
 }
 
-export const CardFieldEditor = ({ control, imageScr, label, name, selectFormat }: Props) => {
-  const [_, setCover] = useState<File | null>(null)
-
+export const CardFieldEditor = ({
+  control,
+  imageScr,
+  label,
+  name,
+  onLoadPic,
+  selectFormat,
+}: Props) => {
   const buttonUploadText = imageScr ? 'Change Cover' : ' Add Cover'
-  const onLoadImg = (data: File) => {
-    setCover(data)
-  }
 
   return (
     <>
       {selectFormat === 'text' && (
         <ControlledInput control={control} label={label} name={name} type={'text'} />
       )}
-      <UploaderAvatar className={s.uploader} onLoadAvatar={onLoadImg}>
-        <Button fullWidth type={'button'} variant={'secondary'}>
-          <ImageIcon />
-          <Typography.Subtitle2>{buttonUploadText}</Typography.Subtitle2>
-        </Button>
-      </UploaderAvatar>
-      <Typography.Subtitle2>{buttonUploadText}</Typography.Subtitle2>
+      {selectFormat === 'picture' && (
+        <div>
+          {imageScr && (
+            <div className={s.imageBox}>
+              <img alt={'Card pic'} src={imageScr} />
+            </div>
+          )}
+          <UploaderAvatar className={s.uploader} onLoadAvatar={onLoadPic}>
+            <Button fullWidth type={'button'} variant={'secondary'}>
+              <ImageIcon />
+              <Typography.Subtitle2>{buttonUploadText}</Typography.Subtitle2>
+            </Button>
+          </UploaderAvatar>
+        </div>
+      )}
     </>
   )
 }
