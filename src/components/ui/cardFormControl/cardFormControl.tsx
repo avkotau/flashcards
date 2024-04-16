@@ -17,7 +17,7 @@ import { SelectItemType } from '../select/selectItem'
 
 export type CardValues = {
   answer: string
-  imageSrc: null | string | undefined
+  answerImg: null | string | undefined
   question: string
   questionImg: null | string
 }
@@ -62,7 +62,8 @@ export const CardFormControl = ({
 
     formData.append('question', data.question)
     formData.append('answer', data.answer)
-
+    formData.append('questionImg', questionPic || '')
+    formData.append('answerImg', answerPic || '')
     onSubmit(formData)
   }
 
